@@ -14,7 +14,6 @@ typedef struct Fecha
 
 typedef struct Hora
 {
-   int segundo;
    int minuto;
    int hora;
 } Hora;
@@ -41,7 +40,7 @@ typedef struct NodoReservacion
 typedef struct Mesa
 {
    int numero;
-   int maximoPersonas;
+   int capacidad;
    NodoReservacion *reservaciones;
 } Mesa;
 
@@ -53,6 +52,7 @@ typedef struct NodoMesa
 
 typedef struct Restaurante
 {
+   int mesaCapacidadMaxima;
    NodoMesa *mesas;
-   NodoReservacion *reservacion;
+   NodoReservacion *reservacionesCanceladas;
 } Restaurante;
