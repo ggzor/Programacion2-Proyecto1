@@ -1,3 +1,4 @@
+#include "./ManejoEstructuras.h"
 #include "./DatosPrueba.h"
 
 Restaurante *obtenerDatos()
