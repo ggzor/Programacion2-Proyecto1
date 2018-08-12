@@ -40,7 +40,7 @@ def extraerRestaurante(restaurante):
 
 restaurantes = list(map(extraerRestaurante, datos))
 
-salida = "DatosPrueba.c"
+salida = "../DatosPrueba.c"
 funcion = "obtenerDatos"
 
 restaurante = restaurantes[0]
