@@ -40,7 +40,7 @@ NodoMesa *obtenerMesas()
         {4, 4, NULL}};
 
     for (i = 0; i < CantidadMesas; i++)
-        agregarListaMesas(lista, mesas + i);
+        lista = agregarListaMesas(lista, mesas + i);
 
     return lista;
 }
