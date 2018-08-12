@@ -1,4 +1,4 @@
-#include "./DatosCliente.h"
+#include "./Lectura.h"
 
 Cliente leerCliente() {
     // TODO: Interfaz para leer los datos del cliente
