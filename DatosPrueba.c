@@ -1,4 +1,4 @@
-#include "./Estructuras.h"
+#include "./DatosPrueba.h"
 
 Restaurante *obtenerDatos()
 {
