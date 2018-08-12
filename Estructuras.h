@@ -45,6 +45,7 @@ typedef struct
    int numero;
    int capacidad;
    NodoReservacion *reservaciones;
+   NodoReservacion *reservacionesCanceladas;
 } Mesa;
 
 typedef struct _NodoMesa
@@ -56,7 +57,6 @@ typedef struct _NodoMesa
 typedef struct
 {
    NodoMesa *mesas;
-   NodoReservacion *reservacionesCanceladas;
 } Restaurante;
 
 #endif
