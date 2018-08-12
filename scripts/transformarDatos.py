@@ -67,6 +67,7 @@ with open(salida, 'w') as a:
       )
       w('\t};\n')
       w('\tagregarReservacion({}, crearReservacion(cliente, {}));\n'.format(nombreMesa, nombreIntervalo))
+    w('\n\tagregarMesa(restaurante, {});\n'.format(nombreMesa))
 
   w('\n\treturn restaurante;\n')
   w('}\n')
