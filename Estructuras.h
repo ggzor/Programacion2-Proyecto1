@@ -55,7 +55,6 @@ typedef struct
 
 typedef struct
 {
-   int mesaCapacidadMaxima;
    NodoMesa *mesas;
    NodoReservacion *reservacionesCanceladas;
 } Restaurante;
