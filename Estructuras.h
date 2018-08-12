@@ -7,15 +7,15 @@ typedef struct Cliente
 
 typedef struct Fecha
 {
-   int dia;
-   int mes;
    int anio;
+   int mes;
+   int dia;
 } Fecha;
 
 typedef struct Hora
 {
-   int minuto;
    int hora;
+   int minuto;
 } Hora;
 
 typedef struct Intervalo
@@ -27,8 +27,8 @@ typedef struct Intervalo
 
 typedef struct Reservacion
 {
-   Intervalo intervalo;
    Cliente cliente;
+   Intervalo intervalo;
 } Reservacion;
 
 typedef struct NodoReservacion
