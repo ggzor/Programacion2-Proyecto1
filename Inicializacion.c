@@ -12,20 +12,20 @@ NodoMesa *nuevoNodoMesa(Mesa *mesa)
     return nodo;
 }
 
-NodoMesa *agregarListaMesas(NodoMesa *mesas, NodoMesa *nodo)
+NodoMesa *agregarListaMesas(NodoMesa *lista, NodoMesa *nuevoNodo)
 {
-    NodoMesa *actual = mesas;
-    if (mesas == NULL)
+    NodoMesa *actual = lista;
+    if (lista == NULL)
     {
-        return nodo;
+        return nuevoNodo;
     }
     else
     {
         while (actual->siguiente != NULL)
             actual = actual->siguiente;
 
-        actual->siguiente = nodo;
-        return mesas;
+        actual->siguiente = nuevoNodo;
+        return lista;
     }
 }
 
