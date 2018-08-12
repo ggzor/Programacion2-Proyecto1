@@ -1,3 +1,5 @@
+#include "./Estructuras.h"
+
 Restaurante *obtenerDatos()
 {
 	Restaurante *restaurante = crearRestaurante();

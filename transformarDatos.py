@@ -47,6 +47,8 @@ restaurante = restaurantes[0]
 with open(salida, 'w') as a:
   w = a.write
 
+  w('#include "./Estructuras.h"\n\n')
+
   w('Restaurante *{}()\n{{\n'.format(funcion))
 
   w('\tRestaurante *restaurante = crearRestaurante();\n')
