@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "./Informacion.h"
+#include "./Almacenamiento.h"
 
 Restaurante *cargarInformacion() {
     // TODO: Cargar toda la estructura Restaurante

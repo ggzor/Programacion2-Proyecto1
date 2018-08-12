@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "./Estructuras.h"
-#include "./Informacion.h"
+#include "./Almacenamiento.h"
 
 void intentarReservar(Restaurante *restaurante){
     int numeroPersonas;
