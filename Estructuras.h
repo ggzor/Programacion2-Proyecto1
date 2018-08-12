@@ -34,10 +34,10 @@ typedef struct
    Intervalo intervalo;
 } Reservacion;
 
-typedef struct
+typedef struct _NodoReservacion
 {
    Reservacion *reservacion;
-   struct NodoReservacion *siguiente;
+   struct _NodoReservacion *siguiente;
 } NodoReservacion;
 
 typedef struct
@@ -47,10 +47,10 @@ typedef struct
    NodoReservacion *reservaciones;
 } Mesa;
 
-typedef struct
+typedef struct _NodoMesa
 {
    Mesa *mesa;
-   struct NodoMesa *siguiente;
+   struct _NodoMesa *siguiente;
 } NodoMesa;
 
 typedef struct
