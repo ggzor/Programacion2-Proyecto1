@@ -1,3 +1,6 @@
+#ifndef _ESTRUCTURAS_H_
+#define _ESTRUCTURAS_H_
+
 typedef struct Cliente
 {
    char nombre[50];
@@ -56,3 +59,5 @@ typedef struct Restaurante
    NodoMesa *mesas;
    NodoReservacion *reservacionesCanceladas;
 } Restaurante;
+
+#endif
