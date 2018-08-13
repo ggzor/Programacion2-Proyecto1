@@ -10,6 +10,7 @@ Mesa *crearMesa(int numero, int capacidad);
 NodoMesa *crearNodoMesa(Mesa *mesa);
 
 void agregarReservacion(Mesa *mesa, Reservacion *reservacion);
+void agregarReservacionCancelada(Mesa *mesa, Reservacion *reservacion);
 void agregarMesa(Restaurante *restaurante, Mesa *mesa);
 
 Restaurante *crearRestaurante();
