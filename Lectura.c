@@ -11,7 +11,6 @@ Cliente leerCliente()
   int datosCorrectos;
   Cliente cliente;
 
-  printf("Ingrese sus datos:\n");
   leerCadena("Nombre: ", cliente.nombre);
   leerCadena("Direccion: ", cliente.direccion);
   leerTelefono("Telefono: ", &cliente.telefono);
