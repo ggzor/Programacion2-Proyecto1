@@ -1,24 +1,4 @@
-#include <stdio.h>
-#include <ctype.h>
-
-#include "LecturaValores.h"
-#include "ImpresionValores.h"
-
-void leerEnteroRango(const char *mensaje, int minimo, int maximo, int *direccion)
-{
-  int valido;
-  do
-  {
-    imprimirCadena(mensaje);
-    scanf("%d%*c", direccion);
-
-    valido = minimo <= *direccion && *direccion <= maximo;
-    if (!valido)
-    {
-      printf("El valor debe estar entre %d y %d.\n\n", minimo, maximo);
-    }
-  } while (!valido);
-}
+#include "../Interfaz.h"
 
 void leerCaracter(const char *mensaje, char *direccion)
 {
@@ -43,6 +23,39 @@ void leerSiNo(const char *mensaje, int *direccion)
   } while (!valido);
 
   *direccion = opcion == 'S';
+}
+
+void leerEnteroRango(const char *mensaje, int minimo, int maximo, int *direccion)
+{
+  int valido;
+  do
+  {
+    imprimirCadena(mensaje);
+    scanf("%d%*c", direccion);
+
+    valido = minimo <= *direccion && *direccion <= maximo;
+    if (!valido)
+    {
+      printf("El valor debe estar entre %d y %d.\n\n", minimo, maximo);
+    }
+  } while (!valido);
+}
+
+void leerOpcionNumerica(const char *mensaje, int maximo, int *direccion)
+{
+  int valido;
+  do
+  {
+    imprimirCadena(mensaje);
+    scanf("%d%*c", direccion);
+
+    valido = 1 <= *direccion && *direccion <= maximo;
+
+    if (!valido)
+    {
+      puts("Opción no válida. Reintente.\n");
+    }
+  } while (!valido);
 }
 
 void leerCadena(const char *mensaje, char *direccion)

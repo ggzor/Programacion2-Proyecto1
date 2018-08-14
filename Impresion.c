@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include "Impresion.h"
-#include "ImpresionValores.h"
+#include "Interfaz.h"
 
 //TE AMO beio Axel come pan. :p :D
 void imprimirCeros(int a)

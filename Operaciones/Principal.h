@@ -1,7 +1,7 @@
 #ifndef _OPERACIONES_PRINCIPAL_H_
 #define _OPERACIONES_PRINCIPAL_H_
 
-#include "../Menus/MenuPrincipal.h"
+#include "../MenuPrincipal.h"
 
 AccionMenu HacerReservacion(Restaurante *restaurante);
 AccionMenu BuscarReservacion(Restaurante *restaurante);

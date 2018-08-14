@@ -1,8 +1,13 @@
 #ifndef _MENU_PRINCIPAL_H_
 #define _MENU_PRINCIPAL_H_
 
-#include "../Estructuras.h"
-#include "../Menus.h"
+#include "Estructuras.h"
+
+typedef enum
+{
+  Continuar,
+  Salir
+} AccionMenu;
 
 typedef struct
 {

@@ -1,6 +1,4 @@
-#include <stdio.h>
-
-#include "ImpresionValores.h"
+#include "../Interfaz.h"
 
 void imprimirCadena(const char *cadena)
 {

@@ -25,7 +25,7 @@ int main(int argc, char **argv)
     {
       printf("   %d.- %s\n", i + 1, operaciones[i].nombre);
     }
-    opcion = seleccionarOpcion("Opción: ", "Opción no válida.", cantidadOperaciones);
+    leerOpcionNumerica("Opción: ", cantidadOperaciones, &opcion);
 
     printf("\n");
     accion = operaciones[opcion].funcion(restaurante);
