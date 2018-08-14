@@ -1,4 +1,4 @@
 #!/bin/sh
 
 clear
-gcc *.c ./Operaciones/*.c -o Programa && ./Programa
+gcc *.c ./*/*.c -o Programa && ./Programa
