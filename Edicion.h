@@ -1,6 +1,7 @@
 #ifndef _EDICION_H_
 #define _EDICION_H_
 
+#include <stdio.h>
 #include "Estructuras.h"
 
 void editarCliente(Cliente *cliente);
