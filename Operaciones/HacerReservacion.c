@@ -5,7 +5,7 @@
 #include "../Lectura.h"
 #include "../Constructores.h"
 #include "../Impresion.h"
-#include "../Intervalos.h"
+#include "../Tiempo.h"
 
 AccionMenu HacerReservacion(Restaurante *restaurante)
 {
