@@ -4,8 +4,8 @@
 #include "./Estructuras.h"
 
 Cliente leerCliente();
-Hora leerHora();
-Fecha leerFecha();
-Intervalo leerIntervalo();
+Hora leerHora(Hora *minimo, Hora *maximo);
+Fecha leerFecha(Fecha *minimo, Fecha *maximo);
+Intervalo leerIntervalo(Fecha *fechaMinima, Fecha *fechaMaxima, Hora *horaMinima, Hora *horaMaxima);
 
 #endif
