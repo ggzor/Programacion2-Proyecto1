@@ -1,5 +1,17 @@
 #include "../Tiempo.h"
 
+int sonFechasIguales(Fecha *fecha1, Fecha *fecha2)
+{
+  if ((fecha1->anio == fecha2->anio) && (fecha1->mes == fecha2->mes) && (fecha1->dia == fecha2->dia))
+  {
+    return 1;
+  }
+  else
+  {
+    return 0;
+  }
+}
+
 int estaEntreFechas(Fecha *fecha, Fecha *minimo, Fecha *maximo)
 {
   if (minimo->anio <= fecha->anio && fecha->anio <= maximo->anio)

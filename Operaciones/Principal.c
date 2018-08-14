@@ -10,7 +10,7 @@ AccionMenu BuscarReservacion(Restaurante *restaurante)
 
 AccionMenu VerHorarios(Restaurante *restaurante)
 {
-  imprimirHorarios(restaurante);
+  imprimirHorariosRestauranteFormatoCorto(restaurante);
   return Continuar;
 }
 

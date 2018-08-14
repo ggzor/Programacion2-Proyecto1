@@ -56,6 +56,8 @@ void leerOpcionNumerica(const char *mensaje, int maximo, int *direccion)
       puts("Opción no válida. Reintente.\n");
     }
   } while (!valido);
+
+  *direccion -= 1;
 }
 
 void leerCadena(const char *mensaje, char *direccion)
