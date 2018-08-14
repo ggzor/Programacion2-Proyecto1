@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "DatosPrueba.h"
+#include "Utilerias/DatosPrueba.h"
 #include "Operaciones/Principal.h"
 
 int main(int argc, char **argv)
