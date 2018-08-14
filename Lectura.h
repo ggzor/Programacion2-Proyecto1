@@ -1,6 +1,7 @@
 #ifndef _LECTURA_H_
 #define _LECTURA_H_
 
+#include <stdio.h>
 #include "./Estructuras.h"
 
 Cliente leerCliente();
