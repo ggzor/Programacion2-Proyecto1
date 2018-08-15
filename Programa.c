@@ -21,7 +21,6 @@ int main(int argc, char **argv)
 
   srand(time(NULL));
   Restaurante *restaurante = cargarInformacion();
-  imprimirRestaurante(restaurante);
 
   while (accion == Continuar)
   {
