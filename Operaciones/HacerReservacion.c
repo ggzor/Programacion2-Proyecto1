@@ -54,12 +54,13 @@ AccionMenu HacerReservacion(Restaurante *restaurante)
       }
       else
       {
-        printf("Lo sentimos, no hay mesas disponibles en ese horario.\n\n");
+        printf("Lo sentimos, no hay mesas disponibles en ese fecha y en ese horario.\n\n");
         leerSiNo("¿Desea reservar en otro horario [s/n]? ", &continuarOtroHorario);
 
         if (continuarOtroHorario)
         {
           puts("");
+          imprimirIntervalo(&intervalo);
           editarIntervalo(&intervalo, &fechaInicio, &fechaFin, &horarioInicio, &horarioFin);
         }
       }
