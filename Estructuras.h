@@ -30,7 +30,7 @@ typedef struct
 
 typedef struct
 {
-   int claveReservacion;
+   int clave;
    Cliente cliente;
    Intervalo intervalo;
 } Reservacion;
