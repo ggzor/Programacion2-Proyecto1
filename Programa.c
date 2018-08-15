@@ -3,6 +3,8 @@
 #include <time.h>
 
 #include "Utilerias/DatosPrueba.h"
+#include "Almacenamiento.h"
+#include "Impresion.h"
 #include "Operaciones.h"
 
 int main(int argc, char **argv)
@@ -18,7 +20,8 @@ int main(int argc, char **argv)
   AccionMenu accion = Continuar;
 
   srand(time(NULL));
-  Restaurante *restaurante = obtenerDatos();
+  Restaurante *restaurante = cargarInformacion();
+  imprimirRestaurante(restaurante);
 
   while (accion == Continuar)
   {
