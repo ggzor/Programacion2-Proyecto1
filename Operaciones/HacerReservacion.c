@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include "../Operaciones.h"
-#include "../Restaurante.h"
+#include "../Reservaciones.h"
 #include "../Lectura.h"
 #include "../Constructores.h"
 #include "../Impresion.h"

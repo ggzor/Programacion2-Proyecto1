@@ -1,5 +1,5 @@
-#ifndef _RESTAURANTE_H_
-#define _RESTAURANTE_H_
+#ifndef _RESERVACIONES_H_
+#define _RESERVACIONES_H_
 
 #include "Estructuras.h"
 
