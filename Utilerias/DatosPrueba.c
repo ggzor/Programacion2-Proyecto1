@@ -17,8 +17,11 @@ Restaurante *obtenerDatos()
 	Intervalo intervalo1_3 =  { { 2018, 8, 13 }, { 15, 0 }, { 16, 0 }	};
 	agregarReservacion(mesa1, crearReservacion(cliente, intervalo1_3));
 
-	Intervalo intervalo1_4 =  { { 2018, 8, 14 }, { 8, 0 }, { 9, 0 }	};
+	Intervalo intervalo1_4 =  { { 2018, 8, 13 }, { 13, 0 }, { 14, 0 }	};
 	agregarReservacion(mesa1, crearReservacion(cliente, intervalo1_4));
+
+	Intervalo intervalo1_5 =  { { 2018, 8, 14 }, { 8, 0 }, { 9, 0 }	};
+	agregarReservacion(mesa1, crearReservacion(cliente, intervalo1_5));
 
 	agregarMesa(restaurante, mesa1);
 
