@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 #include "Utilerias/DatosPrueba.h"
 #include "Operaciones.h"
@@ -15,6 +17,7 @@ int main(int argc, char **argv)
   int cantidadOperaciones = sizeof(operaciones) / tamanoOperacionRestaurante;
   AccionMenu accion = Continuar;
 
+  srand(time(NULL));
   Restaurante *restaurante = obtenerDatos();
 
   while (accion == Continuar)
