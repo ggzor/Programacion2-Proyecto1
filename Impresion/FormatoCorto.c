@@ -42,7 +42,7 @@ void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
 
 void imprimirMesaFormatoCorto(Mesa *mesa)
 {
-  printf("Mesa %d:\n", mesa->numero);
+  printf("Mesa %d (%d personas):\n", mesa->numero, mesa->capacidad);
   imprimirListaReservacionesFormatoCorto(mesa->reservaciones);
 }
 

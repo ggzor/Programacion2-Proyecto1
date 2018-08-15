@@ -67,6 +67,8 @@ void imprimirIntervalo(Intervalo *intervalo)
 
 void imprimirReservacion(Reservacion *reservacion)
 {
+  printf("Clave de reservación: %04X\n\n", reservacion->clave);
+
   imprimirCliente(&reservacion->cliente);
   puts("");
 
