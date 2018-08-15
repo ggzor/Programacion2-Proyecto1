@@ -1,56 +1,51 @@
 #include "../Tiempo.h"
 
-int sonFechasIguales(Fecha *fecha1, Fecha *fecha2)
+int compararFechas(Fecha *fecha1, Fecha *fecha2)
 {
-  if ((fecha1->anio == fecha2->anio) && (fecha1->mes == fecha2->mes) && (fecha1->dia == fecha2->dia))
+  if (fecha1->anio < fecha2->anio)
+  {
+    return -1;
+  }
+  else if (fecha1->anio > fecha2->anio)
   {
     return 1;
   }
   else
   {
-    return 0;
+    if (fecha1->mes < fecha2->mes)
+    {
+      return -1;
+    }
+    else if (fecha1->mes > fecha2->mes)
+    {
+      return 1;
+    }
+    else
+    {
+      if (fecha1->dia < fecha2->dia)
+      {
+        return -1;
+      }
+      else if (fecha1->dia > fecha2->dia)
+      {
+        return 1;
+      }
+      else
+      {
+        return 0;
+      }
+    }
   }
+}
+
+int sonFechasIguales(Fecha *fecha1, Fecha *fecha2)
+{
+  return compararFechas(fecha1, fecha2) == 0;
 }
 
 int estaEntreFechas(Fecha *fecha, Fecha *minimo, Fecha *maximo)
 {
-  if (minimo->anio <= fecha->anio && fecha->anio <= maximo->anio)
-  {
-    if (minimo->anio == fecha->anio)
-    {
-      if (minimo->mes <= fecha->mes)
-      {
-        if (minimo->mes == fecha->mes)
-        {
-          return minimo->dia <= fecha->dia;
-        }
-        else
-        {
-          return 1;
-        }
-      }
-    }
-    else if (fecha->anio == maximo->anio)
-    {
-      if (fecha->mes <= maximo->mes)
-      {
-        if (fecha->mes == maximo->mes)
-        {
-          return fecha->dia <= maximo->dia;
-        }
-        else
-        {
-          return 1;
-        }
-      }
-    }
-    else
-    {
-      return 1;
-    }
-  }
-
-  return 0;
+  return compararFechas(minimo, fecha) <= 0 && compararFechas(fecha, maximo) <= 0;
 }
 
 Fecha agregarMeses(int meses, Fecha fecha)
@@ -67,7 +62,7 @@ Fecha agregarMeses(int meses, Fecha fecha)
 
 Fecha obtenerFechaHoy()
 {
-  Fecha hoy = {2018, 8, 13};
+  Fecha hoy = {2018, 8, 8};
 
   return hoy;
 }
