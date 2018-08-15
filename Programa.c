@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include "Utilerias/DatosPrueba.h"
-#include "Operaciones/Principal.h"
+#include "Operaciones.h"
 
 int main(int argc, char **argv)
 {

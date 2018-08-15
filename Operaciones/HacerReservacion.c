@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "Principal.h"
+#include "../Operaciones.h"
 #include "../Restaurante.h"
 #include "../Lectura.h"
 #include "../Constructores.h"
