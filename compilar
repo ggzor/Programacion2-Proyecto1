@@ -1,0 +1,10 @@
+#!/bin/sh
+
+tput reset
+echo "Compilando..."
+if gcc *.c ./*/*.c -o Programa
+then
+  echo -e "\e[32mCompilación correcta.\e[0m"
+else
+  echo -e "\e[31mCompilación fallida.\e[0m"
+fi

@@ -1,4 +1,11 @@
 #!/bin/sh
 
-clear
-gcc *.c ./*/*.c -o Programa && ./Programa
+if ./compilar \
+    && echo "Comenzando ejecución..." \
+    && sleep 1 \
+    && ./Programa
+then
+  echo -e "\e[32mEjecución correcta.\e[0m"
+else
+  echo -e "\e[31mEjecución fallida.\e[0m"
+fi
