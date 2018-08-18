@@ -41,25 +41,6 @@ void leerEnteroRango(const char *mensaje, int minimo, int maximo, int *direccion
   } while (!valido);
 }
 
-void leerOpcionNumerica(const char *mensaje, int maximo, int *direccion)
-{
-  int valido;
-  do
-  {
-    imprimirCadena(mensaje);
-    scanf("%d%*c", direccion);
-
-    valido = 1 <= *direccion && *direccion <= maximo;
-
-    if (!valido)
-    {
-      puts("Opción no válida. Reintente.\n");
-    }
-  } while (!valido);
-
-  *direccion -= 1;
-}
-
 void leerCadena(const char *mensaje, char *direccion)
 {
   imprimirCadena(mensaje);

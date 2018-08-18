@@ -1,11 +1,10 @@
 #ifndef _OPERACIONES_H_
 #define _OPERACIONES_H_
 
-#include "MenuPrincipal.h"
+#include "Estructuras.h"
 
-AccionMenu HacerReservacion(Restaurante *restaurante);
-AccionMenu BuscarReservacion(Restaurante *restaurante);
-AccionMenu VerHorarios(Restaurante *restaurante);
-AccionMenu SalirPrograma(Restaurante *restaurante);
+void hacerReservacion(Restaurante *restaurante);
+void buscarReservacion(Restaurante *restaurante);
+void verHorarios(Restaurante *restaurante);
 
 #endif

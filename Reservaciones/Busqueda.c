@@ -29,7 +29,7 @@ Reservacion *buscarReservacionCanceladaEnMesa(Mesa *mesa, int clave)
   return buscarReservacionEnLista(mesa->reservacionesCanceladas, clave);
 }
 
-Reservacion *buscarReservacion(Restaurante *restaurante, int clave)
+Reservacion *buscarReservacionRestaurante(Restaurante *restaurante, int clave)
 {
   NodoMesa *actual = restaurante->mesas;
   Reservacion *resultado = NULL;

@@ -9,7 +9,7 @@
 #include "../Interfaz.h"
 #include "../Edicion.h"
 
-AccionMenu HacerReservacion(Restaurante *restaurante)
+void hacerReservacion(Restaurante *restaurante)
 {
   int cantidadPersonas;
   Intervalo intervalo;
@@ -44,7 +44,6 @@ AccionMenu HacerReservacion(Restaurante *restaurante)
         puts("Reservación preparada:\n");
         printf("Mesa: %d\n", mesa->numero);
         imprimirReservacion(reservacion);
-        
 
         printf("\nGracias por su preferencia. Conserve su clave de reservación.\n");
         printf("\nTiene 20 minutos a partir de la hora de inicio para llegar, "
@@ -70,6 +69,4 @@ AccionMenu HacerReservacion(Restaurante *restaurante)
   {
     printf("La cantidad de personas debe estar entre 1 y %d.\n", capacidadMaxima);
   }
-
-  return Continuar;
 }

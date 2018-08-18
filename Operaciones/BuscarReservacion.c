@@ -1,5 +1,5 @@
 #include "../Operaciones.h"
 
-AccionMenu BuscarReservacion(Restaurante *restaurante) {
-  return Continuar;
+void buscarReservacion(Restaurante *restaurante)
+{
 }

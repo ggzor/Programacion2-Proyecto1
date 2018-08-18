@@ -2,40 +2,37 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "Utilerias/DatosPrueba.h"
 #include "Almacenamiento.h"
-#include "Impresion.h"
+#include "Interfaz.h"
+#include "Menus.h"
 #include "Operaciones.h"
+
+typedef void (*OperacionMenu)(Restaurante *);
 
 int main(int argc, char **argv)
 {
-  int i, opcion;
+  OperacionMenu opcion;
 
-  OperacionRestaurante operaciones[] = {
-      {"Hacer reservacion", HacerReservacion},
-      {"Buscar reservacion", BuscarReservacion},
-      {"Ver horarios de mesas", VerHorarios},
-      {"Salir", SalirPrograma}};
-  int cantidadOperaciones = sizeof(operaciones) / tamanoOperacionRestaurante;
-  AccionMenu accion = Continuar;
+  ElementoMenu menu[] = {
+      {"Hacer reservacion", hacerReservacion},
+      {"Buscar reservacion", buscarReservacion},
+      {"Ver horarios de mesas", verHorarios},
+      {"Salir", NULL}};
 
   srand(time(NULL));
   Restaurante *restaurante = cargarInformacion();
 
-  while (accion == Continuar)
+  do
   {
-    printf("Menú principal:\n");
+    limpiarPantalla();
+    opcion = ejecutarMenu("Menú principal: ", menu, obtenerCantidadElementosMenu(menu));
 
-    for (i = 0; i < cantidadOperaciones; i++)
+    if (opcion != NULL)
     {
-      printf("   %d.- %s\n", i + 1, operaciones[i].nombre);
+      limpiarPantalla();
+      opcion(restaurante);
     }
-    leerOpcionNumerica("Opción: ", cantidadOperaciones, &opcion);
-
-    printf("\n");
-    accion = operaciones[opcion].funcion(restaurante);
-    printf("\n");
-  }
+  } while (opcion != NULL);
 
   return 0;
 }
