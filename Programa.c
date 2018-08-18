@@ -8,26 +8,27 @@ typedef void (*OperacionMenu)(Restaurante *);
 
 int main(int argc, char **argv)
 {
-  OperacionMenu opcion;
+  OperacionMenu opcionSeleccionada;
   ElementoMenu menu[] = {
       {"Hacer reservacion", hacerReservacion},
       {"Buscar reservacion", buscarReservacion},
       {"Ver horarios de mesas", verHorarios},
       {"Salir", NULL}};
+  int cantidadOpciones = obtenerCantidadElementosMenu(menu);
 
   cargarConfiguracion();
   Restaurante *restaurante = cargarInformacion();
   do
   {
     limpiarPantalla();
-    opcion = ejecutarMenu("Menú principal: ", menu, obtenerCantidadElementosMenu(menu));
+    opcionSeleccionada = ejecutarMenu("Menú principal: ", menu, cantidadOpciones);
 
-    if (opcion != NULL)
+    if (opcionSeleccionada != NULL)
     {
       limpiarPantalla();
-      opcion(restaurante);
+      opcionSeleccionada(restaurante);
     }
-  } while (opcion != NULL);
+  } while (opcionSeleccionada != NULL);
 
   return 0;
 }
