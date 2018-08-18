@@ -17,6 +17,7 @@ int main(int argc, char **argv)
       {"Salir", NULL}};
   int cantidadOpciones = obtenerCantidadElementosMenu(menu);
 
+  // Establece semilla para números aleatorios.
   cargarConfiguracion();
   Restaurante *restaurante = cargarInformacion();
   
