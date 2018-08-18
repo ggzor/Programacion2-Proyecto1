@@ -4,6 +4,7 @@
 #include "Menus.h"
 #include "Operaciones.h"
 
+// El tipo de las funciones del menú principal.
 typedef void (*OperacionMenu)(Restaurante *);
 
 int main(int argc, char **argv)
@@ -18,6 +19,7 @@ int main(int argc, char **argv)
 
   cargarConfiguracion();
   Restaurante *restaurante = cargarInformacion();
+  
   do
   {
     limpiarPantalla();
