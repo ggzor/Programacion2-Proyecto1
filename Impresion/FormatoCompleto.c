@@ -50,6 +50,13 @@ void imprimirIntervaloHoras(const char *mensaje, IntervaloHoras *intervalo)
   puts("");
 }
 
+void imprimirFechaHora(FechaHora *fechaHora)
+{
+  imprimirFecha(&fechaHora->fecha);
+  putchar(' ');
+  imprimirHora(&fechaHora->hora);
+}
+
 void imprimirHorario(Horario *horario)
 {
   printf("Fecha: ");

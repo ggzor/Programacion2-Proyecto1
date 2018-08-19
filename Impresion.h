@@ -5,6 +5,7 @@
 #include "Estructuras.h"
 #include "Tiempo/Horario.h"
 #include "Tiempo/IntervaloFechas.h"
+#include "Tiempo/FechaHora.h"
 
 void imprimirCliente(Cliente *cliente);
 
@@ -14,6 +15,7 @@ void imprimirIntervaloFechas(const char *mensaje, IntervaloFechas *intervalo);
 void imprimirHora(Hora *hora);
 void imprimirIntervaloHoras(const char *mensaje, IntervaloHoras *intervalo);
 
+void imprimirFechaHora(FechaHora *fechaHora);
 void imprimirHorario(Horario *horario);
 
 void imprimirReservacion(Reservacion *reservacion);
