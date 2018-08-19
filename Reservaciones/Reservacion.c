@@ -2,24 +2,7 @@
 #include "../Reservaciones.h"
 #include "../Tiempo/Horario.h"
 
-int obtenerMaximaCapacidadMesa(Restaurante *restaurante)
-{
-  int maximo = 0;
-  int capacidadActual;
-  NodoMesa *actual = restaurante->mesas;
-
-  while (actual != NULL)
-  {
-    capacidadActual = actual->mesa->capacidad;
-    maximo = capacidadActual > maximo ? capacidadActual : maximo;
-
-    actual = actual->siguiente;
-  }
-
-  return maximo;
-}
-
-Mesa *obtenerMesaParaReservar(Restaurante *restaurante, int capacidadMesa, Horario *horario)
+Mesa *obtenerMesaDisponibleParaReservar(Restaurante *restaurante, int cantidadPersonas, Horario *horario)
 {
   int mesaContieneIntervalo;
   Mesa *resultado = NULL;
@@ -28,7 +11,7 @@ Mesa *obtenerMesaParaReservar(Restaurante *restaurante, int capacidadMesa, Horar
 
   while (mesaActual != NULL && resultado == NULL)
   {
-    if (mesaActual->mesa->capacidad >= capacidadMesa)
+    if (mesaActual->mesa->capacidad >= cantidadPersonas)
     {
       mesaContieneIntervalo = 0;
       reservacionActual = mesaActual->mesa->reservaciones;
@@ -52,13 +35,7 @@ Mesa *obtenerMesaParaReservar(Restaurante *restaurante, int capacidadMesa, Horar
   return resultado;
 }
 
-int puedeReservarseEn(Restaurante *restaurante, int capacidadMesa, Horario *horario)
+void reservar(Mesa *mesa, Reservacion *reservacion)
 {
-  return obtenerMesaParaReservar(restaurante, capacidadMesa, horario) != NULL;
-}
-
-void reservar(Restaurante *restaurante, int capacidadMesa, Reservacion *reservacion)
-{
-  Mesa *mesa = obtenerMesaParaReservar(restaurante, capacidadMesa, &reservacion->horario);
-  agregarReservacion(mesa, reservacion);
+  
 }

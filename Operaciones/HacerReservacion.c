@@ -12,8 +12,8 @@ void hacerReservacion(Restaurante *restaurante)
 {
   int cantidadPersonas;
   Horario horario;
-  int continuarOtroHorario;
   Mesa *mesa;
+  int continuarOtroHorario;
   Cliente cliente;
   Reservacion *reservacion;
   IntervaloHoras horasHabiles = {{9, 0}, {18, 0}};
@@ -21,24 +21,28 @@ void hacerReservacion(Restaurante *restaurante)
   IntervaloFechas fechasDisponibles = {fechaInicio, agregarMeses(&fechaInicio, 3)};
   int capacidadMaxima = obtenerMaximaCapacidadMesa(restaurante);
 
-  printf("¿Cúantas personas van a asistir (Máximo %d)? ", capacidadMaxima);
-  scanf("%d%*c", &cantidadPersonas);
+  printf("Máximo de personas: %d\n", capacidadMaxima);
+  leerEnteroRango("¿Cúantas personas van a asistir (0 para cancelar)? ", 0, capacidadMaxima, &cantidadPersonas);
 
-  if (1 <= cantidadPersonas && cantidadPersonas <= capacidadMaxima)
+  if (cantidadPersonas == 0)
+  {
+    return;
+  }
+  else
   {
     puts("");
     horario = leerHorario(&fechasDisponibles, &horasHabiles);
     do
     {
-      if (puedeReservarseEn(restaurante, cantidadPersonas, &horario))
+      mesa = obtenerMesaDisponibleParaReservar(restaurante, cantidadPersonas, &horario);
+      if (mesa != NULL)
       {
         printf("Hay mesas disponibles para esa fecha y hora.\n");
         printf("Por favor, ingrese sus datos:\n");
         cliente = leerCliente();
 
         reservacion = crearReservacion(cantidadPersonas, cliente, horario);
-        reservar(restaurante, cantidadPersonas, reservacion);
-        mesa = buscarMesaReservacion(restaurante, reservacion);
+        reservar(mesa, reservacion);
 
         puts("Reservación preparada:\n");
         printf("Mesa: %d\n", mesa->numero);
@@ -52,7 +56,7 @@ void hacerReservacion(Restaurante *restaurante)
       }
       else
       {
-        printf("Lo sentimos, no hay mesas disponibles en ese fecha y en ese horario.\n\n");
+        printf("Lo sentimos, no hay mesas disponibles para esa cantidad de personas en ese horario.\n\n");
         leerSiNo("¿Desea reservar en otro horario [s/n]? ", &continuarOtroHorario);
 
         if (continuarOtroHorario)
@@ -63,9 +67,5 @@ void hacerReservacion(Restaurante *restaurante)
         }
       }
     } while (continuarOtroHorario);
-  }
-  else
-  {
-    printf("La cantidad de personas debe estar entre 1 y %d.\n", capacidadMaxima);
   }
 }
