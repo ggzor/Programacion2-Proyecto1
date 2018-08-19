@@ -35,3 +35,27 @@ int compararHoras(Hora *hora1, Hora *hora2)
     }
   }
 }
+
+int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2)
+{
+  int resultado;
+  Hora *mayor = hora1;
+  Hora *menor = hora2;
+
+  if (compararHoras(hora2, hora1) > 0)
+  {
+    mayor = hora2;
+    menor = hora1;
+  }
+
+  // Acompletar la hora
+  resultado += 60 - menor->minuto;
+
+  // Diferencia en horas, considerando que ya se acompleto.
+  resultado += (mayor->hora - (menor->hora + 1)) * 60;
+
+  // Minutos desde la hora completada hasta la hora mayor
+  resultado += mayor->minuto;
+
+  return resultado;
+}
