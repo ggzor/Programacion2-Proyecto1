@@ -13,6 +13,7 @@ typedef struct
 typedef struct
 {
    int clave;
+   int cantidadPersonas;
    Cliente cliente;
    Horario horario;
 } Reservacion;

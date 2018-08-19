@@ -2,7 +2,7 @@
 #include "../Constructores.h"
 #include "../Configuracion.h"
 
-Reservacion *crearReservacion(Cliente cliente, Horario horario)
+Reservacion *crearReservacion(int cantidadPersonas, Cliente cliente, Horario horario)
 {
   Reservacion *reservacion = (Reservacion *)malloc(sizeof(Reservacion));
 

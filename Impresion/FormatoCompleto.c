@@ -68,7 +68,7 @@ void imprimirHorario(Horario *horario)
 void imprimirReservacion(Reservacion *reservacion)
 {
   printf("Clave de reservación: %04X\n\n", reservacion->clave);
-
+  printf("Cantidad de personas: %d\n", reservacion->cantidadPersonas);
   imprimirCliente(&reservacion->cliente);
   puts("");
 
