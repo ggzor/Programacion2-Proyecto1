@@ -33,5 +33,6 @@ int main(int argc, char **argv)
     }
   } while (opcionSeleccionada != NULL);
 
+  guardarInformacion(restaurante);
   return 0;
 }

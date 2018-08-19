@@ -4,14 +4,36 @@
 #include "../Constructores.h"
 #include "../Utilerias/DatosPrueba.h"
 
+typedef void (*AgregadorLista)(Mesa *, Reservacion *);
+
+void cargarArchivoReservaciones(Mesa *mesa, const char *formatoArchivo, AgregadorLista agregador)
+{
+  FILE *archivo;
+  char nombre[50];
+  Reservacion *reservacion;
+
+  sprintf(nombre, formatoArchivo, mesa->numero);
+  archivo = fopen(nombre, "rb");
+
+  if (archivo != NULL)
+  {
+    reservacion = (Reservacion *)malloc(sizeof(Reservacion));
+    while (fread(reservacion, sizeof(Reservacion), 1, archivo) == 1)
+    {
+      agregador(mesa, reservacion);
+      reservacion = (Reservacion *)malloc(sizeof(Reservacion));
+    }
+
+    free(reservacion);
+    fclose(archivo);
+  }
+}
+
 Restaurante *cargarInformacion()
 {
   FILE *archivo;
-  FILE *archivoReservaciones;
   Restaurante *restaurante = crearRestaurante();
   Mesa *mesa;
-  Reservacion *reservacion;
-  char nombre[50];
 
   archivo = fopen(NombreArchivoMesas, "rb");
 
@@ -24,37 +46,8 @@ Restaurante *cargarInformacion()
       mesa->reservaciones = NULL;
       mesa->reservacionesCanceladas = NULL;
 
-      sprintf(nombre, FormatoNombreArchivoReservaciones, mesa->numero);
-      archivoReservaciones = fopen(nombre, "rb");
-
-      if (archivoReservaciones != NULL)
-      {
-        reservacion = (Reservacion *)malloc(sizeof(Reservacion));
-        while (fread(reservacion, sizeof(Reservacion), 1, archivoReservaciones) == 1)
-        {
-          agregarReservacion(mesa, reservacion);
-          reservacion = (Reservacion *)malloc(sizeof(Reservacion));
-        }
-        free(reservacion);
-
-        fclose(archivoReservaciones);
-      }
-
-      sprintf(nombre, FormatoNombreArchivoReservacionesCanceladas, mesa->numero);
-      archivoReservaciones = fopen(nombre, "rb");
-
-      if (archivoReservaciones != NULL)
-      {
-        reservacion = (Reservacion *)malloc(sizeof(Reservacion));
-        while (fread(reservacion, sizeof(Reservacion), 1, archivoReservaciones) == 1)
-        {
-          agregarReservacionCancelada(mesa, reservacion);
-          reservacion = (Reservacion *)malloc(sizeof(Reservacion));
-        }
-        free(reservacion);
-
-        fclose(archivoReservaciones);
-      }
+      cargarArchivoReservaciones(mesa, FormatoNombreArchivoReservaciones, agregarReservacion);
+      cargarArchivoReservaciones(mesa, FormatoNombreArchivoReservacionesCanceladas, agregarReservacionCancelada);
 
       agregarMesa(restaurante, mesa);
       mesa = (Mesa *)malloc(sizeof(Mesa));

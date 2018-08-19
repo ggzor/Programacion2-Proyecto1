@@ -2,13 +2,40 @@
 #include "../Configuracion.h"
 #include "../Almacenamiento.h"
 
+NodoReservacion *extraerListaReservaciones(Mesa *mesa)
+{
+  return mesa->reservaciones;
+}
+
+NodoReservacion *extraerListaReservacionesCanceladas(Mesa *mesa)
+{
+  return mesa->reservacionesCanceladas;
+}
+
+typedef NodoReservacion *(*ExtractorLista)(Mesa *mesa);
+void guardarArchivoReservaciones(Mesa *mesa, const char *formatoArchivo, ExtractorLista extractorLista)
+{
+  FILE *archivo;
+  char nombre[50];
+  NodoReservacion *reservacionActual;
+
+  sprintf(nombre, formatoArchivo, mesa->numero);
+  archivo = fopen(nombre, "wb");
+
+  reservacionActual = extractorLista(mesa);
+  while (reservacionActual != NULL)
+  {
+    fwrite(reservacionActual->reservacion, sizeof(Reservacion), 1, archivo);
+    reservacionActual = reservacionActual->siguiente;
+  }
+
+  fclose(archivo);
+}
+
 void guardarInformacion(Restaurante *restaurante)
 {
   FILE *archivoMesas;
-  FILE *archivoReservaciones;
   NodoMesa *mesaActual = restaurante->mesas;
-  NodoReservacion *reservacionActual;
-  char nombre[50];
 
   archivoMesas = fopen(NombreArchivoMesas, "wb");
 
@@ -16,29 +43,11 @@ void guardarInformacion(Restaurante *restaurante)
   {
     fwrite(mesaActual->mesa, sizeof(Mesa), 1, archivoMesas);
 
-    sprintf(nombre, FormatoNombreArchivoReservaciones, mesaActual->mesa->numero);
-    archivoReservaciones = fopen(nombre, "wb");
+    guardarArchivoReservaciones(mesaActual->mesa, FormatoNombreArchivoReservaciones,
+                                extraerListaReservaciones);
 
-    reservacionActual = mesaActual->mesa->reservaciones;
-    while (reservacionActual != NULL)
-    {
-      fwrite(reservacionActual->reservacion, sizeof(Reservacion), 1, archivoReservaciones);
-      reservacionActual = reservacionActual->siguiente;
-    }
-
-    fclose(archivoReservaciones);
-
-    sprintf(nombre, FormatoNombreArchivoReservacionesCanceladas, mesaActual->mesa->numero);
-    archivoReservaciones = fopen(nombre, "wb");
-
-    reservacionActual = mesaActual->mesa->reservacionesCanceladas;
-    while (reservacionActual != NULL)
-    {
-      fwrite(reservacionActual->reservacion, sizeof(Reservacion), 1, archivoReservaciones);
-      reservacionActual = reservacionActual->siguiente;
-    }
-
-    fclose(archivoReservaciones);
+    guardarArchivoReservaciones(mesaActual->mesa, FormatoNombreArchivoReservacionesCanceladas,
+                                extraerListaReservacionesCanceladas);
 
     mesaActual = mesaActual->siguiente;
   }
