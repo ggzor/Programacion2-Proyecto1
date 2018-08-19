@@ -3,10 +3,15 @@
 
 #include <stdio.h>
 #include "./Estructuras.h"
+#include "Tiempo/IntervaloHoras.h"
+#include "Tiempo/IntervaloFechas.h"
+#include "Tiempo/Horario.h"
+#include "Edicion.h"
+#include "Impresion.h"
 
 Cliente leerCliente();
-Hora leerHora(Hora *minimo, Hora *maximo);
-Fecha leerFecha(Fecha *minimo, Fecha *maximo);
-Intervalo leerIntervalo(Fecha *fechaMinima, Fecha *fechaMaxima, Hora *horaMinima, Hora *horaMaxima);
+Hora leerHora(IntervaloHoras *limites);
+Fecha leerFecha(IntervaloFechas *limites);
+Horario leerHorario(IntervaloFechas *limitesFecha, IntervaloHoras *limitesHora);
 
 #endif

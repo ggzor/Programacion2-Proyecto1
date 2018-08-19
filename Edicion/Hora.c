@@ -1,6 +1,7 @@
 #include "../Edicion.h"
+#include "../Impresion.h"
 
-void editarHora(Hora *hora, Hora *minimo, Hora *maximo)
+void editarHora(Hora *hora, IntervaloHoras *limites)
 {
   char opcion;
   int opcionInvalida;
@@ -11,8 +12,7 @@ void editarHora(Hora *hora, Hora *minimo, Hora *maximo)
     opcionInvalida = 0;
 
     imprimirIntervaloHoras(
-        "La hora debe estar entre: ",
-        minimo, maximo);
+        "La hora debe estar entre: ", limites);
 
     printf(
         "¿Qué valor desea cambiar?\n"
@@ -46,7 +46,7 @@ void editarHora(Hora *hora, Hora *minimo, Hora *maximo)
 
     if (!terminar && !opcionInvalida)
     {
-      if (estaEntreHoras(&nuevaHora, minimo, maximo))
+      if (estaEnIntervaloHoras(limites, &nuevaHora))
       {
         printf("Hora actualizada: ");
         *hora = nuevaHora;

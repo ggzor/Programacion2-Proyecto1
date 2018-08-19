@@ -1,11 +1,12 @@
 #include "../Edicion.h"
+#include "../Impresion.h"
 
-void editarIntervalo(Intervalo *intervalo, Fecha *fechaMinima, Fecha *fechaMaxima, Hora *horaMinima, Hora *horaMaxima)
+void editarHorario(Horario *horario, IntervaloFechas *limitesFecha, IntervaloHoras *limitesHora)
 {
   char opcion;
   int opcionInvalida;
   int terminar = 0;
-  Intervalo nuevoIntervalo = *intervalo;
+  Horario nuevoHorario = *horario;
   do
   {
     opcionInvalida = 0;
@@ -22,27 +23,27 @@ void editarIntervalo(Intervalo *intervalo, Fecha *fechaMinima, Fecha *fechaMaxim
     {
     case 'D':
       imprimirCadena("Editando fecha: ");
-      imprimirFecha(&nuevoIntervalo.fecha);
+      imprimirFecha(&nuevoHorario.fecha);
       puts("");
 
-      editarFecha(&nuevoIntervalo.fecha, fechaMinima, fechaMaxima);
+      editarFecha(&nuevoHorario.fecha, limitesFecha);
       break;
     case 'I':
       imprimirCadena("Editando hora de inicio: ");
-      imprimirHora(&nuevoIntervalo.inicio);
+      imprimirHora(&nuevoHorario.horas.inicio);
       puts("");
 
-      editarHora(&nuevoIntervalo.inicio, horaMinima, horaMaxima);
+      editarHora(&nuevoHorario.horas.inicio, limitesHora);
       break;
     case 'T':
       imprimirCadena("Editando hora de término: ");
-      imprimirHora(&nuevoIntervalo.fin);
+      imprimirHora(&nuevoHorario.horas.fin);
       puts("");
 
-      editarHora(&nuevoIntervalo.fin, horaMinima, horaMaxima);
+      editarHora(&nuevoHorario.horas.fin, limitesHora);
       break;
     case 'F':
-      *intervalo = nuevoIntervalo;
+      *horario = nuevoHorario;
       terminar = 1;
       break;
     default:
@@ -53,11 +54,11 @@ void editarIntervalo(Intervalo *intervalo, Fecha *fechaMinima, Fecha *fechaMaxim
 
     if (!terminar && !opcionInvalida)
     {
-      if (compararHoras(&nuevoIntervalo.inicio, &nuevoIntervalo.fin) < 0)
+      if (compararHoras(&nuevoHorario.horas.inicio, &nuevoHorario.horas.fin) < 0)
       {
-        puts("Intervalo actualizado:");
-        *intervalo = nuevoIntervalo;
-        imprimirIntervalo(&nuevoIntervalo);
+        puts("Horario actualizado:");
+        *horario = nuevoHorario;
+        imprimirHorario(&nuevoHorario);
         puts("");
       }
       else
@@ -65,10 +66,10 @@ void editarIntervalo(Intervalo *intervalo, Fecha *fechaMinima, Fecha *fechaMaxim
         puts("");
         puts("La hora de inicio está después de la hora de término.");
 
-        nuevoIntervalo = *intervalo;
+        nuevoHorario = *horario;
 
-        puts("El intervalo siendo modificado es:");
-        imprimirIntervalo(&nuevoIntervalo);
+        puts("El horario siendo modificado es:");
+        imprimirHorario(&nuevoHorario);
         puts("");
       }
       puts("");

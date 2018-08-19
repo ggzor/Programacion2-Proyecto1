@@ -4,7 +4,7 @@
 #include "Estructuras.h"
 
 int obtenerMaximaCapacidadMesa(Restaurante *restaurante);
-int puedeReservarseEn(Restaurante *restaurante, int capacidadMesa, Intervalo *intervalo);
+int puedeReservarseEn(Restaurante *restaurante, int capacidadMesa, Horario *horario);
 void reservar(Restaurante *restaurante, int capacidad, Reservacion *reservacion);
 
 Reservacion *buscarReservacionRestaurante(Restaurante *restaurante, int clave);

@@ -1,6 +1,8 @@
 #ifndef _ESTRUCTURAS_H_
 #define _ESTRUCTURAS_H_
 
+#include "Tiempo/Horario.h"
+
 typedef struct
 {
    char nombre[50];
@@ -10,29 +12,9 @@ typedef struct
 
 typedef struct
 {
-   int anio;
-   int mes;
-   int dia;
-} Fecha;
-
-typedef struct
-{
-   int hora;
-   int minuto;
-} Hora;
-
-typedef struct
-{
-   Fecha fecha;
-   Hora inicio;
-   Hora fin;
-} Intervalo;
-
-typedef struct
-{
    int clave;
    Cliente cliente;
-   Intervalo intervalo;
+   Horario horario;
 } Reservacion;
 
 typedef struct _NodoReservacion

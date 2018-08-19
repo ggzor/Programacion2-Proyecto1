@@ -1,6 +1,7 @@
 #include "../Lectura.h"
+#include "../Tiempo/Fecha.h"
 
-Fecha leerFecha(Fecha *minimo, Fecha *maximo)
+Fecha leerFecha(IntervaloFechas *limites)
 {
   Fecha fecha;
   int datosCorrectos;
@@ -8,17 +9,17 @@ Fecha leerFecha(Fecha *minimo, Fecha *maximo)
 
   do
   {
-    imprimirIntervaloFechas("La fecha debe estar entre ", minimo, maximo);
+    imprimirIntervaloFechas("La fecha debe estar entre ", limites);
     printf("Ingrese los campos siguientes: \n");
     leerEnteroRango("Año: ", 2000, 2100, &fecha.anio);
     leerEnteroRango("Mes: ", 1, 12, &fecha.mes);
-    leerEnteroRango("Día: ", 1, obtenerDiasEnMes(fecha.mes, fecha.anio), &fecha.dia);
+    leerEnteroRango("Día: ", 1, obtenerDiasEnMes(fecha.anio, fecha.mes), &fecha.dia);
 
     printf("\nLa fecha introducida es: ");
     imprimirFecha(&fecha);
     puts("");
 
-    valido = estaEntreFechas(&fecha, minimo, maximo);
+    valido = estaEnIntervaloFechas(limites, &fecha);
 
     if (!valido)
     {
@@ -31,7 +32,7 @@ Fecha leerFecha(Fecha *minimo, Fecha *maximo)
   puts("");
   if (!datosCorrectos)
   {
-    editarFecha(&fecha, minimo, maximo);
+    editarFecha(&fecha, limites);
   }
 
   return fecha;

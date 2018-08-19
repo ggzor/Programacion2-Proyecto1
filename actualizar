@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd Scripts
-python ./transformarDatos.py
+python3 ./transformarDatos.py

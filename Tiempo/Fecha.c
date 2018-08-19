@@ -1,38 +1,42 @@
-#include "../Tiempo.h"
+#include "Fecha.h"
+
+#define MENOR -1
+#define IGUAL 0
+#define MAYOR 1
 
 int compararFechas(Fecha *fecha1, Fecha *fecha2)
 {
   if (fecha1->anio < fecha2->anio)
   {
-    return -1;
+    return MENOR;
   }
   else if (fecha1->anio > fecha2->anio)
   {
-    return 1;
+    return MAYOR;
   }
   else
   {
     if (fecha1->mes < fecha2->mes)
     {
-      return -1;
+      return MENOR;
     }
     else if (fecha1->mes > fecha2->mes)
     {
-      return 1;
+      return MAYOR;
     }
     else
     {
       if (fecha1->dia < fecha2->dia)
       {
-        return -1;
+        return MENOR;
       }
       else if (fecha1->dia > fecha2->dia)
       {
-        return 1;
+        return MAYOR;
       }
       else
       {
-        return 0;
+        return IGUAL;
       }
     }
   }
@@ -43,31 +47,26 @@ int sonFechasIguales(Fecha *fecha1, Fecha *fecha2)
   return compararFechas(fecha1, fecha2) == 0;
 }
 
-int estaEntreFechas(Fecha *fecha, Fecha *minimo, Fecha *maximo)
-{
-  return compararFechas(minimo, fecha) <= 0 && compararFechas(fecha, maximo) <= 0;
-}
-
-Fecha agregarMeses(int meses, Fecha fecha)
+Fecha agregarMeses(Fecha *fecha, int meses)
 {
   Fecha nueva;
-  int aniosTranscurridos = ((fecha.mes - 1) + meses) / 12;
+  int maximoDiasEnMes;
 
-  nueva.anio = fecha.anio + aniosTranscurridos;
-  nueva.mes = (((fecha.mes - 1) + meses) % 12) + 1;
-  nueva.dia = fecha.dia;
+  int aniosTranscurridos = ((fecha->mes - 1) + meses) / 12;
+
+  nueva.anio = fecha->anio + aniosTranscurridos;
+  nueva.mes = (((fecha->mes - 1) + meses) % 12) + 1;
+  nueva.dia = fecha->dia;
+
+  // Ajustar dias del mes
+  maximoDiasEnMes = obtenerDiasEnMes(nueva.anio, nueva.mes);
+  if (nueva.dia > maximoDiasEnMes)
+    nueva.dia = maximoDiasEnMes;
 
   return nueva;
 }
 
-Fecha obtenerFechaHoy()
-{
-  Fecha hoy = {2018, 8, 8};
-
-  return hoy;
-}
-
-int obtenerDiasEnMes(int mes, int anio)
+int obtenerDiasEnMes(int anio, int mes)
 {
   static int dias[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 

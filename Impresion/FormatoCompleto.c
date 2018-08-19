@@ -24,12 +24,12 @@ void imprimirFecha(Fecha *fecha)
   printf("%4d", fecha->anio);
 }
 
-void imprimirIntervaloFechas(const char *mensaje, Fecha *inicio, Fecha *fin)
+void imprimirIntervaloFechas(const char *mensaje, IntervaloFechas *intervalo)
 {
   imprimirCadena(mensaje);
-  imprimirFecha(inicio);
+  imprimirFecha(&intervalo->inicio);
   printf(" - ");
-  imprimirFecha(fin);
+  imprimirFecha(&intervalo->fin);
   puts("");
 }
 
@@ -41,27 +41,27 @@ void imprimirHora(Hora *hora)
   printf("%d", hora->minuto);
 }
 
-void imprimirIntervaloHoras(const char *mensaje, Hora *inicio, Hora *fin)
+void imprimirIntervaloHoras(const char *mensaje, IntervaloHoras *intervalo)
 {
   imprimirCadena(mensaje);
-  imprimirHora(inicio);
+  imprimirHora(&intervalo->inicio);
   printf(" - ");
-  imprimirHora(fin);
+  imprimirHora(&intervalo->fin);
   puts("");
 }
 
-void imprimirIntervalo(Intervalo *intervalo)
+void imprimirHorario(Horario *horario)
 {
   printf("Fecha: ");
-  imprimirFecha(&intervalo->fecha);
+  imprimirFecha(&horario->fecha);
   puts("");
 
   printf("Hora de inicio: ");
-  imprimirHora(&intervalo->inicio);
+  imprimirHora(&horario->horas.inicio);
   puts("");
 
   printf("Hora de fin: ");
-  imprimirHora(&intervalo->fin);
+  imprimirHora(&horario->horas.fin);
   puts("");
 }
 
@@ -72,7 +72,7 @@ void imprimirReservacion(Reservacion *reservacion)
   imprimirCliente(&reservacion->cliente);
   puts("");
 
-  imprimirIntervalo(&reservacion->intervalo);
+  imprimirHorario(&reservacion->horario);
   puts("");
 }
 

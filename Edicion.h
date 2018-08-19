@@ -3,10 +3,13 @@
 
 #include <stdio.h>
 #include "Estructuras.h"
+#include "Tiempo/IntervaloHoras.h"
+#include "Tiempo/IntervaloFechas.h"
+#include "Tiempo/Horario.h"
 
 void editarCliente(Cliente *cliente);
-void editarHora(Hora *hora, Hora *minimo, Hora *maximo);
-void editarFecha(Fecha *fecha, Fecha *minimo, Fecha *maximo);
-void editarIntervalo(Intervalo *intervalo, Fecha *fechaMinima, Fecha *fechaMaxima, Hora *horaMinima, Hora *horaMaxima);
+void editarHora(Hora *hora, IntervaloHoras *limites);
+void editarFecha(Fecha *fecha, IntervaloFechas *limites);
+void editarHorario(Horario *horario, IntervaloFechas *limitesFecha, IntervaloHoras *limitesHora);
 
 #endif

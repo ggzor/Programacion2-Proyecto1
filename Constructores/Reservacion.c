@@ -2,13 +2,13 @@
 #include "../Constructores.h"
 #include "../Configuracion.h"
 
-Reservacion *crearReservacion(Cliente cliente, Intervalo intervalo)
+Reservacion *crearReservacion(Cliente cliente, Horario horario)
 {
   Reservacion *reservacion = (Reservacion *)malloc(sizeof(Reservacion));
 
   reservacion->clave = rand() % (int)pow(16, DigitosClaveReservacion);
   reservacion->cliente = cliente;
-  reservacion->intervalo = intervalo;
+  reservacion->horario = horario;
 
   return reservacion;
 }

@@ -53,8 +53,8 @@ void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
   NodoReservacion *anterior, *actual = mesa->reservaciones;
   NodoReservacion *nuevoNodo = crearNodoReservacion(reservacion);
 
-  Fecha *fechaActual, *fechaNueva = &reservacion->intervalo.fecha;
-  Hora *horaActual, *horaNueva = &reservacion->intervalo.inicio;
+  Fecha *fechaActual, *fechaNueva = &reservacion->horario.fecha;
+  Hora *horaActual, *horaNueva = &reservacion->horario.horas.inicio;
 
   if (actual == NULL)
   {
@@ -62,8 +62,8 @@ void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
   }
   else
   {
-    fechaActual = &actual->reservacion->intervalo.fecha;
-    horaActual = &actual->reservacion->intervalo.inicio;
+    fechaActual = &actual->reservacion->horario.fecha;
+    horaActual = &actual->reservacion->horario.horas.inicio;
 
     antesPrimero = compararFechas(fechaNueva, fechaActual) == 0 && compararHoras(horaNueva, horaActual) < 0;
     if (compararFechas(fechaNueva, fechaActual) < 0 || antesPrimero)
@@ -80,8 +80,8 @@ void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
 
         if (actual != NULL)
         {
-          fechaActual = &actual->reservacion->intervalo.fecha;
-          horaActual = &actual->reservacion->intervalo.inicio;
+          fechaActual = &actual->reservacion->horario.fecha;
+          horaActual = &actual->reservacion->horario.horas.inicio;
 
           despuesActual = compararFechas(fechaActual, fechaNueva) == 0 && compararHoras(horaActual, horaNueva) < 0;
         }

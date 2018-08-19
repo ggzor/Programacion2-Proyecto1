@@ -5,21 +5,20 @@
 #include "../Lectura.h"
 #include "../Constructores.h"
 #include "../Impresion.h"
-#include "../Tiempo.h"
 #include "../Interfaz.h"
 #include "../Edicion.h"
 
 void hacerReservacion(Restaurante *restaurante)
 {
   int cantidadPersonas;
-  Intervalo intervalo;
+  Horario horario;
   int continuarOtroHorario;
   Mesa *mesa;
   Cliente cliente;
   Reservacion *reservacion;
-  Hora horarioInicio = {9, 0}, horarioFin = {18, 0};
-  Fecha fechaInicio = obtenerFechaHoy(), fechaFin = agregarMeses(3, fechaInicio);
-
+  IntervaloHoras horasHabiles = {{9, 0}, {18, 0}};
+  Fecha fechaInicio = {2018, 8, 11};
+  IntervaloFechas fechasDisponibles = {fechaInicio, agregarMeses(&fechaInicio, 3)};
   int capacidadMaxima = obtenerMaximaCapacidadMesa(restaurante);
 
   printf("¿Cúantas personas van a asistir (Máximo %d)? ", capacidadMaxima);
@@ -28,16 +27,16 @@ void hacerReservacion(Restaurante *restaurante)
   if (1 <= cantidadPersonas && cantidadPersonas <= capacidadMaxima)
   {
     puts("");
-    intervalo = leerIntervalo(&fechaInicio, &fechaFin, &horarioInicio, &horarioFin);
+    horario = leerHorario(&fechasDisponibles, &horasHabiles);
     do
     {
-      if (puedeReservarseEn(restaurante, cantidadPersonas, &intervalo))
+      if (puedeReservarseEn(restaurante, cantidadPersonas, &horario))
       {
         printf("Hay mesas disponibles para esa fecha y hora.\n");
         printf("Por favor, ingrese sus datos:\n");
         cliente = leerCliente();
 
-        reservacion = crearReservacion(cliente, intervalo);
+        reservacion = crearReservacion(cliente, horario);
         reservar(restaurante, cantidadPersonas, reservacion);
         mesa = buscarMesaReservacion(restaurante, reservacion);
 
@@ -59,8 +58,8 @@ void hacerReservacion(Restaurante *restaurante)
         if (continuarOtroHorario)
         {
           puts("");
-          imprimirIntervalo(&intervalo);
-          editarIntervalo(&intervalo, &fechaInicio, &fechaFin, &horarioInicio, &horarioFin);
+          imprimirHorario(&horario);
+          editarHorario(&horario, &fechasDisponibles, &horasHabiles);
         }
       }
     } while (continuarOtroHorario);

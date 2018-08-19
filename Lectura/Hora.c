@@ -1,6 +1,6 @@
 #include "../Lectura.h"
 
-Hora leerHora(Hora *minimo, Hora *maximo)
+Hora leerHora(IntervaloHoras *limites)
 {
   Hora hora;
   int datosCorrectos;
@@ -8,7 +8,7 @@ Hora leerHora(Hora *minimo, Hora *maximo)
 
   do
   {
-    imprimirIntervaloHoras("La hora debe estar entre las ", minimo, maximo);
+    imprimirIntervaloHoras("La hora debe estar entre las ", limites);
     printf("Ingrese los campos siguientes: \n");
     leerEnteroRango("Hora: ", 0, 23, &hora.hora);
     leerEnteroRango("Minuto: ", 0, 59, &hora.minuto);
@@ -17,7 +17,7 @@ Hora leerHora(Hora *minimo, Hora *maximo)
     imprimirHora(&hora);
     puts("");
 
-    valido = estaEntreHoras(&hora, minimo, maximo);
+    valido = estaEnIntervaloHoras(limites, &hora);
 
     if (!valido)
     {
@@ -30,7 +30,7 @@ Hora leerHora(Hora *minimo, Hora *maximo)
   puts("");
   if (!datosCorrectos)
   {
-    editarHora(&hora, minimo, maximo);
+    editarHora(&hora, limites);
   }
 
   return hora;

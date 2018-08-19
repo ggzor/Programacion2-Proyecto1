@@ -60,7 +60,7 @@ with open(salida, 'w') as a:
     w('\n\n\tMesa *{} = crearMesa({}, {});\n'.format(nombreMesa, numeroMesa, mesa.capacidad))
     for numeroIntervalo, intervalo in zip(count(1), mesa.reservaciones):
       nombreIntervalo = 'intervalo{}_{}'.format(numeroMesa, numeroIntervalo)
-      w('\n\tIntervalo {} =  {{ {{ {}, {}, {} }}, {{ {}, {} }}, {{ {}, {} }}'.format(
+      w('\n\tHorario {} =  {{ {{ {}, {}, {} }}, {{ {{ {}, {} }}, {{ {}, {} }} }}'.format(
         nombreIntervalo,
         intervalo.fecha.year, intervalo.fecha.month, intervalo.fecha.day,
         intervalo.inicio.hora, intervalo.inicio.minuto, intervalo.fin.hora, intervalo.fin.minuto)

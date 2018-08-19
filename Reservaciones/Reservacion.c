@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../Reservaciones.h"
+#include "../Tiempo/Horario.h"
 
 int obtenerMaximaCapacidadMesa(Restaurante *restaurante)
 {
@@ -18,7 +19,7 @@ int obtenerMaximaCapacidadMesa(Restaurante *restaurante)
   return maximo;
 }
 
-Mesa *obtenerMesaParaReservar(Restaurante *restaurante, int capacidadMesa, Intervalo *intervalo)
+Mesa *obtenerMesaParaReservar(Restaurante *restaurante, int capacidadMesa, Horario *horario)
 {
   int mesaContieneIntervalo;
   Mesa *resultado = NULL;
@@ -34,7 +35,7 @@ Mesa *obtenerMesaParaReservar(Restaurante *restaurante, int capacidadMesa, Inter
 
       while (reservacionActual != NULL && !mesaContieneIntervalo)
       {
-        mesaContieneIntervalo = seTranslapanIntervalos(&reservacionActual->reservacion->intervalo, intervalo);
+        mesaContieneIntervalo = seTranslapanHorarios(&reservacionActual->reservacion->horario, horario);
 
         reservacionActual = reservacionActual->siguiente;
       }
@@ -51,13 +52,13 @@ Mesa *obtenerMesaParaReservar(Restaurante *restaurante, int capacidadMesa, Inter
   return resultado;
 }
 
-int puedeReservarseEn(Restaurante *restaurante, int capacidadMesa, Intervalo *intervalo)
+int puedeReservarseEn(Restaurante *restaurante, int capacidadMesa, Horario *horario)
 {
-  return obtenerMesaParaReservar(restaurante, capacidadMesa, intervalo) != NULL;
+  return obtenerMesaParaReservar(restaurante, capacidadMesa, horario) != NULL;
 }
 
 void reservar(Restaurante *restaurante, int capacidadMesa, Reservacion *reservacion)
 {
-  Mesa *mesa = obtenerMesaParaReservar(restaurante, capacidadMesa, &reservacion->intervalo);
+  Mesa *mesa = obtenerMesaParaReservar(restaurante, capacidadMesa, &reservacion->horario);
   agregarReservacion(mesa, reservacion);
 }

@@ -1,5 +1,4 @@
 #include "../Impresion.h"
-#include "../Tiempo.h"
 
 void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
 {
@@ -12,14 +11,14 @@ void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
   }
   else
   {
-    fechaActual = &actual->reservacion->intervalo.fecha;
+    fechaActual = &actual->reservacion->horario.fecha;
     printf("  - ");
     imprimirFecha(fechaActual);
     puts("");
 
     while (actual != NULL)
     {
-      fechaReservacionActual = &actual->reservacion->intervalo.fecha;
+      fechaReservacionActual = &actual->reservacion->horario.fecha;
 
       if (!sonFechasIguales(fechaActual, fechaReservacionActual))
       {
@@ -32,8 +31,7 @@ void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
 
       imprimirIntervaloHoras(
           "    - ",
-          &actual->reservacion->intervalo.inicio,
-          &actual->reservacion->intervalo.fin);
+          &actual->reservacion->horario.horas);
 
       actual = actual->siguiente;
     }

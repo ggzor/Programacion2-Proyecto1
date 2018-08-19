@@ -1,6 +1,7 @@
 #include "../Edicion.h"
+#include "../Impresion.h"
 
-void editarFecha(Fecha *fecha, Fecha *minimo, Fecha *maximo)
+void editarFecha(Fecha *fecha, IntervaloFechas *limites)
 {
   char opcion;
   int opcionInvalida;
@@ -12,7 +13,7 @@ void editarFecha(Fecha *fecha, Fecha *minimo, Fecha *maximo)
 
     imprimirIntervaloFechas(
         "La fecha debe estar entre: ",
-        minimo, maximo);
+        limites);
 
     printf(
         "¿Qué valor desea cambiar?\n"
@@ -52,7 +53,7 @@ void editarFecha(Fecha *fecha, Fecha *minimo, Fecha *maximo)
 
     if (!terminar && !opcionInvalida)
     {
-      if (estaEntreFechas(&nuevaFecha, minimo, maximo))
+      if (estaEnIntervaloFechas(limites, &nuevaFecha))
       {
         printf("Fecha actualizada: ");
         *fecha = nuevaFecha;
