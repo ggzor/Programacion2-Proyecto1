@@ -18,4 +18,10 @@ void imprimirCadena(const char *cadena);
 #define limpiarPantalla() system("tput reset")
 #endif
 
+#define pausar()                                \
+  {                                             \
+    printf("Presione enter para continuar..."); \
+    getchar();                                  \
+  }
+
 #endif

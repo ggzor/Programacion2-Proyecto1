@@ -14,13 +14,15 @@ int main(int argc, char **argv)
       {"Hacer reservacion", hacerReservacion},
       {"Buscar reservacion", buscarReservacion},
       {"Ver horarios de mesas", verHorarios},
+      {"Establecer tiempo actual", establecerTiempo},
+      {"Restablecer tiempo actual", restablecerTiempo},
       {"Salir", NULL}};
   int cantidadOpciones = obtenerCantidadElementosMenu(menu);
 
   // Establece semilla para números aleatorios.
   cargarConfiguracion();
   Restaurante *restaurante = cargarInformacion();
-  
+
   do
   {
     limpiarPantalla();
