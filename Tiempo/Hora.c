@@ -59,3 +59,15 @@ int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2)
 
   return resultado;
 }
+
+Hora *obtenerHoraMayor(Hora *hora1, Hora *hora2)
+{
+  if (compararHoras(hora1, hora2) > 0)
+  {
+    return hora1;
+  }
+  else
+  {
+    return hora2;
+  }
+}
