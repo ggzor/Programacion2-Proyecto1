@@ -6,12 +6,13 @@
 #include "Tiempo/IntervaloHoras.h"
 #include "Tiempo/IntervaloFechas.h"
 #include "Tiempo/Horario.h"
+#include "Tiempo/FechaHora.h"
 #include "Edicion.h"
 #include "Impresion.h"
 
 Cliente leerCliente();
 Hora leerHora(IntervaloHoras *limites);
 Fecha leerFecha(IntervaloFechas *limites);
-Horario leerHorario(IntervaloFechas *limitesFecha, IntervaloHoras *limitesHora);
+Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fechaMaxima);
 
 #endif

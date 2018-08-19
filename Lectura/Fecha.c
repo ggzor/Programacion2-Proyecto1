@@ -25,15 +25,12 @@ Fecha leerFecha(IntervaloFechas *limites)
     {
       puts("La fecha no está entre las fechas especificadas. Reintente.\n");
     }
-  } while (!valido);
-
-  leerSiNo("¿Son correctos los datos [s/n]? ", &datosCorrectos);
-
-  puts("");
-  if (!datosCorrectos)
-  {
-    editarFecha(&fecha, limites);
-  }
+    else
+    {
+      leerSiNo("¿Son correctos los datos [s/n]? ", &datosCorrectos);
+      puts("");
+    }
+  } while (!valido || !datosCorrectos);
 
   return fecha;
 }

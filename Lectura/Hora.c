@@ -23,15 +23,12 @@ Hora leerHora(IntervaloHoras *limites)
     {
       puts("La hora no está entre las horas especificadas. Reintente.\n");
     }
-  } while (!valido);
-
-  leerSiNo("¿Son correctos los datos [s/n]? ", &datosCorrectos);
-
-  puts("");
-  if (!datosCorrectos)
-  {
-    editarHora(&hora, limites);
-  }
+    else
+    {
+      leerSiNo("¿Son correctos los datos [s/n]? ", &datosCorrectos);
+      puts("");
+    }
+  } while (!valido || !datosCorrectos);
 
   return hora;
 }
