@@ -1,10 +1,37 @@
 #include <stdio.h>
 #include "../Reservaciones.h"
-#include "../Tiempo/Horario.h"
+#include "../Tiempo/Tiempo.h"
+
+int esReservacionPasada(Reservacion *reservacion)
+{
+  FechaHora tiempoFin = {
+      reservacion->horario.fecha,
+      reservacion->horario.horas.fin};
+  FechaHora ahora = obtenerAhora();
+
+  return compararFechaHoras(&tiempoFin, &ahora) <= 0;
+}
+
+int esReservacionCancelable(Reservacion *reservacion)
+{
+  FechaHora tiempoInicio = {
+      reservacion->horario.fecha,
+      reservacion->horario.horas.inicio};
+  FechaHora ahora = obtenerAhora();
+
+  if (sonFechasIguales(&tiempoInicio.fecha, &ahora.fecha))
+  {
+    return obtenerDiferenciaEnMinutosEntreHoras(&ahora.hora, &tiempoInicio.hora) > 20;
+  }
+  else
+  {
+    return 0;
+  }
+}
 
 Mesa *obtenerMesaDisponibleParaReservar(Restaurante *restaurante, int cantidadPersonas, Horario *horario)
 {
-  int mesaContieneIntervalo;
+  int puedeReservarEnMesa;
   Mesa *resultado = NULL;
   NodoMesa *mesaActual = restaurante->mesas;
   NodoReservacion *reservacionActual;
@@ -13,17 +40,26 @@ Mesa *obtenerMesaDisponibleParaReservar(Restaurante *restaurante, int cantidadPe
   {
     if (mesaActual->mesa->capacidad >= cantidadPersonas)
     {
-      mesaContieneIntervalo = 0;
       reservacionActual = mesaActual->mesa->reservaciones;
 
-      while (reservacionActual != NULL && !mesaContieneIntervalo)
+      puedeReservarEnMesa = 1;
+      while (reservacionActual != NULL && puedeReservarEnMesa)
       {
-        mesaContieneIntervalo = seTranslapanHorarios(&reservacionActual->reservacion->horario, horario);
+        if (!esReservacionPasada(reservacionActual->reservacion))
+        {
+          if (!esReservacionCancelable(reservacionActual->reservacion))
+          {
+            if (seTranslapanHorarios(&reservacionActual->reservacion->horario, horario))
+            {
+              puedeReservarEnMesa = 0;
+            }
+          }
+        }
 
         reservacionActual = reservacionActual->siguiente;
       }
 
-      if (!mesaContieneIntervalo)
+      if (puedeReservarEnMesa)
       {
         resultado = mesaActual->mesa;
       }
