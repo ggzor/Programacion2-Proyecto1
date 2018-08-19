@@ -1,15 +1,26 @@
 #include "../Lectura.h"
 
-Horario leerHorario(IntervaloFechas *limitesFecha, IntervaloHoras *limitesHora)
+Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fechaMaxima)
 {
   int datosCorrectos;
   Horario horario;
 
+  IntervaloFechas limitesFecha = {
+      despuesDe->fecha, *fechaMaxima};
+  IntervaloHoras intervaloHoras = *limitesHora;
+
   puts("Especifique la fecha:");
-  horario.fecha = leerFecha(limitesFecha);
+  horario.fecha = leerFecha(&limitesFecha);
+
+  if (sonFechasIguales(&horario.fecha, &despuesDe->fecha))
+  {
+    intervaloHoras.inicio = *obtenerHoraMayor(&despuesDe->hora, &limitesHora->inicio);
+  }
 
   puts("Especifique la hora de inicio:");
   horario.horas.inicio = leerHora(limitesHora);
+
+  intervaloHoras.inicio = horario.horas.inicio;
 
   puts("Especifique la hora de salida:");
   horario.horas.fin = leerHora(limitesHora);
@@ -23,7 +34,7 @@ Horario leerHorario(IntervaloFechas *limitesFecha, IntervaloHoras *limitesHora)
   puts("");
   if (!datosCorrectos)
   {
-    editarHorario(&horario, limitesFecha, limitesHora);
+    editarHorario(despuesDe, limitesHora, fechaMaxima, &horario);
   }
 
   return horario;
