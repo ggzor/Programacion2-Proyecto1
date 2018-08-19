@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rm Mesas.dat Reservaciones_*.dat ReservacionesCanceladas_*.dat
