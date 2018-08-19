@@ -36,7 +36,7 @@ void hacerReservacion(Restaurante *restaurante)
         printf("Por favor, ingrese sus datos:\n");
         cliente = leerCliente();
 
-        reservacion = crearReservacion(cliente, horario);
+        reservacion = crearReservacion(cantidadPersonas, cliente, horario);
         reservar(restaurante, cantidadPersonas, reservacion);
         mesa = buscarMesaReservacion(restaurante, reservacion);
 

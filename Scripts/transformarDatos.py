@@ -66,7 +66,7 @@ with open(salida, 'w') as a:
         intervalo.inicio.hora, intervalo.inicio.minuto, intervalo.fin.hora, intervalo.fin.minuto)
       )
       w('\t};\n')
-      w('\tagregarReservacion({}, crearReservacion(cliente, {}));\n'.format(nombreMesa, nombreIntervalo))
+      w('\tagregarReservacion({}, crearReservacion({}, cliente, {}));\n'.format(nombreMesa, mesa.capacidad, nombreIntervalo))
     w('\n\tagregarMesa(restaurante, {});\n'.format(nombreMesa))
 
   w('\n\treturn restaurante;\n')
