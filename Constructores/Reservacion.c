@@ -7,6 +7,7 @@ Reservacion *crearReservacion(int cantidadPersonas, Cliente cliente, Horario hor
   Reservacion *reservacion = (Reservacion *)malloc(sizeof(Reservacion));
 
   reservacion->clave = rand() % (int)pow(16, DigitosClaveReservacion);
+  reservacion->cantidadPersonas = cantidadPersonas;
   reservacion->cliente = cliente;
   reservacion->horario = horario;
 
