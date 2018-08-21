@@ -1,34 +1,41 @@
 #include "../Lectura.h"
+#include "../Interfaz.h"
+#include "../Color.h"
 
 Hora leerHora(IntervaloHoras *limites)
 {
   Hora hora;
-  int datosCorrectos;
-  int valido;
+  int horaValida, entreLimites, datosCorrectos;
 
   do
   {
+    enAmarillo(printf("> "));
     imprimirIntervaloHoras("La hora debe estar entre las ", limites);
-    printf("Ingrese los campos siguientes: \n");
-    leerEnteroRango("Hora: ", 0, 23, &hora.hora);
-    leerEnteroRango("Minuto: ", 0, 59, &hora.minuto);
 
-    printf("\nLa hora introducida es: ");
-    imprimirHora(&hora);
-    puts("");
+    printf("  Hora: ");
+    enAzul(scanf("%d:%d%*c", &hora.hora, &hora.minuto));
 
-    valido = estaEnIntervaloHoras(limites, &hora);
+    horaValida = esHoraValida(&hora);
 
-    if (!valido)
+    if (!horaValida)
     {
-      puts("La hora no está entre las horas especificadas. Reintente.\n");
+      imprimirError("  La hora no es válida.");
     }
     else
     {
-      leerSiNo("¿Son correctos los datos [s/n]? ", &datosCorrectos);
-      puts("");
+      entreLimites = estaEnIntervaloHoras(limites, &hora);
+
+      if (!entreLimites)
+      {
+        imprimirError("  La hora no está entre las horas especificadas.");
+      }
+      else
+      {
+        leerSiNo("  ¿Son correctos los datos [s/n]? ", &datosCorrectos);
+        puts("");
+      }
     }
-  } while (!valido || !datosCorrectos);
+  } while (!horaValida || !entreLimites || !datosCorrectos);
 
   return hora;
 }

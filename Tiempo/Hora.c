@@ -2,7 +2,7 @@
 
 int esHoraValida(Hora *hora)
 {
-  return 0 < hora->hora && hora->hora < 24 && 0 < hora->minuto && hora->minuto < 60;
+  return 0 <= hora->hora && hora->hora < 24 && 0 <= hora->minuto && hora->minuto < 60;
 }
 
 #define MENOR -1

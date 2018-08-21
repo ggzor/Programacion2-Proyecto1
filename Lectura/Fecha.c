@@ -1,36 +1,42 @@
 #include "../Lectura.h"
 #include "../Tiempo/Fecha.h"
+#include "../Interfaz.h"
+#include "../Color.h"
 
 Fecha leerFecha(IntervaloFechas *limites)
 {
   Fecha fecha;
-  int datosCorrectos;
-  int valido;
+  int fechaValida, datosCorrectos, entreLimites;
 
   do
   {
+    enAmarillo(printf("> "));
     imprimirIntervaloFechas("La fecha debe estar entre ", limites);
-    printf("Ingrese los campos siguientes: \n");
-    leerEnteroRango("Año: ", 2000, 2100, &fecha.anio);
-    leerEnteroRango("Mes: ", 1, 12, &fecha.mes);
-    leerEnteroRango("Día: ", 1, obtenerDiasEnMes(fecha.anio, fecha.mes), &fecha.dia);
 
-    printf("\nLa fecha introducida es: ");
-    imprimirFecha(&fecha);
-    puts("");
+    printf("  Fecha: ");
+    enMorado(scanf("%d/%d/%d%*c", &fecha.dia, &fecha.mes, &fecha.anio));
 
-    valido = estaEnIntervaloFechas(limites, &fecha);
+    fechaValida = esFechaValida(&fecha);
 
-    if (!valido)
+    if (!fechaValida)
     {
-      puts("La fecha no está entre las fechas especificadas. Reintente.\n");
+      imprimirError("  La fecha no es válida.");
     }
     else
     {
-      leerSiNo("¿Son correctos los datos [s/n]? ", &datosCorrectos);
-      puts("");
+      entreLimites = estaEnIntervaloFechas(limites, &fecha);
+
+      if (!entreLimites)
+      {
+        imprimirError("  La fecha no está entre las fechas especificadas.");
+      }
+      else
+      {
+        leerSiNo("  ¿Son correctos los datos [s/n]? ", &datosCorrectos);
+        puts("");
+      }
     }
-  } while (!valido || !datosCorrectos);
+  } while (!fechaValida || !entreLimites || !datosCorrectos);
 
   return fecha;
 }

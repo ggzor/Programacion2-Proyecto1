@@ -5,6 +5,7 @@
 #define VERDE "92"
 #define AMARILLO "33"
 #define AZUL "94"
+#define MORADO "95"
 
 #define seleccionarColor(color) printf("\e[" color "m")
 #define reestablecerColor() seleccionarColor("0")
@@ -14,5 +15,6 @@
 #define enVerde(codigo) conColor(VERDE, codigo)
 #define enAmarillo(codigo) conColor(AMARILLO, codigo)
 #define enAzul(codigo) conColor(AZUL, codigo)
+#define enMorado(codigo) conColor(MORADO, codigo);
 
 #endif
