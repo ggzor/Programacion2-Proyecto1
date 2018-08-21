@@ -18,12 +18,12 @@ Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fe
   }
 
   puts("Especifique la hora de inicio:");
-  horario.horas.inicio = leerHora(limitesHora);
+  horario.horas.inicio = leerHora(&intervaloHoras);
 
   intervaloHoras.inicio = horario.horas.inicio;
 
   puts("Especifique la hora de salida:");
-  horario.horas.fin = leerHora(limitesHora);
+  horario.horas.fin = leerHora(&intervaloHoras);
 
   puts("");
   puts("Los datos recibidos son los siguientes:");
