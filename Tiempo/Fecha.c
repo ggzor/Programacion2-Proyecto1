@@ -78,3 +78,19 @@ int obtenerDiasEnMes(int anio, int mes)
 
   return dias[mes - 1];
 }
+
+int esFechaValida(Fecha *fecha)
+{
+  if (fecha->anio >= 0)
+  {
+    if (1 <= fecha->mes && fecha->mes <= 12)
+    {
+      if (1 <= fecha->dia && fecha->dia <= obtenerDiasEnMes(fecha->anio, fecha->mes))
+      {
+        return 1;
+      }
+    }
+  }
+
+  return 0;
+}
