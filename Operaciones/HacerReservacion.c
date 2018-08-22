@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+#include "../Configuracion.h"
 #include "../Operaciones.h"
 #include "../Reservaciones.h"
 #include "../Lectura.h"
@@ -11,15 +12,15 @@
 
 void hacerReservacion(Restaurante *restaurante)
 {
+  int continuarOtroHorario;
   int cantidadPersonas;
   Horario horario;
   Mesa *mesa;
-  int continuarOtroHorario;
   Cliente cliente;
   Reservacion *reservacion;
   FechaHora ahora = obtenerAhora();
-  IntervaloHoras horasHabiles = {{9, 0}, {18, 0}};
-  Fecha fechaMaxima = agregarMeses(&ahora.fecha, 3);
+  IntervaloHoras horasHabiles = {HoraInicio, HoraCierre};
+  Fecha fechaMaxima = agregarMeses(&ahora.fecha, MesesParaReservarDespues);
   int capacidadMaxima = obtenerMaximaCapacidadMesa(restaurante);
 
   printf("Máximo de personas: %d\n", capacidadMaxima);
@@ -31,10 +32,10 @@ void hacerReservacion(Restaurante *restaurante)
   }
   else
   {
-    puts("");
-    horario = leerHorario(&ahora, &horasHabiles, &fechaMaxima);
     do
     {
+      puts("");
+      horario = leerHorario(&ahora, &horasHabiles, &fechaMaxima, DuracionMinimaReservacion);
       mesa = obtenerMesaDisponibleParaReservar(restaurante, cantidadPersonas, &horario);
       if (mesa != NULL)
       {
@@ -60,13 +61,6 @@ void hacerReservacion(Restaurante *restaurante)
       {
         printf("Lo sentimos, no hay mesas disponibles para esa cantidad de personas en ese horario.\n\n");
         leerSiNo("¿Desea reservar en otro horario [s/n]? ", &continuarOtroHorario);
-
-        if (continuarOtroHorario)
-        {
-          puts("");
-          imprimirHorario(&horario);
-          editarHorario(&ahora, &horasHabiles, &fechaMaxima, &horario);
-        }
       }
     } while (continuarOtroHorario);
   }

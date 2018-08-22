@@ -1,7 +1,12 @@
 #ifndef _CONFIGURACION_H_
 #define _CONFIGURACION_H_
 
+#define HoraInicio { 9, 00 }
+#define HoraCierre { 18, 00 }
+#define MesesParaReservarDespues 3
+#define DuracionMinimaReservacion 30
 #define DigitosClaveReservacion 4
+
 #define NombreArchivoMesas "Mesas.dat"
 #define FormatoNombreArchivoReservaciones "Reservaciones_%d.dat"
 #define FormatoNombreArchivoReservacionesCanceladas "ReservacionesCanceladas_%d.dat"
