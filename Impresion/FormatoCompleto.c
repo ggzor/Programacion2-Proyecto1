@@ -1,14 +1,6 @@
 #include "../Impresion.h"
 #include "../Color.h"
 
-void imprimirCeros(int a)
-{
-  if (a < 10)
-  {
-    printf("0");
-  }
-}
-
 void imprimirCliente(Cliente *cliente)
 {
   printf("Nombre: %s\n", cliente->nombre);
@@ -18,13 +10,7 @@ void imprimirCliente(Cliente *cliente)
 
 void imprimirFecha(Fecha *fecha)
 {
-  enMorado({
-    imprimirCeros(fecha->dia);
-    printf("%d/", fecha->dia);
-    imprimirCeros(fecha->mes);
-    printf("%d/", fecha->mes);
-    printf("%4d", fecha->anio);
-  });
+  enMorado(printf("%02d/%02d/%04d", fecha->dia, fecha->mes, fecha->anio));
 }
 
 void imprimirIntervaloFechas(const char *mensaje, IntervaloFechas *intervalo)
@@ -38,12 +24,7 @@ void imprimirIntervaloFechas(const char *mensaje, IntervaloFechas *intervalo)
 
 void imprimirHora(Hora *hora)
 {
-  enAzul({
-    imprimirCeros(hora->hora);
-    printf("%d:", hora->hora);
-    imprimirCeros(hora->minuto);
-    printf("%d", hora->minuto);
-  });
+  enAzul(printf("%02d:%02d", hora->hora, hora->minuto));
 }
 
 void imprimirIntervaloHoras(const char *mensaje, IntervaloHoras *intervalo)
