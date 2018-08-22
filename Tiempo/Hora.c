@@ -38,7 +38,7 @@ int compararHoras(Hora *hora1, Hora *hora2)
 
 int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2)
 {
-  int resultado;
+  int resultado, multiplicador = 1;
   Hora *mayor = hora1;
   Hora *menor = hora2;
 
@@ -46,6 +46,7 @@ int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2)
   {
     mayor = hora2;
     menor = hora1;
+    multiplicador = -1;
   }
 
   // Acompletar la hora
@@ -57,7 +58,7 @@ int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2)
   // Minutos desde la hora completada hasta la hora mayor
   resultado += mayor->minuto;
 
-  return resultado;
+  return resultado * multiplicador;
 }
 
 Hora *obtenerHoraMayor(Hora *hora1, Hora *hora2)
