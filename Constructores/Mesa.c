@@ -49,12 +49,12 @@ void agregarReservacionCancelada(Mesa *mesa, Reservacion *reservacion)
 
 void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
 {
-  int antesPrimero, despuesActual = 0;
-  NodoReservacion *anterior, *actual = mesa->reservaciones;
+  NodoReservacion *anterior;
+  NodoReservacion *actual = mesa->reservaciones;
   NodoReservacion *nuevoNodo = crearNodoReservacion(reservacion);
 
-  Fecha *fechaActual, *fechaNueva = &reservacion->horario.fecha;
-  Hora *horaActual, *horaNueva = &reservacion->horario.horas.inicio;
+  FechaHora fechaHoraActual;
+  FechaHora fechaHoraNueva = obtenerFechaHoraInicio(&reservacion->horario);
 
   if (actual == NULL)
   {
@@ -62,11 +62,8 @@ void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
   }
   else
   {
-    fechaActual = &actual->reservacion->horario.fecha;
-    horaActual = &actual->reservacion->horario.horas.inicio;
-
-    antesPrimero = compararFechas(fechaNueva, fechaActual) == 0 && compararHoras(horaNueva, horaActual) < 0;
-    if (compararFechas(fechaNueva, fechaActual) < 0 || antesPrimero)
+    fechaHoraActual = obtenerFechaHoraInicio(&actual->reservacion->horario);
+    if (esAntesDeFechaHora(&fechaHoraNueva, &fechaHoraActual))
     {
       nuevoNodo->siguiente = actual;
       mesa->reservaciones = nuevoNodo;
@@ -80,12 +77,9 @@ void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
 
         if (actual != NULL)
         {
-          fechaActual = &actual->reservacion->horario.fecha;
-          horaActual = &actual->reservacion->horario.horas.inicio;
-
-          despuesActual = compararFechas(fechaActual, fechaNueva) == 0 && compararHoras(horaActual, horaNueva) < 0;
+          fechaHoraActual = obtenerFechaHoraInicio(&actual->reservacion->horario);
         }
-      } while (actual != NULL && (compararFechas(fechaActual, fechaNueva) < 0 || despuesActual));
+      } while (actual != NULL && esAntesDeFechaHora(&fechaHoraActual, &fechaHoraNueva));
 
       anterior->siguiente = nuevoNodo;
       nuevoNodo->siguiente = actual;
