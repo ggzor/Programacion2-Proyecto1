@@ -28,7 +28,7 @@ void imprimirCadena(const char *cadena);
 #ifdef _WIN32
 #define limpiarPantalla() system("cls")
 #else
-#define limpiarPantalla() system("tput reset")
+#define limpiarPantalla() system("clear")
 #endif
 
 #define pausar()                                \
