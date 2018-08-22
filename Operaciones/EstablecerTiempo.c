@@ -18,6 +18,7 @@ void establecerTiempo(Restaurante *restaurante)
 
   printf("Estableciendo tiempo: ");
   imprimirFechaHora(&nueva);
+  puts("");
 
   establecerAhora(nueva);
 
