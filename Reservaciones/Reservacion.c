@@ -69,5 +69,29 @@ Mesa *obtenerMesaDisponibleParaReservar(Restaurante *restaurante, int cantidadPe
 
 void reservar(Mesa *mesa, Reservacion *reservacion)
 {
-  
+  int fueReemplazada = 0;
+  NodoReservacion *actual = mesa->reservaciones;
+
+  while (actual != NULL && !fueReemplazada)
+  {
+    if (!esReservacionPasada(actual->reservacion))
+    {
+      if (esReservacionCancelable(actual->reservacion))
+      {
+        if (seTranslapanHorarios(&actual->reservacion->horario, &reservacion->horario))
+        {
+          agregarReservacionCancelada(mesa, actual->reservacion);
+          actual->reservacion = reservacion;
+
+          fueReemplazada = 1;
+        }
+      }
+    }
+    actual = actual->siguiente;
+  }
+
+  if (!fueReemplazada)
+  {
+    agregarReservacion(mesa, reservacion);
+  }
 }
