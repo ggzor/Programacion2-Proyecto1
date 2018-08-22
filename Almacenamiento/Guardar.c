@@ -1,35 +1,37 @@
 #include <stdio.h>
-#include "../Configuracion.h"
 #include "../Almacenamiento.h"
+#include "../Configuracion.h"
+#include "../Interfaz.h"
 
-NodoReservacion *extraerListaReservaciones(Mesa *mesa)
-{
-  return mesa->reservaciones;
-}
-
-NodoReservacion *extraerListaReservacionesCanceladas(Mesa *mesa)
-{
-  return mesa->reservacionesCanceladas;
-}
-
+// El tipo de una función que obtiene una lista de reservaciones desde una mesa.
 typedef NodoReservacion *(*ExtractorLista)(Mesa *mesa);
-void guardarArchivoReservaciones(Mesa *mesa, const char *formatoArchivo, ExtractorLista extractorLista)
+NodoReservacion *extraerListaReservaciones(Mesa *mesa) { return mesa->reservaciones; }
+NodoReservacion *extraerListaReservacionesCanceladas(Mesa *mesa) { return mesa->reservacionesCanceladas; }
+
+void guardarReservacionesEnArchivo(Mesa *mesa, const char *formatoArchivo, ExtractorLista extractorLista)
 {
   FILE *archivo;
-  char nombre[50];
+  char nombreArchivo[50];
   NodoReservacion *reservacionActual;
 
-  sprintf(nombre, formatoArchivo, mesa->numero);
-  archivo = fopen(nombre, "wb");
+  sprintf(nombreArchivo, formatoArchivo, mesa->numero);
+  archivo = fopen(nombreArchivo, "wb");
 
-  reservacionActual = extractorLista(mesa);
-  while (reservacionActual != NULL)
+  if (archivo != NULL)
   {
-    fwrite(reservacionActual->reservacion, sizeof(Reservacion), 1, archivo);
-    reservacionActual = reservacionActual->siguiente;
-  }
+    reservacionActual = extractorLista(mesa);
+    while (reservacionActual != NULL)
+    {
+      fwrite(reservacionActual->reservacion, sizeof(Reservacion), 1, archivo);
+      reservacionActual = reservacionActual->siguiente;
+    }
 
-  fclose(archivo);
+    fclose(archivo);
+  }
+  else
+  {
+    imprimirError(printf("No se pudieron guardar las reservaciones de la mesa %d.", mesa->numero));
+  }
 }
 
 void guardarInformacion(Restaurante *restaurante)
@@ -39,18 +41,25 @@ void guardarInformacion(Restaurante *restaurante)
 
   archivoMesas = fopen(NombreArchivoMesas, "wb");
 
-  while (mesaActual != NULL)
+  if (archivoMesas != NULL)
   {
-    fwrite(mesaActual->mesa, sizeof(Mesa), 1, archivoMesas);
+    while (mesaActual != NULL)
+    {
+      fwrite(mesaActual->mesa, sizeof(Mesa), 1, archivoMesas);
 
-    guardarArchivoReservaciones(mesaActual->mesa, FormatoNombreArchivoReservaciones,
-                                extraerListaReservaciones);
+      guardarReservacionesEnArchivo(mesaActual->mesa, FormatoNombreArchivoReservaciones,
+                                    extraerListaReservaciones);
 
-    guardarArchivoReservaciones(mesaActual->mesa, FormatoNombreArchivoReservacionesCanceladas,
-                                extraerListaReservacionesCanceladas);
+      guardarReservacionesEnArchivo(mesaActual->mesa, FormatoNombreArchivoReservacionesCanceladas,
+                                    extraerListaReservacionesCanceladas);
 
-    mesaActual = mesaActual->siguiente;
+      mesaActual = mesaActual->siguiente;
+    }
+
+    fclose(archivoMesas);
   }
-
-  fclose(archivoMesas);
+  else
+  {
+    imprimirError(printf("No se pudieron guardar la información de las mesas del restaurante."));
+  }
 }
