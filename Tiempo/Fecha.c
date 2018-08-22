@@ -66,6 +66,25 @@ Fecha agregarMeses(Fecha *fecha, int meses)
   return nueva;
 }
 
+Fecha diaSiguiente(Fecha *fecha)
+{
+  Fecha nueva = *fecha;
+
+  if (fecha->mes == 12 && fecha->dia == 31)
+  {
+    nueva.anio += 1;
+  }
+
+  if (obtenerDiasEnMes(fecha->anio, fecha->mes) == fecha->dia)
+  {
+    nueva.mes = ((nueva.mes) % 12) + 1;
+  }
+
+  nueva.dia = (nueva.dia + 1) % obtenerDiasEnMes(fecha->anio, fecha->mes);
+
+  return nueva;
+}
+
 int obtenerDiasEnMes(int anio, int mes)
 {
   static int dias[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};

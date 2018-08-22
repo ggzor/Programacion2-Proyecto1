@@ -12,6 +12,7 @@ int sonFechasIguales(Fecha *fecha1, Fecha *fecha2);
 int esFechaValida(Fecha *fecha);
 
 Fecha agregarMeses(Fecha *fecha, int meses);
+Fecha diaSiguiente(Fecha *fecha);
 int obtenerDiasEnMes(int anio, int mes);
 
 #endif
