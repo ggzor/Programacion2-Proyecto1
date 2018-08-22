@@ -1,22 +1,18 @@
 #include <stdio.h>
+#include "../Constructores.h"
 #include "../Reservaciones.h"
 #include "../Tiempo/Tiempo.h"
 
 int esReservacionPasada(Reservacion *reservacion)
 {
-  FechaHora tiempoFin = {
-      reservacion->horario.fecha,
-      reservacion->horario.horas.fin};
+  FechaHora tiempoFin = obtenerFechaHoraFin(&reservacion->horario);
   FechaHora ahora = obtenerAhora();
-
   return compararFechaHoras(&tiempoFin, &ahora) <= 0;
 }
 
 int esReservacionCancelable(Reservacion *reservacion)
 {
-  FechaHora tiempoInicio = {
-      reservacion->horario.fecha,
-      reservacion->horario.horas.inicio};
+  FechaHora tiempoInicio = obtenerFechaHoraInicio(&reservacion->horario);
   FechaHora ahora = obtenerAhora();
 
   if (sonFechasIguales(&tiempoInicio.fecha, &ahora.fecha))
