@@ -3,12 +3,15 @@
 
 #include "Fecha.h"
 #include "IntervaloHoras.h"
+#include "FechaHora.h"
 
-typedef struct {
+typedef struct
+{
   Fecha fecha;
   IntervaloHoras horas;
 } Horario;
 
 int seTranslapanHorarios(Horario *horario1, Horario *horario2);
+FechaHora obtenerFechaHoraInicio(Horario *horario);
 
 #endif

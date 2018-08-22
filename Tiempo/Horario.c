@@ -11,3 +11,9 @@ int seTranslapanHorarios(Horario *horario1, Horario *horario2)
   }
   return 0;
 }
+
+FechaHora obtenerFechaHoraInicio(Horario *horario)
+{
+  FechaHora fechaHora = {horario->fecha, horario->horas.inicio};
+  return fechaHora;
+}

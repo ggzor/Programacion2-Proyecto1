@@ -30,3 +30,8 @@ int compararFechaHoras(FechaHora *fechaHora1, FechaHora *fechaHora2)
     }
   }
 }
+
+int esAntesDeFechaHora(FechaHora *fechaHora1, FechaHora *fechaHora2)
+{
+  return compararFechaHoras(fechaHora1, fechaHora2) < 0;
+}

@@ -11,5 +11,6 @@ typedef struct
 } FechaHora;
 
 int compararFechaHoras(FechaHora *fechaHora1, FechaHora *fechaHora2);
+int esAntesDeFechaHora(FechaHora *fechaHora1, FechaHora *fechaHora2);
 
 #endif
