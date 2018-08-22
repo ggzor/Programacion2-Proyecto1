@@ -1,5 +1,6 @@
 #include "../Impresion.h"
 #include "../Color.h"
+#include "../Tiempo/Tiempo.h"
 
 void imprimirCliente(Cliente *cliente)
 {
@@ -132,4 +133,18 @@ void imprimirListaMesas(NodoMesa *lista)
 void imprimirRestaurante(Restaurante *restaurante)
 {
   imprimirListaMesas(restaurante->mesas);
+}
+
+void imprimirFechaHoraActual()
+{
+  FechaHora ahora = obtenerAhora();
+  imprimirCadena("Fecha y hora: ");
+  imprimirFechaHora(&ahora);
+  puts("\n");
+}
+
+void imprimirEncabezado()
+{
+  enVerde(puts("Fonda Doña Yoyis"));
+  imprimirFechaHoraActual();
 }

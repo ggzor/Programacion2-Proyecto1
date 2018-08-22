@@ -1,0 +1,13 @@
+Principal:
+  Cliente:
+    - Hacer reservación
+    - Buscar reservación
+    - Notificar llegada
+    - Volver
+  Administrador:
+    - Ver horarios de mesas
+    - Ver datos de mesa
+    - Establecer tiempo
+    - Restablecer tiempo
+    - Volver
+  Salir:

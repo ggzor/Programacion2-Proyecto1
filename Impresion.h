@@ -23,8 +23,9 @@ void imprimirReservacion(Reservacion *reservacion);
 void imprimirMesa(Mesa *mesa);
 void imprimirRestaurante(Restaurante *restaurante);
 
-
 void imprimirMesaFormatoCorto(Mesa *mesa);
 void imprimirHorariosRestauranteFormatoCorto(Restaurante *restaurante);
+
+void imprimirEncabezado();
 
 #endif

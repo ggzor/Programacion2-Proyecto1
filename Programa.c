@@ -1,22 +1,22 @@
 #include "Almacenamiento.h"
 #include "Configuracion.h"
+#include "Impresion.h"
 #include "Interfaz.h"
 #include "Menus.h"
-#include "Operaciones.h"
+#include "Tiempo/Tiempo.h"
 
-// El tipo de las funciones del menú principal.
-typedef void (*OperacionMenu)(Restaurante *);
+#include "OperacionesUsuario/Menu.h"
+#include "OperacionesAdministrador/Menu.h"
 
+void imprimirFechaHoraActual();
+void imprimirEncabezado();
 int main(int argc, char **argv)
 {
-  OperacionMenu opcionSeleccionada;
+  OperacionRestaurante opcionSeleccionada;
   ElementoMenu menu[] = {
-      {"Hacer reservacion", hacerReservacion},
-      {"Buscar reservacion", buscarReservacion},
-      {"Ver horarios de mesas", verHorarios},
-      {"Establecer tiempo actual", establecerTiempo},
-      {"Restablecer tiempo actual", restablecerTiempo},
-      {"Salir", NULL}};
+      {"Usuario", entrarMenuOperacionesUsuario},
+      {"Administrador", entrarMenuOperacionesAdministrador},
+      {"Guardar y salir", NULL}};
   int cantidadOpciones = obtenerCantidadElementosMenu(menu);
 
   // Establece semilla para números aleatorios.
@@ -26,11 +26,12 @@ int main(int argc, char **argv)
   do
   {
     limpiarPantalla();
+    imprimirEncabezado();
+
     opcionSeleccionada = ejecutarMenu("Menú principal: ", menu, cantidadOpciones);
 
     if (opcionSeleccionada != NULL)
     {
-      limpiarPantalla();
       opcionSeleccionada(restaurante);
     }
   } while (opcionSeleccionada != NULL);

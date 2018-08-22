@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../Operaciones.h"
+#include "Menu.h"
 #include "../Impresion.h"
 #include "../Tiempo/Tiempo.h"
 #include "../Interfaz.h"

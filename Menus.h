@@ -1,6 +1,10 @@
 #ifndef _MENUS_H_
 #define _MENUS_H_
 
+#include "Estructuras.h"
+// El tipo de las funciones del menú principal
+typedef void (*OperacionRestaurante)(Restaurante *);
+
 typedef struct
 {
   const char *const nombre;
