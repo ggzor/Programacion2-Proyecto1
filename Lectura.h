@@ -13,6 +13,6 @@
 Cliente leerCliente();
 Hora leerHora(IntervaloHoras *limites);
 Fecha leerFecha(IntervaloFechas *limites);
-Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fechaMaxima);
+Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fechaMaxima, int duracionMinima);
 
 #endif

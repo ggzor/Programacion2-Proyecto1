@@ -1,40 +1,55 @@
 #include "../Lectura.h"
+#include "../Interfaz.h"
 
-Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fechaMaxima)
+Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fechaMaxima, int duracionMinima)
 {
-  int datosCorrectos;
+  int valido, datosCorrectos = 0;
   Horario horario;
 
   IntervaloFechas limitesFecha = {despuesDe->fecha, *fechaMaxima};
   IntervaloHoras intervaloHoras = *limitesHora;
 
-  puts("Especifique la fecha:");
-  horario.fecha = leerFecha(&limitesFecha);
-
-  if (sonFechasIguales(&horario.fecha, &despuesDe->fecha))
+  // Si es despues de la hora de cierre.
+  if (compararHoras(&despuesDe->hora, &limitesHora->fin) >= 0)
   {
-    intervaloHoras.inicio = *obtenerHoraMayor(&despuesDe->hora, &limitesHora->inicio);
+    limitesFecha.inicio = diaSiguiente(&limitesFecha.inicio);
   }
 
-  puts("Especifique la hora de inicio:");
-  horario.horas.inicio = leerHora(&intervaloHoras);
-
-  intervaloHoras.inicio = horario.horas.inicio;
-
-  puts("Especifique la hora de salida:");
-  horario.horas.fin = leerHora(&intervaloHoras);
-
-  puts("");
-  puts("Los datos recibidos son los siguientes:");
-  imprimirHorario(&horario);
-
-  leerSiNo("¿Son correctos los datos [s/n]? ", &datosCorrectos);
-
-  puts("");
-  if (!datosCorrectos)
+  do
   {
-    editarHorario(despuesDe, limitesHora, fechaMaxima, &horario);
-  }
+    puts("Especifique la fecha:");
+    horario.fecha = leerFecha(&limitesFecha);
+
+    if (sonFechasIguales(&horario.fecha, &despuesDe->fecha))
+    {
+      intervaloHoras.inicio = *obtenerHoraMayor(&despuesDe->hora, &limitesHora->inicio);
+    }
+
+    do
+    {
+      puts("Especifique la hora de inicio:");
+      horario.horas.inicio = leerHora(&intervaloHoras);
+
+      intervaloHoras.inicio = horario.horas.inicio;
+
+      puts("Especifique la hora de salida:");
+      imprimirAdvertencia(printf("La duración del intervalo debe ser de al menos %d minutos.\n", duracionMinima));
+      horario.horas.fin = leerHora(&intervaloHoras);
+
+      valido = obtenerDiferenciaEnMinutosEntreHoras(&horario.horas.inicio, &horario.horas.fin) >= duracionMinima;
+
+      if (!valido)
+      {
+        imprimirError(printf("  La duración es menor que la requerida."));
+        intervaloHoras.inicio = limitesHora->inicio;
+      }
+    } while (!valido);
+
+    puts("");
+    puts("Los datos recibidos son los siguientes:");
+    imprimirHorario(&horario);
+    leerSiNo("¿Son correctos los datos [s/n]? ", &datosCorrectos);
+  } while (!datosCorrectos);
 
   return horario;
 }
