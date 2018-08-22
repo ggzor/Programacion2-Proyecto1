@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "../Reservaciones.h"
+#include "../Tiempo/Tiempo.h"
 
 int obtenerCantidadMesas(Restaurante *restaurante)
 {
@@ -47,4 +48,26 @@ Mesa *obtenerMesa(Restaurante *restaurante, int numeroMesa)
   }
 
   return resultado;
+}
+
+int esReservacionPasada(Reservacion *reservacion)
+{
+  FechaHora tiempoFin = obtenerFechaHoraFin(&reservacion->horario);
+  FechaHora ahora = obtenerAhora();
+  return compararFechaHoras(&tiempoFin, &ahora) <= 0;
+}
+
+int esReservacionCancelable(Reservacion *reservacion)
+{
+  FechaHora tiempoInicio = obtenerFechaHoraInicio(&reservacion->horario);
+  FechaHora ahora = obtenerAhora();
+
+  if (sonFechasIguales(&tiempoInicio.fecha, &ahora.fecha))
+  {
+    return obtenerDiferenciaEnMinutosEntreHoras(&ahora.hora, &tiempoInicio.hora) > 20;
+  }
+  else
+  {
+    return 0;
+  }
 }
