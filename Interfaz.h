@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "Color.h"
 
 void leerCaracter(const char *mensaje, char *direccion);
 void leerSiNo(const char *mensaje, int *direccion);
