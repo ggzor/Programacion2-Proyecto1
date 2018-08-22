@@ -6,6 +6,7 @@ Reservacion *crearReservacion(int cantidadPersonas, Cliente cliente, Horario hor
 {
   Reservacion *reservacion = (Reservacion *)malloc(sizeof(Reservacion));
 
+  // Generar un número aleatorio de 4 dígitos hexadecimales.
   reservacion->clave = rand() % (int)pow(16, DigitosClaveReservacion);
   reservacion->cantidadPersonas = cantidadPersonas;
   reservacion->cliente = cliente;
