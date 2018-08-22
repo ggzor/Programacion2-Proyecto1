@@ -11,6 +11,7 @@ Hora leerHora(IntervaloHoras *limites)
   {
     imprimirAdvertencia({
       imprimirIntervaloHoras("La hora debe estar entre las ", limites);
+      puts("");
     });
 
     printf("  Hora: ");

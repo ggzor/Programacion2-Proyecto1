@@ -36,7 +36,7 @@ Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fe
       imprimirAdvertencia(printf("La duración del intervalo debe ser de al menos %d minutos.\n", duracionMinima));
       horario.horas.fin = leerHora(&intervaloHoras);
 
-      valido = obtenerDiferenciaEnMinutosEntreHoras(&horario.horas.inicio, &horario.horas.fin) >= duracionMinima;
+      valido = obtenerDiferenciaEnMinutosEntreHoras(&horario.horas.fin, &horario.horas.inicio) >= duracionMinima;
 
       if (!valido)
       {
