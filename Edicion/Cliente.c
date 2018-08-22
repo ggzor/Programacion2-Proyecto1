@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include "../Lectura.h"
 #include "../Edicion.h"
 
 void editarCliente(Cliente *cliente)
