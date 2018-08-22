@@ -11,7 +11,18 @@ void leerCadena(const char *mensaje, char *direccion);
 void leerTelefono(const char *mensaje, long long *direccion);
 
 void imprimirCadena(const char *cadena);
-void imprimirError(const char *error);
+
+#define imprimirError(codigo) \
+  {                           \
+    enRojo({ codigo; printf("\n\n"); };);             \
+  }
+#define imprimirAdvertencia(codigo) \
+  {                                 \
+    enAmarillo(printf("> "));       \
+    {                               \
+      codigo;                       \
+    };                              \
+  }
 
 #ifdef _WIN32
 #define limpiarPantalla() system("cls")

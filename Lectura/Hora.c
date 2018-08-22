@@ -9,8 +9,9 @@ Hora leerHora(IntervaloHoras *limites)
 
   do
   {
-    enAmarillo(printf("> "));
-    imprimirIntervaloHoras("La hora debe estar entre las ", limites);
+    imprimirAdvertencia({
+      imprimirIntervaloHoras("La hora debe estar entre las ", limites);
+    });
 
     printf("  Hora: ");
     enAzul(scanf("%d:%d%*c", &hora.hora, &hora.minuto));
@@ -19,7 +20,7 @@ Hora leerHora(IntervaloHoras *limites)
 
     if (!horaValida)
     {
-      imprimirError("  La hora no es válida.");
+      imprimirError(printf("  La hora no es válida."));
     }
     else
     {
@@ -27,7 +28,7 @@ Hora leerHora(IntervaloHoras *limites)
 
       if (!entreLimites)
       {
-        imprimirError("  La hora no está entre las horas especificadas.");
+        imprimirError(printf("  La hora no está entre las horas especificadas."));
       }
       else
       {

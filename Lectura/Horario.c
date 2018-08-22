@@ -5,8 +5,7 @@ Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fe
   int datosCorrectos;
   Horario horario;
 
-  IntervaloFechas limitesFecha = {
-      despuesDe->fecha, *fechaMaxima};
+  IntervaloFechas limitesFecha = {despuesDe->fecha, *fechaMaxima};
   IntervaloHoras intervaloHoras = *limitesHora;
 
   puts("Especifique la fecha:");

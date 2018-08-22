@@ -10,8 +10,9 @@ Fecha leerFecha(IntervaloFechas *limites)
 
   do
   {
-    enAmarillo(printf("> "));
-    imprimirIntervaloFechas("La fecha debe estar entre ", limites);
+    imprimirAdvertencia({
+      imprimirIntervaloFechas("La fecha debe estar entre ", limites);
+    });
 
     printf("  Fecha: ");
     enMorado(scanf("%d/%d/%d%*c", &fecha.dia, &fecha.mes, &fecha.anio));
@@ -20,7 +21,7 @@ Fecha leerFecha(IntervaloFechas *limites)
 
     if (!fechaValida)
     {
-      imprimirError("  La fecha no es válida.");
+      imprimirError(printf("  La fecha no es válida."));
     }
     else
     {
@@ -28,7 +29,7 @@ Fecha leerFecha(IntervaloFechas *limites)
 
       if (!entreLimites)
       {
-        imprimirError("  La fecha no está entre las fechas especificadas.");
+        imprimirError(printf("  La fecha no está entre las fechas especificadas."));
       }
       else
       {
