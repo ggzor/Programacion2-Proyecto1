@@ -26,7 +26,7 @@ Restaurante *obtenerDatos()
 	Horario intervalo1_6 =  { { 2018, 8, 23 }, { { 9, 0 }, { 10, 0 } }	};
 	agregarReservacion(mesa1, crearReservacion(4, cliente, intervalo1_6));
 
-	Horario intervalo1_7 =  { { 2018, 8, 24 }, { { 8, 0 }, { 9, 0 } }	};
+	Horario intervalo1_7 =  { { 2018, 8, 24 }, { { 9, 0 }, { 10, 0 } }	};
 	agregarReservacion(mesa1, crearReservacion(4, cliente, intervalo1_7));
 
 	agregarMesa(restaurante, mesa1);
@@ -34,7 +34,7 @@ Restaurante *obtenerDatos()
 
 	Mesa *mesa2 = crearMesa(2, 6);
 
-	Horario intervalo2_1 =  { { 2018, 8, 22 }, { { 8, 0 }, { 9, 30 } }	};
+	Horario intervalo2_1 =  { { 2018, 8, 22 }, { { 9, 0 }, { 9, 30 } }	};
 	agregarReservacion(mesa2, crearReservacion(6, cliente, intervalo2_1));
 
 	Horario intervalo2_2 =  { { 2018, 8, 22 }, { { 16, 0 }, { 18, 30 } }	};
