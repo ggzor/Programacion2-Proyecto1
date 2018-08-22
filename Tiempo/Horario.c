@@ -17,3 +17,9 @@ FechaHora obtenerFechaHoraInicio(Horario *horario)
   FechaHora fechaHora = {horario->fecha, horario->horas.inicio};
   return fechaHora;
 }
+
+FechaHora obtenerFechaHoraFin(Horario *horario)
+{
+  FechaHora fechaHora = {horario->fecha, horario->horas.fin};
+  return fechaHora;
+}

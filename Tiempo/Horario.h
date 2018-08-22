@@ -13,5 +13,6 @@ typedef struct
 
 int seTranslapanHorarios(Horario *horario1, Horario *horario2);
 FechaHora obtenerFechaHoraInicio(Horario *horario);
+FechaHora obtenerFechaHoraFin(Horario *horario);
 
 #endif
