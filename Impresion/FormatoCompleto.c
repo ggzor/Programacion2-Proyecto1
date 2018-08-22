@@ -33,7 +33,6 @@ void imprimirIntervaloHoras(const char *mensaje, IntervaloHoras *intervalo)
   imprimirHora(&intervalo->inicio);
   printf(" - ");
   imprimirHora(&intervalo->fin);
-  puts("");
 }
 
 void imprimirFechaHora(FechaHora *fechaHora)
@@ -58,9 +57,16 @@ void imprimirHorario(Horario *horario)
   puts("");
 }
 
+void imprimirClaveReservacion(int clave)
+{
+  enVerde(printf("%04X", clave));
+}
+
 void imprimirReservacion(Reservacion *reservacion)
 {
-  printf("Clave de reservación: %04X\n\n", reservacion->clave);
+  printf("Clave de reservación: ");
+  imprimirClaveReservacion(reservacion->clave);
+  puts("\n");
   printf("Cantidad de personas: %d\n", reservacion->cantidadPersonas);
   imprimirCliente(&reservacion->cliente);
   puts("");

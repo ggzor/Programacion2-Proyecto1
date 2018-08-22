@@ -32,6 +32,10 @@ void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
       imprimirIntervaloHoras(
           "    - ",
           &actual->reservacion->horario.horas);
+      printf(" (");
+      imprimirClaveReservacion(actual->reservacion->clave);
+      printf(")");
+      puts("");
 
       actual = actual->siguiente;
     }

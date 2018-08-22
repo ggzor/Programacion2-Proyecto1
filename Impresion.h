@@ -18,6 +18,7 @@ void imprimirIntervaloHoras(const char *mensaje, IntervaloHoras *intervalo);
 void imprimirFechaHora(FechaHora *fechaHora);
 void imprimirHorario(Horario *horario);
 
+void imprimirClaveReservacion(int clave);
 void imprimirReservacion(Reservacion *reservacion);
 void imprimirMesa(Mesa *mesa);
 void imprimirRestaurante(Restaurante *restaurante);
