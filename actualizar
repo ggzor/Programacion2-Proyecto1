@@ -1,4 +1,12 @@
 #!/bin/sh
 
-cd Scripts
-python3 ./transformarDatos.py
+echo -e "\e[1mActualizando archivos...\e[0m"
+if cd Scripts &&\
+   python3 ./transformarDatos.py &&\
+   cd .. &&\
+   python3 ./Scripts/generarCodigoCompilacion.py
+then
+  echo -e "\e[32mActualización correcta.\e[0m"
+else
+  echo -e "\e[91mActualización fallida.\e[0m" && exit 1
+fi

@@ -1,8 +1,8 @@
 #!/bin/sh
 
 tput reset
-echo "Compilando..."
-if gcc *.c ./*/*.c -o Programa
+echo -e "\e[1mCompilando...\e[0m"
+if ./actualizar && ./invocar_compilador
 then
   echo -e "\e[32mCompilación correcta.\e[0m"
 else
