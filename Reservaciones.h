@@ -12,4 +12,7 @@ void reservar(Mesa *mesa, Reservacion *reservacion);
 int esReservacionPasada(Reservacion *reservacion);
 int esReservacionCancelable(Reservacion *reservacion);
 
+Reservacion *buscarReservacionPorClave(Restaurante *restaurante, int clave);
+Reservacion *buscarReservacionCanceladaPorClave(Restaurante *restaurante, int clave);
+
 #endif

@@ -64,10 +64,56 @@ int esReservacionCancelable(Reservacion *reservacion)
 
   if (sonFechasIguales(&tiempoInicio.fecha, &ahora.fecha))
   {
-    return obtenerDiferenciaEnMinutosEntreHoras(&ahora.hora, &tiempoInicio.hora) > 20;
+    return !reservacion->confirmada && obtenerDiferenciaEnMinutosEntreHoras(&ahora.hora, &tiempoInicio.hora) > 20;
   }
   else
   {
     return 0;
   }
+}
+
+Reservacion *buscarEnListaReservaciones(NodoReservacion *lista, int clave)
+{
+  NodoReservacion *actual = lista;
+  Reservacion *resultado = NULL;
+
+  while (actual != NULL && resultado == NULL)
+  {
+    if (actual->reservacion->clave == clave)
+    {
+      resultado = actual->reservacion;
+    }
+
+    actual = actual->siguiente;
+  }
+
+  return resultado;
+}
+
+Reservacion *buscarReservacionPorClave(Restaurante *restaurante, int clave)
+{
+  NodoMesa *actual = restaurante->mesas;
+  Reservacion *resultado = NULL;
+
+  while (actual != NULL && resultado == NULL)
+  {
+    resultado = buscarEnListaReservaciones(actual->mesa->reservaciones, clave);
+    actual = actual->siguiente;
+  }
+
+  return resultado;
+}
+
+Reservacion *buscarReservacionCanceladaPorClave(Restaurante *restaurante, int clave)
+{
+  NodoMesa *actual = restaurante->mesas;
+  Reservacion *resultado = NULL;
+
+  while (actual != NULL && resultado == NULL)
+  {
+    resultado = buscarEnListaReservaciones(actual->mesa->reservacionesCanceladas, clave);
+    actual = actual->siguiente;
+  }
+
+  return resultado;
 }

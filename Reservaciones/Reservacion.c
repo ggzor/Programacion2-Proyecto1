@@ -2,6 +2,7 @@
 #include "../Constructores.h"
 #include "../Reservaciones.h"
 #include "../Tiempo/Tiempo.h"
+#include "../Interfaz.h"
 
 Mesa *obtenerMesaDisponibleParaReservar(Restaurante *restaurante, int cantidadPersonas, Horario *horario)
 {
@@ -59,6 +60,7 @@ void reservar(Mesa *mesa, Reservacion *reservacion)
         if (seTranslapanHorarios(&actual->reservacion->horario, &reservacion->horario))
         {
           agregarReservacionCancelada(mesa, actual->reservacion);
+          imprimirError(printf("Atención: Se ha cancelado la reservación %04X.", actual->reservacion->clave));
           actual->reservacion = reservacion;
 
           fueReemplazada = 1;
