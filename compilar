@@ -1,8 +1,9 @@
 #!/bin/sh
 
 tput reset
-echo -e "\e[1mCompilando...\e[0m"
-if ./actualizar && ./invocar_compilador
+if ./actualizar \
+    && echo -e "\e[1mCompilando...\e[0m" \
+    && ./invocar_compilador
 then
   echo -e "\e[32mCompilación correcta.\e[0m"
 else
