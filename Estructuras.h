@@ -14,6 +14,7 @@ typedef struct
 {
    int clave;
    int cantidadPersonas;
+   int confirmada;
    Cliente cliente;
    Horario horario;
 } Reservacion;

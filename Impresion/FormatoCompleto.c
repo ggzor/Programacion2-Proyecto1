@@ -70,7 +70,16 @@ void imprimirReservacion(Reservacion *reservacion)
   puts("\n");
   printf("Cantidad de personas: %d\n", reservacion->cantidadPersonas);
   imprimirCliente(&reservacion->cliente);
-  puts("");
+  printf("Confirmada: ");
+  if (reservacion->confirmada)
+  {
+    enVerde(printf("✔"));
+  }
+  else
+  {
+    enAmarillo(printf("No."));
+  }
+  puts("\n");
 
   imprimirHorario(&reservacion->horario);
   puts("");
@@ -105,7 +114,7 @@ void imprimirMesa(Mesa *mesa)
   imprimirListaReservaciones(mesa->reservaciones);
   puts("\n");
 
-  puts("Lista reservaciones canceladas:");
+  enRojo(puts("Lista reservaciones canceladas:"));
   imprimirListaReservaciones(mesa->reservacionesCanceladas);
   puts("\n");
 }

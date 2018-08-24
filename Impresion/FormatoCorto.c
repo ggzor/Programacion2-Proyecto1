@@ -1,4 +1,5 @@
 #include "../Impresion.h"
+#include "../Color.h"
 
 void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
 {
@@ -34,7 +35,11 @@ void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
           &actual->reservacion->horario.horas);
       printf(" (");
       imprimirClaveReservacion(actual->reservacion->clave);
-      printf(")");
+      printf(") ");
+      if (actual->reservacion->confirmada)
+      {
+        enVerde(printf("✔"));
+      }
       puts("");
 
       actual = actual->siguiente;
