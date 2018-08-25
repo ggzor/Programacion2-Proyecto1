@@ -7,12 +7,13 @@ typedef struct {
   int dia;
 } Fecha;
 
-int compararFechas(Fecha *fecha1, Fecha *fecha2);
-int sonFechasIguales(Fecha *fecha1, Fecha *fecha2);
 int esFechaValida(Fecha *fecha);
 
+int compararFechas(Fecha *fecha1, Fecha *fecha2);
+int sonFechasIguales(Fecha *fecha1, Fecha *fecha2);
+
 Fecha agregarMeses(Fecha *fecha, int meses);
-Fecha diaSiguiente(Fecha *fecha);
 int obtenerDiasEnMes(int anio, int mes);
+Fecha diaSiguiente(Fecha *fecha);
 
 #endif

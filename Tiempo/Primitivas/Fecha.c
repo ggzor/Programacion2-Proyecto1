@@ -4,6 +4,22 @@
 #define IGUAL 0
 #define MAYOR 1
 
+int esFechaValida(Fecha *fecha)
+{
+  if (fecha->anio >= 0)
+  {
+    if (1 <= fecha->mes && fecha->mes <= 12)
+    {
+      if (1 <= fecha->dia && fecha->dia <= obtenerDiasEnMes(fecha->anio, fecha->mes))
+      {
+        return 1;
+      }
+    }
+  }
+
+  return 0;
+}
+
 int compararFechas(Fecha *fecha1, Fecha *fecha2)
 {
   if (fecha1->anio < fecha2->anio)
@@ -66,6 +82,19 @@ Fecha agregarMeses(Fecha *fecha, int meses)
   return nueva;
 }
 
+int obtenerDiasEnMes(int anio, int mes)
+{
+  static int dias[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+  if (mes == 2)
+  {
+    if (anio % 4 == 0 && anio % 100 == 0 && anio % 400 != 0)
+      return 29;
+  }
+
+  return dias[mes - 1];
+}
+
 Fecha diaSiguiente(Fecha *fecha)
 {
   Fecha nueva = *fecha;
@@ -83,33 +112,4 @@ Fecha diaSiguiente(Fecha *fecha)
   nueva.dia = (nueva.dia + 1) % obtenerDiasEnMes(fecha->anio, fecha->mes);
 
   return nueva;
-}
-
-int obtenerDiasEnMes(int anio, int mes)
-{
-  static int dias[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-  if (mes == 2)
-  {
-    if (anio % 4 == 0 && anio % 100 == 0 && anio % 400 != 0)
-      return 29;
-  }
-
-  return dias[mes - 1];
-}
-
-int esFechaValida(Fecha *fecha)
-{
-  if (fecha->anio >= 0)
-  {
-    if (1 <= fecha->mes && fecha->mes <= 12)
-    {
-      if (1 <= fecha->dia && fecha->dia <= obtenerDiasEnMes(fecha->anio, fecha->mes))
-      {
-        return 1;
-      }
-    }
-  }
-
-  return 0;
 }
