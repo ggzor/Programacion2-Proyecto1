@@ -1,5 +1,6 @@
 #include "../Almacenamiento.h"
 #include "../Estructuras.h"
+#include "../../Interfaz/Interfaz.h"
 #include "NombresArchivos.h"
 #include "../Pruebas.h"
 

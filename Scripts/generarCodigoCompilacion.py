@@ -18,7 +18,7 @@ def obtenerArchivosC(ruta: Path):
 directorio = Path('.')
 archivos = ['{}'.format(p) for p in obtenerArchivosC(directorio)]
 todosArchivos = ' '.join(archivos)
-comando = 'gcc {} -o Programa'
+comando = 'gcc {} -o Programa -lm'
 
 with open('./Scripts/invocar_compilador', 'w') as destino:
     destino.write('#!/bin/bash\n\n')

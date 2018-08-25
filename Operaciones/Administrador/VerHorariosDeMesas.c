@@ -1,10 +1,11 @@
+#include "../Administrador.h"
+#include "../../Datos/Impresion.h"
+#include "../../Interfaz/Interfaz.h"
 #include <stdio.h>
-#include "Menu.h"
-#include "../Interfaz.h"
 
 void verHorariosDeMesas(Restaurante *restaurante)
 {
-  puts("Los horarios por cada mesa son los siguentes:\n");
+  puts("Los horarios por cada mesa son los siguientes:\n");
   imprimirHorariosRestauranteFormatoCorto(restaurante);
 
   pausar();

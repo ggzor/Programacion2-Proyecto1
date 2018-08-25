@@ -1,7 +1,9 @@
-#include "Menu.h"
-#include "../Lectura.h"
-#include "../Tiempo/Tiempo.h"
-#include "../Interfaz.h"
+#include "../Pruebas.h"
+#include "../../Datos/Lectura.h"
+#include "../../Interfaz/Interfaz.h"
+#include "../../Tiempo/Impresion.h"
+#include "../../Tiempo/ManejoTiempo.h"
+#include <stdio.h>
 
 void establecerTiempo(Restaurante *restaurante)
 {

@@ -10,7 +10,7 @@ Cliente leerCliente()
   {
     leerCadena("Nombre: ", cliente.nombre);
     leerCadena("Direccion: ", cliente.direccion);
-    leerTelefono("Telefono: ", &cliente.telefono);
+    leerNumero("Telefono: ", 10, &cliente.telefono);
 
     leerSiNo("¿Son correctos los datos [s/n]? ", &datosCorrectos);
 

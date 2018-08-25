@@ -73,6 +73,7 @@ void reservar(Mesa *mesa, Reservacion *reservacion, Reservacion **cancelada)
   int fueReemplazada = 0;
   NodoReservacion *actual = mesa->reservaciones;
 
+  *cancelada = NULL;
   while (actual != NULL && !fueReemplazada)
   {
     if (!esReservacionPasada(actual->reservacion))

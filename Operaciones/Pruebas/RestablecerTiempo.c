@@ -1,8 +1,9 @@
+#include "../Pruebas.h"
+#include "../../Interfaz/Interfaz.h"
+#include "../../Tiempo/Impresion.h"
+#include "../../Tiempo/Tiempo.h"
+#include "../../Tiempo/ManejoTiempo.h"
 #include <stdio.h>
-#include "Menu.h"
-#include "../Impresion.h"
-#include "../Tiempo/Tiempo.h"
-#include "../Interfaz.h"
 
 void restablecerTiempo(Restaurante *restaurante)
 {

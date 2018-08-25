@@ -1,6 +1,7 @@
 #include "Interfaz.h"
 
 #include <ctype.h>
+#include <math.h>
 #include <stdio.h>
 
 void leerCaracter(const char *mensaje, char *direccion)
@@ -58,18 +59,40 @@ int contarDigitos(long long n)
     return 1 + contarDigitos(n / 10);
 }
 
-void leerTelefono(const char *mensaje, long long *direccion)
+void leerNumero(const char *mensaje, int cantidadDigitos, long long *direccion)
 {
   int valido;
   do
   {
+    imprimirAdvertencia(printf("El numero debe tener %d dígitos.\n", cantidadDigitos));
     imprimirCadena(mensaje);
     scanf("%lld%*c", direccion);
 
-    valido = contarDigitos(*direccion) == 10;
+    valido = contarDigitos(*direccion) == cantidadDigitos;
     if (!valido)
     {
-      puts("El teléfono no es válido. Reintente.\n");
+      puts("El valor no es válido.\n");
+    }
+  } while (!valido);
+}
+
+void leerNumeroHexadecimal(const char *mensaje, int cantidadDigitos, int *direccion)
+{
+  int valido;
+  int numeroMaximo = pow(16, cantidadDigitos);
+
+  do
+  {
+    imprimirAdvertencia(printf("El valor debe ser un número hexadecimal de %d dígitos. (Máximo %X)\n",
+                               cantidadDigitos, numeroMaximo - 1));
+    imprimirCadena(mensaje);
+    scanf("%X%*c", direccion);
+
+    valido = 0 <= *direccion && *direccion < numeroMaximo;
+
+    if (!valido)
+    {
+      imprimirError(puts("  El valor está fuera de los límites.\n"));
     }
   } while (!valido);
 }

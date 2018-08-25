@@ -2,7 +2,7 @@
 #include "../Estructuras.h"
 #include "../Pruebas.h"
 
-Restaurante *obtenerDatos()
+Restaurante *obtenerDatosPrueba()
 {
 	Restaurante *restaurante = crearRestaurante();
 	Cliente cliente = { "Axol", "Rio Jamapa", 2211509121 };

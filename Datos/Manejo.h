@@ -11,7 +11,7 @@ Mesa *buscarMesaDisponibleParaReservar(Restaurante *restaurante, int cantidadPer
 
 int esReservacionPasada(Reservacion *reservacion);
 int esReservacionCancelable(Reservacion *reservacion);
-Reservacion *buscarReservacion(Restaurante *restaurante, int clave, int *estaCancelada);
+Reservacion *buscarReservacionPorClave(Restaurante *restaurante, int clave, int *estaCancelada);
 void reservar(Mesa *mesa, Reservacion *reservacion, Reservacion **cancelada);
 
 #endif

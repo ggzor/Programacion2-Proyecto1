@@ -6,6 +6,7 @@
 #define MesesParaReservarDespues 3
 #define DuracionMinimaReservacion 30
 #define ToleranciaEnMinutos 20
+#define CantidadDigitosClave 4
 
 #include <time.h>
 #include <stdlib.h>

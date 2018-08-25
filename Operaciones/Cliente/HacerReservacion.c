@@ -1,27 +1,28 @@
+#include "../Cliente.h"
+#include "../../Configuracion.h"
+#include "../../Datos/Constructores.h"
+#include "../../Datos/Impresion.h"
+#include "../../Datos/Lectura.h"
+#include "../../Datos/Manejo.h"
+#include "../../Interfaz/Interfaz.h"
+#include "../../Tiempo/Tiempo.h"
 #include <stdio.h>
-
-#include "Menu.h"
-#include "../Configuracion.h"
-#include "../Reservaciones.h"
-#include "../Lectura.h"
-#include "../Constructores.h"
-#include "../Impresion.h"
-#include "../Interfaz.h"
-#include "../Edicion.h"
-#include "../Tiempo/Tiempo.h"
 
 void hacerReservacion(Restaurante *restaurante)
 {
   int continuarOtroHorario;
+
   int cantidadPersonas;
   Horario horario;
-  Mesa *mesa;
   Cliente cliente;
+  Mesa *mesa;
   Reservacion *reservacion;
+  Reservacion **reservacionCancelada;
+
   FechaHora ahora = obtenerAhora();
   IntervaloHoras horasHabiles = {HoraInicio, HoraCierre};
   Fecha fechaMaxima = agregarMeses(&ahora.fecha, MesesParaReservarDespues);
-  int capacidadMaxima = obtenerMaximaCapacidadMesa(restaurante);
+  int capacidadMaxima = calcularMaximaCapacidadMesa(restaurante);
 
   printf("Máximo de personas: %d\n", capacidadMaxima);
   leerEnteroRango("¿Cúantas personas van a asistir (0 para cancelar)? ", 0, capacidadMaxima, &cantidadPersonas);
@@ -36,7 +37,7 @@ void hacerReservacion(Restaurante *restaurante)
     {
       puts("");
       horario = leerHorario(&ahora, &horasHabiles, &fechaMaxima, DuracionMinimaReservacion);
-      mesa = obtenerMesaDisponibleParaReservar(restaurante, cantidadPersonas, &horario);
+      mesa = buscarMesaDisponibleParaReservar(restaurante, cantidadPersonas, &horario);
       if (mesa != NULL)
       {
         printf("Hay mesas disponibles para esa fecha y hora.\n");
@@ -44,7 +45,7 @@ void hacerReservacion(Restaurante *restaurante)
         cliente = leerCliente();
 
         reservacion = crearReservacion(cantidadPersonas, cliente, horario);
-        reservar(mesa, reservacion);
+        reservar(mesa, reservacion, reservacionCancelada);
 
         puts("Reservación preparada:\n");
         printf("Mesa: %d\n", mesa->numero);
@@ -53,8 +54,14 @@ void hacerReservacion(Restaurante *restaurante)
         printf("\nGracias por su preferencia. Conserve su clave de reservación.\n");
         printf("\nTiene 20 minutos a partir de la hora de inicio para llegar, "
                "de lo contrario, su mesa podrá ser reasignada para otra reservación.\n");
-
         pausar();
+
+        if (*reservacionCancelada != NULL)
+        {
+          imprimirError(puts("Aviso: Se ha cancelado la siguiente reservación."));
+          imprimirReservacion(*reservacionCancelada);
+        }
+
         continuarOtroHorario = 0;
       }
       else

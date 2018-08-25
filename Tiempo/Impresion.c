@@ -1,4 +1,5 @@
 #include "Impresion.h"
+#include "../Interfaz/Color.h"
 #include <stdio.h>
 
 void imprimirFecha(Fecha *fecha)

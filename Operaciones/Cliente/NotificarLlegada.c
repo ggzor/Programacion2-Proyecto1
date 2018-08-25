@@ -1,45 +1,35 @@
-#include "Menu.h"
-#include "../Configuracion.h"
-#include "../Reservaciones.h"
-#include "../Interfaz.h"
-#include "math.h"
+#include "../Cliente.h"
+#include "../../Configuracion.h"
+#include "../../Datos/Impresion.h"
+#include "../../Datos/Manejo.h"
+#include "../../Interfaz/Interfaz.h"
+#include <stdio.h>
 
 void notificarLlegada(Restaurante *restaurante)
 {
-  int clave, claveMaxima = pow(16, DigitosClaveReservacion);
+  int clave, estaCancelada;
   Reservacion *reservacion;
 
-  imprimirAdvertencia(printf("La clave debe estar entre %04X y %04X\n", 0, claveMaxima - 1));
-  printf("Introduzca su clave de reservación: ");
-  scanf("%X%*c", &clave);
+  leerNumeroHexadecimal("Introduzca su clave de reservación: ", CantidadDigitosClave, &clave);
+  reservacion = buscarReservacionPorClave(restaurante, clave, &estaCancelada);
 
-  if (0 <= clave && clave < claveMaxima)
+  if (reservacion == NULL)
   {
-    reservacion = buscarReservacionPorClave(restaurante, clave);
-
-    if (reservacion == NULL)
+    imprimirError(printf("La reservación no existe."));
+  }
+  else
+  {
+    if (estaCancelada)
     {
-      reservacion = buscarReservacionCanceladaPorClave(restaurante, clave);
-
-      if (reservacion == NULL)
-      {
-        imprimirError(printf("La reservación no existe."));
-      }
-      else
-      {
-        imprimirError(puts("La reservación ya fue cancelada porque excedió el tiempo de tolerancia."));
-        imprimirReservacion(reservacion);
-      }
+      imprimirError(puts("Lo sentimos. La reservación ya fue cancelada porque excedió el tiempo de tolerancia."));
+      imprimirReservacion(reservacion);
     }
     else
     {
       reservacion->confirmada = 1;
-      enVerde(puts("Reservación confirmada."));
+      enVerde(puts("Reservación confirmada. ✔"));
     }
   }
-  else
-  {
-    imprimirError(puts("La clave está fuera de los límites."));
-  }
+
   pausar();
 }

@@ -1,33 +1,23 @@
 #include "Configuracion.h"
 #include "Datos/Almacenamiento.h"
 #include "Datos/Estructuras.h"
+
 #include "Operaciones/Menus.h"
+#include "Operaciones/Administrador.h"
+#include "Operaciones/Cliente.h"
+#include "Operaciones/Pruebas.h"
 
 int main(int argc, char **argv)
 {
-  OperacionRestaurante opcionSeleccionada;
-  ElementoMenu menu[] = {
-      {"Usuario", entrarMenuOperacionesUsuario},
-      {"Administrador", entrarMenuOperacionesAdministrador},
-      {"Guardar y salir", NULL}};
-  int cantidadOpciones = obtenerCantidadElementosMenu(menu);
-
   // Establece semilla para números aleatorios.
   cargarConfiguracion();
   Restaurante *restaurante = cargarInformacion();
 
-  do
-  {
-    limpiarPantalla();
-    imprimirEncabezado();
-
-    opcionSeleccionada = ejecutarMenu("Menú principal: ", menu, cantidadOpciones);
-
-    if (opcionSeleccionada != NULL)
-    {
-      opcionSeleccionada(restaurante);
-    }
-  } while (opcionSeleccionada != NULL);
+  Menu("Menú principal:",
+       {"Cliente", entrarMenuCliente},
+       {"Administrador", entrarMenuAdministrador},
+       {"Pruebas", entrarMenuPruebas},
+       {"Guardar y salir", NULL});
 
   guardarInformacion(restaurante);
   return 0;
