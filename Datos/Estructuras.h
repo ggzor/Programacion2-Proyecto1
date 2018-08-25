@@ -1,7 +1,7 @@
 #ifndef _ESTRUCTURAS_H_
 #define _ESTRUCTURAS_H_
 
-#include "Tiempo/Horario.h"
+#include "../Tiempo/Horario.h"
 
 typedef struct
 {
