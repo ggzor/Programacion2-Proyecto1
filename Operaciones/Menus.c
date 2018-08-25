@@ -1,6 +1,8 @@
-#include <stdio.h>
-#include "Menus.h"
+#include "Color.h"
 #include "Interfaz.h"
+#include "Menus.h"
+
+#include <stdio.h>
 
 void *ejecutarMenu(const char *titulo, Menu menu, int cantidadElementos)
 {
@@ -11,7 +13,7 @@ void *ejecutarMenu(const char *titulo, Menu menu, int cantidadElementos)
   {
     printf("   %d.- %s\n", i + 1, menu[i].nombre);
   }
-  leerEnteroRango("Opción: ", 1, cantidadElementos, &opcion);
+  enNegritas(leerEnteroRango("Opción: ", 1, cantidadElementos, &opcion));
 
   return menu[opcion - 1].valor;
 }

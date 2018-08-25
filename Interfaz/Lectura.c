@@ -1,4 +1,7 @@
-#include "../Interfaz.h"
+#include "Interfaz.h"
+
+#include <ctype.h>
+#include <stdio.h>
 
 void leerCaracter(const char *mensaje, char *direccion)
 {
