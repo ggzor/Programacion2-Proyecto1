@@ -42,7 +42,7 @@ Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fe
       if (!valido)
       {
         imprimirError(printf("  La duración es menor que la requerida."));
-        intervaloHoras.inicio = limitesHora->inicio;
+        intervaloHoras.inicio = *obtenerHoraMayor(&despuesDe->hora, &limitesHora->inicio);
       }
     } while (!valido);
 

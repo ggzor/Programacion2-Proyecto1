@@ -9,11 +9,13 @@
 void *ejecutarMenu(const char *titulo, ElementoMenu *menu, int cantidadElementos)
 {
   int i, opcion;
+  ElementoMenu *actual;
 
   puts(titulo);
   for (i = 0; i < cantidadElementos; i++)
   {
-    printf("   %d.- %s\n", i + 1, menu[i].nombre);
+    actual = menu + i;
+    printf("   %d.- %s\n", i + 1, actual->nombre);
   }
   enNegritas(leerEnteroRango("Opción: ", 1, cantidadElementos, &opcion));
 

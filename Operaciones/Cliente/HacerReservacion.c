@@ -7,6 +7,7 @@
 #include "../../Interfaz/Interfaz.h"
 #include "../../Tiempo/Tiempo.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 void hacerReservacion(Restaurante *restaurante)
 {
@@ -17,7 +18,7 @@ void hacerReservacion(Restaurante *restaurante)
   Cliente cliente;
   Mesa *mesa;
   Reservacion *reservacion;
-  Reservacion **reservacionCancelada;
+  Reservacion **reservacionCancelada = (Reservacion **)malloc(sizeof(Reservacion *));
 
   FechaHora ahora = obtenerAhora();
   IntervaloHoras horasHabiles = {HoraInicio, HoraCierre};
