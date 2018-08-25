@@ -2,10 +2,9 @@
 #define _MENUS_H_
 
 #include "../Datos/Estructuras.h"
-#include "../Tiempo/Primitivas/FechaHora.h"
 
 // El tipo de las funciones del menú principal
-typedef void (*OperacionRestaurante)(Restaurante *, FechaHora *ahora);
+typedef void (*OperacionRestaurante)(Restaurante *);
 
 typedef struct
 {
