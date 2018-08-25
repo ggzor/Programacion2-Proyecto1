@@ -2,12 +2,28 @@
 
 int estaEnIntervaloHoras(IntervaloHoras *intervalo, Hora *hora)
 {
-  return compararHoras(&intervalo->inicio, hora) <= 0 && compararHoras(hora, &intervalo->fin) <= 0;
+  if (compararHoras(&intervalo->inicio, hora) <= 0)
+  {
+    if (compararHoras(hora, &intervalo->fin) <= 0)
+    {
+      return 1;
+    }
+  }
+
+  return 0;
 }
 
 int estaEnIntervaloHorasExclusivo(IntervaloHoras *intervalo, Hora *hora)
 {
-  return compararHoras(&intervalo->inicio, hora) < 0 && compararHoras(hora, &intervalo->fin) < 0;
+  if (compararHoras(&intervalo->inicio, hora) < 0)
+  {
+    if (compararHoras(hora, &intervalo->fin) < 0)
+    {
+      return 1;
+    }
+  }
+
+  return 0;
 }
 
 int seTranslapanIntervalosHoras(IntervaloHoras *intervalo1, IntervaloHoras *intervalo2)

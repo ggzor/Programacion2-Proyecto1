@@ -1,7 +1,7 @@
 #ifndef _INTERVALO_HORAS_H_
 #define _INTERVALO_HORAS_H_
 
-#include "Hora.h"
+#include "../Primitivas/Hora.h"
 
 typedef struct {
   Hora inicio;
