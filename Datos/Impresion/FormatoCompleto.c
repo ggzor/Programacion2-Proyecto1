@@ -1,6 +1,6 @@
+#include "../../Interfaz/Color.h"
 #include "../Impresion.h"
-#include "../Color.h"
-#include "../Tiempo/Tiempo.h"
+#include <stdio.h>
 
 void imprimirCliente(Cliente *cliente)
 {
@@ -9,58 +9,9 @@ void imprimirCliente(Cliente *cliente)
   printf("Dirección %s\n", cliente->direccion);
 }
 
-void imprimirFecha(Fecha *fecha)
-{
-  enMorado(printf("%02d/%02d/%04d", fecha->dia, fecha->mes, fecha->anio));
-}
-
-void imprimirIntervaloFechas(const char *mensaje, IntervaloFechas *intervalo)
-{
-  imprimirCadena(mensaje);
-  imprimirFecha(&intervalo->inicio);
-  printf(" - ");
-  imprimirFecha(&intervalo->fin);
-  puts("");
-}
-
-void imprimirHora(Hora *hora)
-{
-  enAzul(printf("%02d:%02d", hora->hora, hora->minuto));
-}
-
-void imprimirIntervaloHoras(const char *mensaje, IntervaloHoras *intervalo)
-{
-  imprimirCadena(mensaje);
-  imprimirHora(&intervalo->inicio);
-  printf(" - ");
-  imprimirHora(&intervalo->fin);
-}
-
-void imprimirFechaHora(FechaHora *fechaHora)
-{
-  imprimirFecha(&fechaHora->fecha);
-  putchar(' ');
-  imprimirHora(&fechaHora->hora);
-}
-
-void imprimirHorario(Horario *horario)
-{
-  printf("Fecha: ");
-  imprimirFecha(&horario->fecha);
-  puts("");
-
-  printf("Hora de inicio: ");
-  imprimirHora(&horario->horas.inicio);
-  puts("");
-
-  printf("Hora de fin: ");
-  imprimirHora(&horario->horas.fin);
-  puts("");
-}
-
 void imprimirClaveReservacion(int clave)
 {
-  enVerde(printf("%04X", clave));
+  enVerde(printf(FormatoClaveReservacion, clave));
 }
 
 void imprimirReservacion(Reservacion *reservacion)
@@ -68,8 +19,10 @@ void imprimirReservacion(Reservacion *reservacion)
   printf("Clave de reservación: ");
   imprimirClaveReservacion(reservacion->clave);
   puts("\n");
+
   printf("Cantidad de personas: %d\n", reservacion->cantidadPersonas);
   imprimirCliente(&reservacion->cliente);
+
   printf("Confirmada: ");
   if (reservacion->confirmada)
   {
@@ -87,8 +40,7 @@ void imprimirReservacion(Reservacion *reservacion)
 
 void imprimirListaReservaciones(NodoReservacion *lista)
 {
-  NodoReservacion *actual;
-  actual = lista;
+  NodoReservacion *actual = lista;
   if (actual == NULL)
   {
     printf("La lista está vacía\n");
@@ -142,18 +94,4 @@ void imprimirListaMesas(NodoMesa *lista)
 void imprimirRestaurante(Restaurante *restaurante)
 {
   imprimirListaMesas(restaurante->mesas);
-}
-
-void imprimirFechaHoraActual()
-{
-  FechaHora ahora = obtenerAhora();
-  imprimirCadena("Fecha y hora: ");
-  imprimirFechaHora(&ahora);
-  puts("\n");
-}
-
-void imprimirEncabezado()
-{
-  enVerde(puts("Fonda Doña Yoyis"));
-  imprimirFechaHoraActual();
 }

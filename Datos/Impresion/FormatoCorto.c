@@ -1,10 +1,12 @@
 #include "../Impresion.h"
-#include "../Color.h"
+#include "../../Interfaz/Color.h"
+#include "../../Tiempo/Impresion.h"
+#include <stdio.h>
 
 void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
 {
-  Fecha *fechaActual, *fechaReservacionActual;
   NodoReservacion *actual = lista;
+  Fecha *fechaActual, *fechaReservacionActual;
 
   if (actual == NULL)
   {
@@ -30,9 +32,8 @@ void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
         puts("");
       }
 
-      imprimirIntervaloHoras(
-          "    - ",
-          &actual->reservacion->horario.horas);
+      printf("    - ");
+      imprimirIntervaloHoras(&actual->reservacion->horario.horas);
       printf(" (");
       imprimirClaveReservacion(actual->reservacion->clave);
       printf(") ");

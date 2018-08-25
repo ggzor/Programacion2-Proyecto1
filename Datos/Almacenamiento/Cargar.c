@@ -5,6 +5,7 @@
 #include "../Pruebas.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 // El tipo de una función que puede agregar una reservación a una mesa
 typedef void (*AgregadorReservacion)(Mesa *, Reservacion *);

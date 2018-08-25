@@ -3,7 +3,7 @@
 
 #include "Estructuras.h"
 
-Reservacion *crearReservacion(int clave, int cantidadPersonas, Cliente cliente, Horario horario);
+Reservacion *crearReservacion(int cantidadPersonas, Cliente cliente, Horario horario);
 NodoReservacion *crearNodoReservacion(Reservacion *reservacion);
 
 Mesa *crearMesa(int numero, int capacidad);

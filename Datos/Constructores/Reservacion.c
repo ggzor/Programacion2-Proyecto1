@@ -1,11 +1,13 @@
 #include "../Constructores.h"
+#include <math.h>
 #include <stdlib.h>
 
-Reservacion *crearReservacion(int clave, int cantidadPersonas, Cliente cliente, Horario horario)
+Reservacion *crearReservacion(int cantidadPersonas, Cliente cliente, Horario horario)
 {
   Reservacion *reservacion = (Reservacion *)malloc(sizeof(Reservacion));
 
-  reservacion->clave = clave;
+// Generar un número aleatorio de 4 dígitos hexadecimales.
+  reservacion->clave = rand() % (int)pow(16, 4);
   reservacion->cantidadPersonas = cantidadPersonas;
   reservacion->cliente = cliente;
   reservacion->horario = horario;
