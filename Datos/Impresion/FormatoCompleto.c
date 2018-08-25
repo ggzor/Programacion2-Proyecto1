@@ -5,8 +5,9 @@
 void imprimirCliente(Cliente *cliente)
 {
   printf("Nombre: %s\n", cliente->nombre);
-  printf("Telefono: %lld\n", cliente->telefono);
-  printf("Dirección %s\n", cliente->direccion);
+  printf("Telefono: ");
+  enItalica(printf("%lld\n", cliente->telefono));
+  printf("Dirección: %s\n", cliente->direccion);
 }
 
 void imprimirClaveReservacion(int clave)
@@ -18,7 +19,7 @@ void imprimirReservacion(Reservacion *reservacion)
 {
   printf("Clave de reservación: ");
   imprimirClaveReservacion(reservacion->clave);
-  puts("\n");
+  puts("");
 
   printf("Cantidad de personas: %d\n", reservacion->cantidadPersonas);
   imprimirCliente(&reservacion->cliente);
@@ -30,7 +31,7 @@ void imprimirReservacion(Reservacion *reservacion)
   }
   else
   {
-    enAmarillo(printf("No."));
+    enAmarillo(printf("No"));
   }
   puts("\n");
 
@@ -40,6 +41,7 @@ void imprimirReservacion(Reservacion *reservacion)
 
 void imprimirListaReservaciones(NodoReservacion *lista)
 {
+  int indice = 0;
   NodoReservacion *actual = lista;
   if (actual == NULL)
   {
@@ -49,6 +51,7 @@ void imprimirListaReservaciones(NodoReservacion *lista)
   {
     while (actual != NULL)
     {
+      enNegritas(printf("%d.-\n", ++indice));
       imprimirReservacion(actual->reservacion);
       puts("");
 
@@ -59,12 +62,11 @@ void imprimirListaReservaciones(NodoReservacion *lista)
 
 void imprimirMesa(Mesa *mesa)
 {
-  printf("Numero de mesa %d \n", mesa->numero);
+  printf("Numero de mesa: %d \n", mesa->numero);
   printf("Capacidad de la mesa: %d\n\n", mesa->capacidad);
 
-  puts("Lista reservaciones:");
+  puts("Lista reservaciones:\n");
   imprimirListaReservaciones(mesa->reservaciones);
-  puts("\n");
 
   enRojo(puts("Lista reservaciones canceladas:"));
   imprimirListaReservaciones(mesa->reservacionesCanceladas);

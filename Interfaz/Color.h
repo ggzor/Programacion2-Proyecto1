@@ -2,6 +2,7 @@
 #define _COLOR_H_
 
 #define NEGRITAS "1"
+#define ITALICA "3"
 #define ROJO "91"
 #define VERDE "92"
 #define AMARILLO "33"
@@ -13,6 +14,7 @@
 #define conEstado(estado, codigo) { seleccionarEstadoConsola(estado); {codigo;}; reestablecerEstado(); }
 
 #define enNegritas(codigo) conEstado(NEGRITAS, codigo)
+#define enItalica(codigo) conEstado(ITALICA, codigo)
 #define enRojo(codigo) conEstado(ROJO, codigo)
 #define enVerde(codigo) conEstado(VERDE, codigo)
 #define enAmarillo(codigo) conEstado(AMARILLO, codigo)
