@@ -1,5 +1,6 @@
 #include "../Lectura.h"
-#include "../Interfaz.h"
+#include "../../Interfaz/Interfaz.h"
+#include "../../Tiempo/Impresion.h"
 
 Horario leerHorario(FechaHora *despuesDe, IntervaloHoras *limitesHora, Fecha *fechaMaxima, int duracionMinima)
 {

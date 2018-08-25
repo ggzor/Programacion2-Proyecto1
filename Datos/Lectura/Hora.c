@@ -1,6 +1,6 @@
 #include "../Lectura.h"
-#include "../Interfaz.h"
-#include "../Color.h"
+#include "../../Interfaz/Interfaz.h"
+#include "../../Tiempo/Impresion.h"
 
 Hora leerHora(IntervaloHoras *limites)
 {
@@ -10,7 +10,8 @@ Hora leerHora(IntervaloHoras *limites)
   do
   {
     imprimirAdvertencia({
-      imprimirIntervaloHoras("La hora debe estar entre las ", limites);
+      printf("La hora debe estar entre las ");
+      imprimirIntervaloHoras(limites);
       puts("");
     });
 

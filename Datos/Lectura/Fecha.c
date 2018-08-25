@@ -1,7 +1,6 @@
 #include "../Lectura.h"
-#include "../Tiempo/Fecha.h"
-#include "../Interfaz.h"
-#include "../Color.h"
+#include "../../Interfaz/Interfaz.h"
+#include "../../Tiempo/Impresion.h"
 
 Fecha leerFecha(IntervaloFechas *limites)
 {
@@ -11,7 +10,9 @@ Fecha leerFecha(IntervaloFechas *limites)
   do
   {
     imprimirAdvertencia({
-      imprimirIntervaloFechas("La fecha debe estar entre ", limites);
+      printf("La fecha debe estar entre ");
+      imprimirIntervaloFechas(limites);
+      puts("");
     });
 
     printf("  Fecha: ");
