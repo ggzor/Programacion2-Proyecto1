@@ -1,0 +1,11 @@
+#!/bin/sh
+
+tput reset
+if ./Scripts/actualizar \
+    && echo -e "\e[1mCompilando para depuración...\e[0m" \
+    && ./Scripts/invocar_compilador_depuracion
+then
+  echo -e "\e[32mCompilación correcta.\e[0m"
+else
+  echo -e "\e[91mCompilación fallida.\e[0m" && exit 1
+fi
