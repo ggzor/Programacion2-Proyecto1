@@ -20,6 +20,6 @@ archivos = ['{}'.format(p) for p in obtenerArchivosC(directorio)]
 todosArchivos = ' '.join(archivos)
 comando = 'gcc {} -o Programa'
 
-with open('invocar_compilador', 'w') as destino:
-    destino.write('#!bin/bash\n')
+with open('./Scripts/invocar_compilador', 'w') as destino:
+    destino.write('#!/bin/bash\n\n')
     destino.write(comando.format(todosArchivos))

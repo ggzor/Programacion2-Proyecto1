@@ -40,15 +40,15 @@ def extraerRestaurante(restaurante):
 
 restaurantes = list(map(extraerRestaurante, datos))
 
-salida = "../Utilerias/DatosPrueba.c"
+salida = "../Datos/Pruebas/ValoresPrueba.c"
 funcion = "obtenerDatos"
 
 restaurante = restaurantes[0]
 with open(salida, 'w') as a:
   w = a.write
 
-  w('#include "../Constructores.h"\n')
-  w('#include "DatosPrueba.h"\n\n')
+  w('#include "../Pruebas.h"\n')
+  w('#include "../Constructores.h"\n\n')
 
   w('Restaurante *{}()\n{{\n'.format(funcion))
 

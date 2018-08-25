@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ./compilar \
+if ./Scripts/compilar \
     && echo -e "\e[1mComenzando ejecución...\e[0m" \
     && sleep 1 \
     && ./Programa

@@ -2,9 +2,9 @@
 
 echo -e "\e[1mActualizando archivos...\e[0m"
 if cd Scripts \
-    && python3 ./transformarDatos.py \
+    && python3 ./generarDatosPrueba.py \
     && cd .. \
-    python3 ./Scripts/generarCodigoCompilacion.py
+    && python3 ./Scripts/generarCodigoCompilacion.py
 then
   echo -e "\e[32mActualización correcta.\e[0m"
 else
