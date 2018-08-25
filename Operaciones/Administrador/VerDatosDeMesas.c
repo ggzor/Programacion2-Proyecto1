@@ -12,13 +12,14 @@ void verDatosDeMesa(Restaurante *restaurante)
 
   do
   {
-    puts("\n");
     imprimirAdvertencia(printf("El número de mesa debe estar entre 1 y %d.\n", cantidadMesas));
-    leerEnteroRango("Introduzca el número de mesa de la que desea ver sus datos: ", 1, cantidadMesas, &numeroMesa);
+    leerEnteroRango("  Introduzca el número de mesa de la que desea ver sus datos: ", 1, cantidadMesas, &numeroMesa);
 
+    puts("");
     mesa = buscarMesa(restaurante, numeroMesa);
     imprimirMesa(mesa);
 
     leerSiNo("¿Desea ver los datos de otra mesa [s/n]?: ", &verOtraMesa);
+    puts("\n");
   } while (verOtraMesa);
 }
