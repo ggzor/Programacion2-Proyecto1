@@ -33,7 +33,7 @@ void imprimirReservacion(Reservacion *reservacion)
   printf("Confirmada: ");
   if (reservacion->confirmada)
   {
-    enVerde(printf("✔ Sí"));
+    enVerde(printf("⚑ Sí"));
   }
   else
   {

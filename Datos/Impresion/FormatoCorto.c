@@ -1,7 +1,32 @@
 #include "../Impresion.h"
 #include "../../Interfaz/Color.h"
 #include "../../Tiempo/Impresion.h"
+#include "../InformacionReservacion.h"
 #include <stdio.h>
+
+void imprimirEstadoReservacion(Reservacion *reservacion)
+{
+  if (esReservacionCompletada(reservacion))
+  {
+    enVerde(printf("✔"));
+  }
+  else if (reservacion->cancelada)
+  {
+    enRojo(printf("✘"));
+  }
+  else if (esReservacionAbandonada(reservacion))
+  {
+    enRojo(printf("🕑"));
+  }
+  else if (esReservacionCancelable(reservacion))
+  {
+    enAmarillo(printf("🕑"));
+  }
+  else if (esReservacionEnCurso(reservacion))
+  {
+    enVerde(printf("⚑"));
+  }
+}
 
 void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
 {
@@ -37,10 +62,9 @@ void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
       printf(" (");
       imprimirClaveReservacion(actual->reservacion->clave);
       printf(") ");
-      if (actual->reservacion->confirmada)
-      {
-        enVerde(printf("✔"));
-      }
+
+      imprimirEstadoReservacion(actual->reservacion);
+
       puts("");
 
       actual = actual->siguiente;
@@ -74,7 +98,22 @@ void imprimirListaMesasFormatoCorto(NodoMesa *lista)
   }
 }
 
+#define imprimirSimbolo(simbolo, color, nombre, mensaje) \
+  {                                                      \
+    conEstado(color, printf("   %s   ", simbolo));       \
+    enItalica(printf("%s: ", nombre));                   \
+    puts(mensaje);                                       \
+  }
+
 void imprimirHorariosRestauranteFormatoCorto(Restaurante *restaurante)
 {
+  enItalica(puts("Leyenda:"));
+  imprimirSimbolo("✔", VERDE, "Completada", "Se confirmó la llegada y ya transcurrió el tiempo reservado.");
+  imprimirSimbolo("✘", ROJO, "Cancelada", "Se canceló la reservación.");
+  imprimirSimbolo("🕑", ROJO, "Abandonada", "No se confirmó la llegada y ya transcurrió el tiempo reservado.");
+  imprimirSimbolo("🕑", AMARILLO, "Cancelable", "Aún no se confirma la llegada y ya ha pasado el tiempo de tolerancia.");
+  imprimirSimbolo("⚑", VERDE, "En curso", "Se confirmó la llegada, pero aún no transcurré el tiempo reservado.");
+  puts("");
+
   imprimirListaMesasFormatoCorto(restaurante->mesas);
 }
