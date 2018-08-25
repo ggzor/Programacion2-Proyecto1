@@ -2,7 +2,14 @@
 
 int esHoraValida(Hora *hora)
 {
-  return 0 <= hora->hora && hora->hora < 24 && 0 <= hora->minuto && hora->minuto < 60;
+  if (0 <= hora->hora && hora->hora < 24)
+  {
+    if (0 <= hora->minuto && hora->minuto < 60)
+    {
+      return 1;
+    }
+  }
+  return 0;
 }
 
 #define MENOR -1
@@ -36,9 +43,24 @@ int compararHoras(Hora *hora1, Hora *hora2)
   }
 }
 
+Hora *obtenerHoraMayor(Hora *hora1, Hora *hora2)
+{
+  if (compararHoras(hora1, hora2) > 0)
+  {
+    return hora1;
+  }
+  else
+  {
+    return hora2;
+  }
+}
+
 int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2)
 {
-  int resultado, multiplicador = 1;
+  int resultado;
+  // Negativo si hora1 < hora2
+  int multiplicador = 1;
+
   Hora *mayor = hora1;
   Hora *menor = hora2;
 
@@ -59,16 +81,4 @@ int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2)
   resultado += mayor->minuto;
 
   return resultado * multiplicador;
-}
-
-Hora *obtenerHoraMayor(Hora *hora1, Hora *hora2)
-{
-  if (compararHoras(hora1, hora2) > 0)
-  {
-    return hora1;
-  }
-  else
-  {
-    return hora2;
-  }
 }

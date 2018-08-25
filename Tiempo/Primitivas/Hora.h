@@ -7,8 +7,10 @@ typedef struct {
 } Hora;
 
 int esHoraValida(Hora *hora);
+
 int compararHoras(Hora *hora1, Hora *hora2);
-int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2);
 Hora *obtenerHoraMayor(Hora *hora1, Hora *hora2);
+
+int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2);
 
 #endif
