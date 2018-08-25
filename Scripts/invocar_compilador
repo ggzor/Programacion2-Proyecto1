@@ -1,4 +1,4 @@
 #!/bin/sh
 
 ## Código autogenerado
-gcc $ -o Programa
+gcc OperacionesUsuario/Menu.c OperacionesUsuario/HacerReservacion.c OperacionesUsuario/BuscarReservacion.c OperacionesUsuario/NotificarLlegada.c OperacionesAdministrador/Menu.c OperacionesAdministrador/EstablecerTiempo.c OperacionesAdministrador/RestablecerTiempo.c OperacionesAdministrador/VerHorariosDeMesas.c OperacionesAdministrador/VerDatosDeMesas.c Programa.c Edicion/Cliente.c Lectura/Cliente.c Lectura/Fecha.c Lectura/Hora.c Lectura/Horario.c Constructores/Reservacion.c Constructores/Mesa.c Constructores/Restaurante.c Tiempo/Fecha.c Tiempo/Hora.c Tiempo/IntervaloHoras.c Tiempo/IntervaloFechas.c Tiempo/Horario.c Tiempo/FechaHora.c Tiempo/Tiempo.c Utilerias/DatosPrueba.c Interfaz/Lectura.c Interfaz/Impresion.c Almacenamiento/Cargar.c Almacenamiento/Guardar.c Impresion/FormatoCorto.c Impresion/FormatoCompleto.c Reservaciones/Reservacion.c Reservaciones/Informacion.c Menus.c -o Programa
