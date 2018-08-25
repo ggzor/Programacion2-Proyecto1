@@ -1,7 +1,7 @@
 #ifndef _INTERVALO_FECHAS_H_
 #define _INTERVALO_FECHAS_H_
 
-#include "Fecha.h"
+#include "../Primitivas/Fecha.h"
 
 typedef struct
 {
