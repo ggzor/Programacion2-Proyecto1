@@ -40,6 +40,7 @@ void hacerReservacion(Restaurante *restaurante)
       mesa = buscarMesaDisponibleParaReservar(restaurante, cantidadPersonas, &horario);
       if (mesa != NULL)
       {
+        puts("");
         printf("Hay mesas disponibles para esa fecha y hora.\n");
         printf("Por favor, ingrese sus datos:\n");
         cliente = leerCliente();
@@ -47,6 +48,7 @@ void hacerReservacion(Restaurante *restaurante)
         reservacion = crearReservacion(cantidadPersonas, cliente, horario);
         reservar(mesa, reservacion, reservacionCancelada);
 
+        limpiarPantalla();
         puts("Reservación preparada:\n");
         printf("Mesa: %d\n", mesa->numero);
         imprimirReservacion(reservacion);
@@ -60,13 +62,14 @@ void hacerReservacion(Restaurante *restaurante)
         {
           imprimirError(puts("Aviso: Se ha cancelado la siguiente reservación."));
           imprimirReservacion(*reservacionCancelada);
+          pausar();
         }
 
         continuarOtroHorario = 0;
       }
       else
       {
-        printf("Lo sentimos, no hay mesas disponibles para esa cantidad de personas en ese horario.\n\n");
+        imprimirAdvertencia(printf("Lo sentimos, no hay mesas disponibles para esa cantidad de personas en ese horario.\n\n"));
         leerSiNo("¿Desea reservar en otro horario [s/n]? ", &continuarOtroHorario);
       }
     } while (continuarOtroHorario);
