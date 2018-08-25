@@ -1,4 +1,5 @@
 #include "../Constructores.h"
+#include <stdlib.h>
 
 Mesa *crearMesa(int numero, int capacidad)
 {
@@ -21,14 +22,14 @@ NodoMesa *crearNodoMesa(Mesa *mesa)
   return nodo;
 }
 
-NodoReservacion *agregarListaReservaciones(NodoReservacion *lista, Reservacion *nuevo)
+void agregarReservacionCancelada(Mesa *mesa, Reservacion *reservacion)
 {
-  NodoReservacion *nuevoNodo = crearNodoReservacion(nuevo);
-  NodoReservacion *actual = lista;
+  NodoReservacion *nuevoNodo = crearNodoReservacion(reservacion);
+  NodoReservacion *actual = mesa->reservacionesCanceladas;
 
-  if (lista == NULL)
+  if (mesa->reservacionesCanceladas == NULL)
   {
-    return nuevoNodo;
+    mesa->reservacionesCanceladas = nuevoNodo;
   }
   else
   {
@@ -38,13 +39,7 @@ NodoReservacion *agregarListaReservaciones(NodoReservacion *lista, Reservacion *
     }
 
     actual->siguiente = nuevoNodo;
-    return lista;
   }
-}
-
-void agregarReservacionCancelada(Mesa *mesa, Reservacion *reservacion)
-{
-  mesa->reservacionesCanceladas = agregarListaReservaciones(mesa->reservacionesCanceladas, reservacion);
 }
 
 void agregarReservacion(Mesa *mesa, Reservacion *reservacion)

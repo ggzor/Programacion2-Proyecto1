@@ -1,7 +1,7 @@
 #ifndef _ALMACENAMIENTO_H
 #define _ALMACENAMIENTO_H
 
-#include "./Estructuras.h"
+#include "Estructuras.h"
 
 /* Carga la información del restaurante desde los archivos, o si no los encuentra, 
  * regresa información de prueba.
