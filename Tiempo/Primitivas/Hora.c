@@ -57,7 +57,7 @@ Hora *obtenerHoraMayor(Hora *hora1, Hora *hora2)
 
 int obtenerDiferenciaEnMinutosEntreHoras(Hora *hora1, Hora *hora2)
 {
-  int resultado;
+  int resultado = 0;
   // Negativo si hora1 < hora2
   int multiplicador = 1;
 
