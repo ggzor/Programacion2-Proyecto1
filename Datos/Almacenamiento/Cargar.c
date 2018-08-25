@@ -1,18 +1,21 @@
-#include <stdio.h>
 #include "../Almacenamiento.h"
-#include "../Configuracion.h"
 #include "../Constructores.h"
-#include "../Utilerias/DatosPrueba.h"
+#include "../Estructuras.h"
+#include "NombresArchivos.h"
+#include "../Pruebas.h"
+
+#include <stdio.h>
 
 // El tipo de una función que puede agregar una reservación a una mesa
-typedef void (*AgregadorLista)(Mesa *, Reservacion *);
+typedef void (*AgregadorReservacion)(Mesa *, Reservacion *);
 
-void cargarReservacionesDesdeArchivo(Mesa *mesa, const char *formatoArchivo, AgregadorLista agregador)
+void cargarReservacionesDesdeArchivo(Mesa *mesa, const char *formatoArchivo, AgregadorReservacion agregador)
 {
   FILE *archivo;
   char nombreArchivo[50];
   Reservacion *reservacion;
 
+  // Generar nombre de archivo
   sprintf(nombreArchivo, formatoArchivo, mesa->numero);
   archivo = fopen(nombreArchivo, "rb");
 
@@ -25,7 +28,9 @@ void cargarReservacionesDesdeArchivo(Mesa *mesa, const char *formatoArchivo, Agr
       reservacion = (Reservacion *)malloc(sizeof(Reservacion));
     }
 
+    // Liberar reservacion creada de forma adicional
     free(reservacion);
+    
     fclose(archivo);
   }
 }
@@ -54,15 +59,18 @@ Restaurante *cargarInformacion()
       mesa = (Mesa *)malloc(sizeof(Mesa));
     }
 
+    // Liberar mesa creada de forma adicional
     free(mesa);
+
     fclose(archivo);
   }
   else
   {
-    // Liberar la memoria reservada
+    // Liberar la memoria reservada para la carga desde el archivo
     free(restaurante);
+
     // Cargar información de prueba
-    restaurante = obtenerDatos();
+    restaurante = obtenerDatosPrueba();
   }
 
   return restaurante;

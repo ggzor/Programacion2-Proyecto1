@@ -1,19 +1,23 @@
-#include <stdio.h>
 #include "../Almacenamiento.h"
-#include "../Configuracion.h"
-#include "../Interfaz.h"
+#include "../Estructuras.h"
+#include "NombresArchivos.h"
+#include "../Pruebas.h"
+
+#include <stdio.h>
 
 // El tipo de una función que obtiene una lista de reservaciones desde una mesa.
-typedef NodoReservacion *(*ExtractorLista)(Mesa *mesa);
+typedef NodoReservacion *(*ExtractorReservaciones)(Mesa *mesa);
+
 NodoReservacion *extraerListaReservaciones(Mesa *mesa) { return mesa->reservaciones; }
 NodoReservacion *extraerListaReservacionesCanceladas(Mesa *mesa) { return mesa->reservacionesCanceladas; }
 
-void guardarReservacionesEnArchivo(Mesa *mesa, const char *formatoArchivo, ExtractorLista extractorLista)
+void guardarReservacionesEnArchivo(Mesa *mesa, const char *formatoArchivo, ExtractorReservaciones extractorLista)
 {
   FILE *archivo;
   char nombreArchivo[50];
   NodoReservacion *reservacionActual;
 
+  // Generar nombre de archivo para las reservaciones de esta mesa
   sprintf(nombreArchivo, formatoArchivo, mesa->numero);
   archivo = fopen(nombreArchivo, "wb");
 
@@ -49,7 +53,6 @@ void guardarInformacion(Restaurante *restaurante)
 
       guardarReservacionesEnArchivo(mesaActual->mesa, FormatoNombreArchivoReservaciones,
                                     extraerListaReservaciones);
-
       guardarReservacionesEnArchivo(mesaActual->mesa, FormatoNombreArchivoReservacionesCanceladas,
                                     extraerListaReservacionesCanceladas);
 
@@ -60,6 +63,6 @@ void guardarInformacion(Restaurante *restaurante)
   }
   else
   {
-    imprimirError(printf("No se pudieron guardar la información de las mesas del restaurante."));
+    imprimirError(printf("ERROR: No se pudo guardar la información de las mesas del restaurante."));
   }
 }
