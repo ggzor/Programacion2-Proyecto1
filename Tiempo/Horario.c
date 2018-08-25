@@ -12,13 +12,13 @@ int seTranslapanHorarios(Horario *horario1, Horario *horario2)
   return 0;
 }
 
-FechaHora obtenerFechaHoraInicio(Horario *horario)
+FechaHora obtenerInicioHorario(Horario *horario)
 {
   FechaHora fechaHora = {horario->fecha, horario->horas.inicio};
   return fechaHora;
 }
 
-FechaHora obtenerFechaHoraFin(Horario *horario)
+FechaHora obtenerFinHorario(Horario *horario)
 {
   FechaHora fechaHora = {horario->fecha, horario->horas.fin};
   return fechaHora;

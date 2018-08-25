@@ -1,15 +1,8 @@
-#include "Almacenamiento.h"
 #include "Configuracion.h"
-#include "Impresion.h"
-#include "Interfaz.h"
-#include "Menus.h"
-#include "Tiempo/Tiempo.h"
+#include "Datos/Almacenamiento.h"
+#include "Datos/Estructuras.h"
+#include "Operaciones/Menus.h"
 
-#include "OperacionesUsuario/Menu.h"
-#include "OperacionesAdministrador/Menu.h"
-
-void imprimirFechaHoraActual();
-void imprimirEncabezado();
 int main(int argc, char **argv)
 {
   OperacionRestaurante opcionSeleccionada;

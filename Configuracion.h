@@ -5,6 +5,7 @@
 #define HoraCierre { 18, 00 }
 #define MesesParaReservarDespues 3
 #define DuracionMinimaReservacion 30
+#define ToleranciaEnMinutos 20
 
 #include <time.h>
 #include <stdlib.h>

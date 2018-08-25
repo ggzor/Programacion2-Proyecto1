@@ -49,7 +49,7 @@ void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
   NodoReservacion *nuevoNodo = crearNodoReservacion(reservacion);
 
   FechaHora fechaHoraActual;
-  FechaHora fechaHoraNueva = obtenerFechaHoraInicio(&reservacion->horario);
+  FechaHora fechaHoraNueva = obtenerInicioHorario(&reservacion->horario);
 
   if (actual == NULL)
   {
@@ -57,7 +57,7 @@ void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
   }
   else
   {
-    fechaHoraActual = obtenerFechaHoraInicio(&actual->reservacion->horario);
+    fechaHoraActual = obtenerInicioHorario(&actual->reservacion->horario);
     if (esAntesDeFechaHora(&fechaHoraNueva, &fechaHoraActual))
     {
       nuevoNodo->siguiente = actual;
@@ -72,7 +72,7 @@ void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
 
         if (actual != NULL)
         {
-          fechaHoraActual = obtenerFechaHoraInicio(&actual->reservacion->horario);
+          fechaHoraActual = obtenerInicioHorario(&actual->reservacion->horario);
         }
       } while (actual != NULL && esAntesDeFechaHora(&fechaHoraActual, &fechaHoraNueva));
 
