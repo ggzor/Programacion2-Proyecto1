@@ -10,11 +10,14 @@ typedef struct
    long long telefono;
 } Cliente;
 
+struct _Mesa;
 typedef struct
 {
    int clave;
    int cantidadPersonas;
    int confirmada;
+   int cancelada;
+   struct _Mesa *mesa;
    Cliente cliente;
    Horario horario;
 } Reservacion;
@@ -25,7 +28,7 @@ typedef struct _NodoReservacion
    struct _NodoReservacion *siguiente;
 } NodoReservacion;
 
-typedef struct
+typedef struct _Mesa
 {
    int numero;
    int capacidad;

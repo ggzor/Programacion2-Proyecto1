@@ -25,6 +25,7 @@ void cargarReservacionesDesdeArchivo(Mesa *mesa, const char *formatoArchivo, Agr
     reservacion = (Reservacion *)malloc(sizeof(Reservacion));
     while (fread(reservacion, sizeof(Reservacion), 1, archivo) == 1)
     {
+      reservacion->mesa = mesa;
       agregador(mesa, reservacion);
       reservacion = (Reservacion *)malloc(sizeof(Reservacion));
     }

@@ -51,7 +51,6 @@ void hacerReservacion(Restaurante *restaurante)
 
         limpiarPantalla();
         puts("Reservación preparada:\n");
-        printf("Mesa: %d\n", mesa->numero);
         imprimirReservacion(reservacion);
 
         printf("\nGracias por su preferencia. Conserve su clave de reservación.\n");

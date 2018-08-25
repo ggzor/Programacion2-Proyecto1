@@ -12,6 +12,8 @@ Reservacion *crearReservacion(int cantidadPersonas, Cliente cliente, Horario hor
   reservacion->cliente = cliente;
   reservacion->horario = horario;
   reservacion->confirmada = 0;
+  reservacion->cancelada = 0;
+  reservacion->mesa = NULL;
 
   return reservacion;
 }

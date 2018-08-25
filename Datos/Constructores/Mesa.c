@@ -27,6 +27,8 @@ void agregarReservacionCancelada(Mesa *mesa, Reservacion *reservacion)
   NodoReservacion *nuevoNodo = crearNodoReservacion(reservacion);
   NodoReservacion *actual = mesa->reservacionesCanceladas;
 
+  reservacion->mesa = mesa;
+
   if (mesa->reservacionesCanceladas == NULL)
   {
     mesa->reservacionesCanceladas = nuevoNodo;
@@ -50,6 +52,8 @@ void agregarReservacion(Mesa *mesa, Reservacion *reservacion)
 
   FechaHora fechaHoraActual;
   FechaHora fechaHoraNueva = obtenerInicioHorario(&reservacion->horario);
+
+  reservacion->mesa = mesa;
 
   if (actual == NULL)
   {

@@ -1,10 +1,11 @@
 #include "../../Interfaz/Color.h"
 #include "../Impresion.h"
+#include "../InformacionReservacion.h"
 #include <stdio.h>
 
 void imprimirCliente(Cliente *cliente)
 {
-  printf("Nombre: %s\n", cliente->nombre);
+  printf("Nombre del cliente: %s\n", cliente->nombre);
   printf("Telefono: ");
   enItalica(printf("%lld\n", cliente->telefono));
   printf("Dirección: %s\n", cliente->direccion);
@@ -21,20 +22,44 @@ void imprimirReservacion(Reservacion *reservacion)
   imprimirClaveReservacion(reservacion->clave);
   puts("");
 
+  printf("Mesa: ");
+  enNegritas(printf("%d", reservacion->mesa->numero));
+  puts("");
+
   printf("Cantidad de personas: %d\n", reservacion->cantidadPersonas);
+
   imprimirCliente(&reservacion->cliente);
 
   printf("Confirmada: ");
   if (reservacion->confirmada)
   {
-    enVerde(printf("✔"));
+    enVerde(printf("✔ Sí"));
   }
   else
   {
-    enAmarillo(printf("No"));
+    if (esReservacionCancelable(reservacion))
+    {
+      enAmarillo(printf("🕑 No"));
+    }
+    else
+    {
+      enNegritas(printf("  No"));
+    }
   }
-  puts("\n");
+  puts("");
 
+  printf("Cancelada: ");
+  if (reservacion->cancelada)
+  {
+    enRojo(printf(" ✘ Sí"));
+  }
+  else
+  {
+    enVerde(printf(" ✔ No"));
+  }
+  puts("");
+
+  puts("");
   imprimirHorario(&reservacion->horario);
   puts("");
 }

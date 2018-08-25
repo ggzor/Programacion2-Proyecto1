@@ -1,33 +1,6 @@
 #include "../../Configuracion.h"
 #include "../Manejo.h"
-#include "../../Tiempo/Primitivas/FechaHora.h"
-#include "../../Tiempo/Tiempo.h"
-
-int esReservacionPasada(Reservacion *reservacion)
-{
-  FechaHora tiempoFin = obtenerFinHorario(&reservacion->horario);
-  FechaHora ahora = obtenerAhora();
-  return compararFechaHoras(&tiempoFin, &ahora) <= 0;
-}
-
-int esReservacionCancelable(Reservacion *reservacion)
-{
-  FechaHora tiempoInicio = obtenerInicioHorario(&reservacion->horario);
-  FechaHora ahora = obtenerAhora();
-
-  if (sonFechasIguales(&tiempoInicio.fecha, &ahora.fecha))
-  {
-    if (!reservacion->confirmada)
-    {
-      if (obtenerDiferenciaEnMinutosEntreHoras(&ahora.hora, &tiempoInicio.hora) > ToleranciaEnMinutos)
-      {
-        return 1;
-      }
-    }
-  }
-
-  return 0;
-}
+#include "../InformacionReservacion.h"
 
 Reservacion *buscarEnListaReservaciones(NodoReservacion *lista, int clave)
 {
