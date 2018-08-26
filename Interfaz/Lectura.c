@@ -22,7 +22,7 @@ void leerSiNo(const char *mensaje, int *direccion)
     valido = opcion == 'S' || opcion == 'N';
     if (!valido)
     {
-      puts("Elija sí (s) o no (n).\n");
+      imprimirError(puts("  Elija sí (s) o no (n)."));
     }
   } while (!valido);
 

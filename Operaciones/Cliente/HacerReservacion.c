@@ -25,6 +25,7 @@ void hacerReservacion(Restaurante *restaurante)
   Fecha fechaMaxima = agregarMeses(&ahora.fecha, MesesParaReservarDespues);
   int capacidadMaxima = calcularMaximaCapacidadMesa(restaurante);
 
+  enVerde(puts("Reservaciones:\n"));
   printf("Máximo de personas: %d\n", capacidadMaxima);
   leerEnteroRango("¿Cúantas personas van a asistir (0 para cancelar)? ", 0, capacidadMaxima, &cantidadPersonas);
 

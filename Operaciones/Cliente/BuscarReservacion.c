@@ -7,25 +7,36 @@
 
 void buscarReservacion(Restaurante *restaurante)
 {
-  int clave, estaCancelada;
+  int clave, valida;
   Reservacion *reservacion;
 
-  leerNumeroHexadecimal("Introduzca su clave de reservación: ", CantidadDigitosClave, &clave);
-  reservacion = buscarReservacionPorClave(restaurante, clave, &estaCancelada);
+  do
+  {
+    leerNumeroHexadecimal("  Introduzca su clave de reservación (0 para cancelar): ", CantidadDigitosClave, &clave);
 
-  if (reservacion == NULL)
-  {
-    imprimirError(printf("La reservación no existe."));
-  }
-  else
-  {
-    if (estaCancelada)
+    if (clave == 0)
     {
-      imprimirError(puts("Aviso: La reservación está cancelada."));
+      return;
     }
 
-    imprimirReservacion(reservacion);
-  }
+    reservacion = buscarReservacionPorClave(restaurante, clave);
+
+    if (reservacion == NULL)
+    {
+      imprimirError(printf("  La reservación no existe."));
+      valida = 0;
+    }
+    else
+    {
+      if (reservacion->cancelada)
+      {
+        imprimirError(printf("  Aviso: La reservación está cancelada."));
+      }
+
+      imprimirReservacion(reservacion);
+      valida = 1;
+    }
+  } while (!valida);
 
   pausar();
 }

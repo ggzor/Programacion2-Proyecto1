@@ -1,5 +1,6 @@
 #include "../Impresion.h"
 #include "../../Interfaz/Color.h"
+#include "../../Interfaz/Interfaz.h"
 #include "../../Tiempo/Impresion.h"
 #include "../InformacionReservacion.h"
 #include <stdio.h>
@@ -77,6 +78,13 @@ void imprimirMesaFormatoCorto(Mesa *mesa)
   enNegritas(printf("Mesa %d ", mesa->numero));
   printf("(%d personas):\n", mesa->capacidad);
   imprimirListaReservacionesFormatoCorto(mesa->reservaciones);
+
+  if (mesa->reservacionesCanceladas != NULL)
+  {
+    puts("");
+    enRojo(puts("  Canceladas:"));
+    imprimirListaReservacionesFormatoCorto(mesa->reservacionesCanceladas);
+  }
 }
 
 void imprimirListaMesasFormatoCorto(NodoMesa *lista)

@@ -9,7 +9,7 @@ int calcularCantidadMesas(Restaurante *restaurante);
 Mesa *buscarMesa(Restaurante *restaurante, int numeroMesa);
 Mesa *buscarMesaDisponibleParaReservar(Restaurante *restaurante, int cantidadPersonas, Horario *horario);
 
-Reservacion *buscarReservacionPorClave(Restaurante *restaurante, int clave, int *estaCancelada);
+Reservacion *buscarReservacionPorClave(Restaurante *restaurante, int clave);
 void reservar(Mesa *mesa, Reservacion *reservacion, Reservacion **cancelada);
 
 #endif

@@ -9,36 +9,36 @@
 
 void notificarLlegada(Restaurante *restaurante)
 {
-  int clave, estaCancelada;
+  int clave;
   FechaHora inicioReservacion;
   FechaHora ahora;
   Reservacion *reservacion;
 
-  leerNumeroHexadecimal("Introduzca su clave de reservación: ", CantidadDigitosClave, &clave);
-  reservacion = buscarReservacionPorClave(restaurante, clave, &estaCancelada);
+  leerNumeroHexadecimal("  Introduzca su clave de reservación: ", CantidadDigitosClave, &clave);
+  reservacion = buscarReservacionPorClave(restaurante, clave);
 
   if (reservacion == NULL)
   {
-    imprimirError(printf("La reservación no existe."));
+    imprimirError(printf("  La reservación no existe."));
   }
   else
   {
-    if (estaCancelada)
+    if (reservacion->cancelada)
     {
-      imprimirError(puts("Lo sentimos. La reservación ya fue cancelada porque excedió el tiempo de tolerancia."));
+      imprimirError(printf("  Lo sentimos. La reservación ya fue cancelada porque excedió el tiempo de tolerancia."));
       imprimirReservacion(reservacion);
     }
     else
     {
       if (reservacion->confirmada)
       {
-        imprimirAdvertencia(puts("La reservación ya había sido confirmada."));
+        imprimirAdvertencia(puts("  La reservación ya había sido confirmada."));
       }
       else
       {
         if (esReservacionPasada(reservacion))
         {
-          imprimirError(puts("Lo sentimos. El tiempo asignado para esta reservación ya ha terminado."));
+          imprimirError(printf("  Lo sentimos. El tiempo asignado para esta reservación ya ha terminado."));
         }
         else
         {
@@ -47,12 +47,12 @@ void notificarLlegada(Restaurante *restaurante)
 
           if (compararFechaHoras(&ahora, &inicioReservacion) < 0)
           {
-            imprimirError(puts("Sólo se puede confirmar una reservación hasta que empiece el horario en el que se reservó."))
+            imprimirError(printf("  Sólo se puede confirmar una reservación hasta que empiece el horario en el que se reservó."))
           }
           else
           {
             reservacion->confirmada = 1;
-            enVerde(puts("Reservación confirmada. ✔"));
+            enVerde(puts("  Reservación confirmada. ✔"));
           }
         }
       }
