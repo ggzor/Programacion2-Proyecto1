@@ -27,6 +27,10 @@ void imprimirEstadoReservacion(Reservacion *reservacion)
   {
     enVerde(printf("⚑"));
   }
+  else
+  {
+    enAzul(printf("⟳"));
+  }
 }
 
 void imprimirListaReservacionesFormatoCorto(NodoReservacion *lista)
@@ -116,11 +120,12 @@ void imprimirListaMesasFormatoCorto(NodoMesa *lista)
 void imprimirHorariosRestauranteFormatoCorto(Restaurante *restaurante)
 {
   enItalica(puts("Leyenda:"));
-  imprimirSimbolo("✔", VERDE, "Completada", "Se confirmó la llegada y ya transcurrió el tiempo reservado.");
-  imprimirSimbolo("✘", ROJO, "Cancelada", "Se canceló la reservación.");
+  imprimirSimbolo("⟳", AZUL, " Por venir", "Aún no llega la fecha de inicio de la reservación.");
+  imprimirSimbolo("✔", VERDE, " Completada", "Se confirmó la llegada y ya transcurrió el tiempo reservado.");
+  imprimirSimbolo("⚑", VERDE, " En curso", "Se confirmó la llegada, pero aún no transcurré el tiempo reservado.");
+  imprimirSimbolo("🕑", AMARILLO, "Cancelable", "Aún no se confirma la llegada y ya transcurrió el tiempo de tolerancia.");
   imprimirSimbolo("🕑", ROJO, "Abandonada", "No se confirmó la llegada y ya transcurrió el tiempo reservado.");
-  imprimirSimbolo("🕑", AMARILLO, "Cancelable", "Aún no se confirma la llegada y ya ha pasado el tiempo de tolerancia.");
-  imprimirSimbolo("⚑", VERDE, "En curso", "Se confirmó la llegada, pero aún no transcurré el tiempo reservado.");
+  imprimirSimbolo("✘", ROJO, " Cancelada", "Se canceló la reservación.");
   puts("");
 
   imprimirListaMesasFormatoCorto(restaurante->mesas);
