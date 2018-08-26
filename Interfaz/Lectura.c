@@ -86,7 +86,7 @@ void leerNumeroHexadecimal(const char *mensaje, int cantidadDigitos, int *direcc
     imprimirAdvertencia(printf("El valor debe ser un número hexadecimal de %d dígitos. (Máximo %X)\n",
                                cantidadDigitos, numeroMaximo - 1));
     imprimirCadena(mensaje);
-    scanf("%X%*c", direccion);
+    enVerde(scanf("%X%*c", direccion));
 
     valido = 0 <= *direccion && *direccion < numeroMaximo;
 

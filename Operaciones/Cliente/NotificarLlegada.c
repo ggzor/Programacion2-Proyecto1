@@ -2,12 +2,16 @@
 #include "../../Configuracion.h"
 #include "../../Datos/Impresion.h"
 #include "../../Datos/Manejo.h"
+#include "../../Datos/InformacionReservacion.h"
 #include "../../Interfaz/Interfaz.h"
+#include "../../Tiempo/Tiempo.h"
 #include <stdio.h>
 
 void notificarLlegada(Restaurante *restaurante)
 {
   int clave, estaCancelada;
+  FechaHora inicioReservacion;
+  FechaHora ahora;
   Reservacion *reservacion;
 
   leerNumeroHexadecimal("Introduzca su clave de reservación: ", CantidadDigitosClave, &clave);
@@ -26,8 +30,32 @@ void notificarLlegada(Restaurante *restaurante)
     }
     else
     {
-      reservacion->confirmada = 1;
-      enVerde(puts("Reservación confirmada. ✔"));
+      if (reservacion->confirmada)
+      {
+        imprimirAdvertencia(puts("La reservación ya había sido confirmada."));
+      }
+      else
+      {
+        if (esReservacionPasada(reservacion))
+        {
+          imprimirError(puts("Lo sentimos. El tiempo asignado para esta reservación ya ha terminado."));
+        }
+        else
+        {
+          ahora = obtenerAhora();
+          inicioReservacion = obtenerInicioHorario(&reservacion->horario);
+
+          if (compararFechaHoras(&ahora, &inicioReservacion) < 0)
+          {
+            imprimirError(puts("Sólo se puede confirmar una reservación hasta que empiece el horario en el que se reservó."))
+          }
+          else
+          {
+            reservacion->confirmada = 1;
+            enVerde(puts("Reservación confirmada. ✔"));
+          }
+        }
+      }
     }
   }
 

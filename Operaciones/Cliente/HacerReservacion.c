@@ -42,7 +42,7 @@ void hacerReservacion(Restaurante *restaurante)
       if (mesa != NULL)
       {
         puts("");
-        printf("Hay mesas disponibles para esa fecha y hora.\n");
+        enVerde(printf("Hay mesas disponibles para esa fecha y hora.\n"));
         printf("Por favor, ingrese sus datos:\n");
         cliente = leerCliente();
 
@@ -60,6 +60,7 @@ void hacerReservacion(Restaurante *restaurante)
 
         if (*reservacionCancelada != NULL)
         {
+          limpiarPantalla();
           imprimirError(puts("Aviso: Se ha cancelado la siguiente reservación."));
           imprimirReservacion(*reservacionCancelada);
           pausar();

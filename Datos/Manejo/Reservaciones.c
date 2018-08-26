@@ -47,6 +47,7 @@ void reservar(Mesa *mesa, Reservacion *reservacion, Reservacion **cancelada)
   NodoReservacion *actual = mesa->reservaciones;
 
   *cancelada = NULL;
+  reservacion->mesa = mesa;
   while (actual != NULL && !fueReemplazada)
   {
     if (!esReservacionPasada(actual->reservacion))
@@ -56,9 +57,10 @@ void reservar(Mesa *mesa, Reservacion *reservacion, Reservacion **cancelada)
         if (seTranslapanHorarios(&actual->reservacion->horario, &reservacion->horario))
         {
           agregarReservacionCancelada(mesa, actual->reservacion);
+          actual->reservacion->cancelada = 1;
           *cancelada = actual->reservacion;
-          actual->reservacion = reservacion;
 
+          actual->reservacion = reservacion;
           fueReemplazada = 1;
         }
       }
