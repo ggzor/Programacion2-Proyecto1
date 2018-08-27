@@ -17,11 +17,11 @@ void imprimirEstadoReservacion(Reservacion *reservacion)
   }
   else if (esReservacionAbandonada(reservacion))
   {
-    enRojo(printf("🕑"));
+    enRojo(printf("◴"));
   }
   else if (esReservacionCancelable(reservacion))
   {
-    enAmarillo(printf("🕑"));
+    enAmarillo(printf("◴"));
   }
   else if (esReservacionEnCurso(reservacion))
   {
@@ -29,7 +29,7 @@ void imprimirEstadoReservacion(Reservacion *reservacion)
   }
   else
   {
-    enAzul(printf("⟳"));
+    enAzul(printf("↻"));
   }
 }
 
@@ -112,7 +112,7 @@ void imprimirListaMesasFormatoCorto(NodoMesa *lista)
 
 #define imprimirSimbolo(simbolo, color, nombre, mensaje) \
   {                                                      \
-    conEstado(color, printf("   %s   ", simbolo));       \
+    conEstado(color, printf("   %s    ", simbolo));      \
     enItalica(printf("%s: ", nombre));                   \
     puts(mensaje);                                       \
   }
@@ -120,12 +120,12 @@ void imprimirListaMesasFormatoCorto(NodoMesa *lista)
 void imprimirHorariosRestauranteFormatoCorto(Restaurante *restaurante)
 {
   enItalica(puts("Leyenda:"));
-  imprimirSimbolo("⟳", AZUL, " Por venir", "Aún no llega la fecha de inicio de la reservación.");
-  imprimirSimbolo("✔", VERDE, " Completada", "Se confirmó la llegada y ya transcurrió el tiempo reservado.");
-  imprimirSimbolo("⚑", VERDE, " En curso", "Se confirmó la llegada, pero aún no transcurré el tiempo reservado.");
-  imprimirSimbolo("🕑", AMARILLO, "Cancelable", "Aún no se confirma la llegada y ya transcurrió el tiempo de tolerancia.");
-  imprimirSimbolo("🕑", ROJO, "Abandonada", "No se confirmó la llegada y ya transcurrió el tiempo reservado.");
-  imprimirSimbolo("✘", ROJO, " Cancelada", "Se canceló la reservación.");
+  imprimirSimbolo("↻", AZUL, "Por venir", "Aún no llega la fecha de inicio de la reservación.");
+  imprimirSimbolo("✔", VERDE, "Completada", "Se confirmó la llegada y ya transcurrió el tiempo reservado.");
+  imprimirSimbolo("⚑", VERDE, "En curso", "Se confirmó la llegada, pero aún no transcurré el tiempo reservado.");
+  imprimirSimbolo("◴", AMARILLO, "Cancelable", "Aún no se confirma la llegada y ya transcurrió el tiempo de tolerancia.");
+  imprimirSimbolo("◴", ROJO, "Abandonada", "No se confirmó la llegada y ya transcurrió el tiempo reservado.");
+  imprimirSimbolo("✘", ROJO, "Cancelada", "Se canceló la reservación.");
   puts("");
 
   imprimirListaMesasFormatoCorto(restaurante->mesas);

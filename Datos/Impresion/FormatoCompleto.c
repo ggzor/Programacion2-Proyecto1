@@ -40,7 +40,7 @@ void imprimirReservacion(Reservacion *reservacion)
   {
     if (esReservacionCancelable(reservacion))
     {
-      enAmarillo(printf("🕑 No"));
+      enAmarillo(printf("◴ No"));
     }
     else
     {
