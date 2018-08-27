@@ -1,3 +1,4 @@
+#include "../InformacionReservacion.h"
 #include "../Manejo.h"
 #include "stdlib.h"
 

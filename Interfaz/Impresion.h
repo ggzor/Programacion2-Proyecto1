@@ -4,6 +4,7 @@
 #include "Color.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #define imprimirCadena(cadena) printf("%s", cadena)
 

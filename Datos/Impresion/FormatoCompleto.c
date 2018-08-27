@@ -1,6 +1,7 @@
 #include "../../Interfaz/Color.h"
 #include "../Impresion.h"
 #include "../InformacionReservacion.h"
+#include "../../Tiempo/Impresion.h"
 #include <stdio.h>
 
 void imprimirCliente(Cliente *cliente)

@@ -1,4 +1,5 @@
 #include "../../Configuracion.h"
+#include "../Constructores.h"
 #include "../Manejo.h"
 #include "../InformacionReservacion.h"
 
