@@ -28,6 +28,17 @@ with open('./Scripts/invocar_compilador', 'w') as destino:
 with open('./Scripts/invocar_compilador.bat', 'w') as destino:
     destino.write('@echo off\n\n')
     destino.write(comando.format(todosArchivos))
+    destino.write(
+"""
+
+if %ERRORLEVEL% EQU 0 (
+  echo [32mCompilacion correcta.[0m
+) else (
+  chdir /d %directorio%
+  echo [91mCompilacion fallida.[0m && exit /B 1
+)
+"""
+    )
 
 with open('./Scripts/invocar_compilador_depuracion', 'w') as destino:
     destino.write('#!/bin/bash\n\n')
@@ -36,3 +47,14 @@ with open('./Scripts/invocar_compilador_depuracion', 'w') as destino:
 with open('./Scripts/invocar_compilador_depuracion.bat', 'w') as destino:
     destino.write('@echo off\n\n')
     destino.write(comandoDepuracion.format(todosArchivos))
+    destino.write(
+"""
+
+if %ERRORLEVEL% EQU 0 (
+  echo [32mCompilacion correcta.[0m
+) else (
+  chdir /d %directorio%
+  echo [91mCompilacion fallida.[0m && exit /B 1
+)
+"""
+    )
