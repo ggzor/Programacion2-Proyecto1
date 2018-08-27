@@ -51,10 +51,10 @@ with open('./Scripts/invocar_compilador_depuracion.bat', 'w') as destino:
 """
 
 if %ERRORLEVEL% EQU 0 (
-  echo [32mCompilacion correcta.[0m
+  echo [32mCompilación correcta.[0m
 ) else (
   chdir /d %directorio%
-  echo [91mCompilacion fallida.[0m && exit /B 1
+  echo [91mCompilación fallida.[0m && exit /B 1
 )
 """
     )

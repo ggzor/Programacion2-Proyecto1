@@ -2,13 +2,14 @@
 rem Para restaurar si hay error
 set directorio=%CD%
 
+chcp 65001
 Scripts\compilar^
- && echo [1mComenzando ejecucion...[0m^
+ && echo [1mComenzando ejecución...[0m^
  && Programa.exe
 
 if %ERRORLEVEL% EQU 0 (
-  echo [32mEjecucion correcta.[0m
+  echo [32mEjecución correcta.[0m
 ) else (
   chdir /d %directorio%
-  echo [91mEjecucion fallida.[0m && exit /B 1
+  echo [91mEjecución fallida.[0m && exit /B 1
 )
