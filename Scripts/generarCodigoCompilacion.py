@@ -16,7 +16,7 @@ def obtenerArchivosC(ruta: Path):
 
 
 directorio = Path('.')
-archivos = ['{}'.format(p) for p in obtenerArchivosC(directorio)]
+archivos = ['{}'.format(p.as_posix()) for p in sorted(obtenerArchivosC(directorio), key=lambda p: str(p))]
 todosArchivos = ' '.join(archivos)
 comando = 'gcc {} -o Programa -lm'
 comandoDepuracion = comando + ' -g'
@@ -25,6 +25,14 @@ with open('./Scripts/invocar_compilador', 'w') as destino:
     destino.write('#!/bin/bash\n\n')
     destino.write(comando.format(todosArchivos))
 
+with open('./Scripts/invocar_compilador.bat', 'w') as destino:
+    destino.write('@echo off\n\n')
+    destino.write(comando.format(todosArchivos))
+
 with open('./Scripts/invocar_compilador_depuracion', 'w') as destino:
     destino.write('#!/bin/bash\n\n')
+    destino.write(comandoDepuracion.format(todosArchivos))
+
+with open('./Scripts/invocar_compilador_depuracion.bat', 'w') as destino:
+    destino.write('@echo off\n\n')
     destino.write(comandoDepuracion.format(todosArchivos))
