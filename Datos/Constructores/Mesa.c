@@ -8,6 +8,7 @@ Mesa *crearMesa(int numero, int capacidad)
   mesa->numero = numero;
   mesa->capacidad = capacidad;
   mesa->reservaciones = NULL;
+  mesa->reservacionesCanceladas = NULL;
 
   return mesa;
 }
